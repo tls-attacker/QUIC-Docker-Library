@@ -1,21 +1,20 @@
 FROM alpine-build:3.19 as xquic
-ARG VERSION
+ARG VERSION 
+ARG VERSION_BABASSL=8.4.0
 
 RUN git clone --depth=1 --branch=v${VERSION} https://github.com/alibaba/xquic
-WORKDIR /xquic
+RUN git clone --depth 1 --branch=${VERSION_BABASSL} https://github.com/Tongsuo-Project/Tongsuo.git xquic/third_party/babassl
 
-RUN git clone -b 8.3-stable https://github.com/Tongsuo-Project/Tongsuo.git ./third_party/babassl \
-    && cd ./third_party/babassl \
-    && ./config --prefix=/usr/local/babassl \
-    && make -j \
-    && SSL_TYPE_STR="babassl" \
-    && SSL_PATH_STR="${PWD}" \
-    && cd -
+WORKDIR /xquic/third_party/babassl/
+RUN ./Configure --api=1.1.1 no-deprecated && \
+    make -j 
 
-RUN git submodule update --init --recursive \
-    && mkdir -p build; cd build \
-    && cmake -DGCOV=on -DCMAKE_BUILD_TYPE=Debug -DXQC_ENABLE_TESTING=1 -DXQC_SUPPORT_SENDMMSG_BUILD=1 -DXQC_ENABLE_EVENT_LOG=1 -DXQC_ENABLE_BBR2=1 -DXQC_ENABLE_RENO=1 -DSSL_TYPE=${SSL_TYPE_STR} -DSSL_PATH=${SSL_PATH_STR} .. 
+WORKDIR /xquic_bin
+RUN cmake -DSSL_TYPE="babassl" -DSSL_PATH="/xquic/third_party/babassl" -DCMAKE_BUILD_TYPE=DEBUG -DXQC_PRINT_SECRET=1 -DXQC_ENABLE_TESTING=1 ../xquic/ && \
+    make -j
 
-RUN make -j
+ADD ./server.crt /xquic_bin/demo/server.crt
+ADD ./server.key /xquic_bin/demo/server.key
 
-TODO
+WORKDIR /xquic_bin/demo
+ENTRYPOINT [ "./demo_server"]
