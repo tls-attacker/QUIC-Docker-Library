@@ -6,14 +6,14 @@
 
 ## Supported Versions:
 
-1.34.0, 1.35.0
+1.52.1
 
 ## Building the Docker Image
 ```
-docker build --build-arg VERSION=1.35.0 --no-cache -t s2n-quic-server:1.35.0 .
+docker build --build-arg VERSION=1.52.1 --no-cache -t s2n-quic-server:1.52.1 .
 ```
 
 ## Starting the Docker Container
 ```
-docker run s2n-quic-server:1.35.0
+docker run s2n-quic-server:1.52.1
 ```

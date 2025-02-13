@@ -9,7 +9,7 @@ RUN apk add libev libev-dev shared-mime-info
 #RUN update-mime-database /etc/
 RUN git clone https://boringssl.googlesource.com/boringssl
 WORKDIR /boringssl
-RUN git checkout a220a6024f66c123019b5c080f6bd8bcaf75448c
+RUN git checkout c361e279402ec359834b7eaa7d737462d02675e1
 RUN cmake -B build -DCMAKE_POSITION_INDEPENDENT_CODE=ON
 RUN make -j$(nproc) -C build
 WORKDIR /

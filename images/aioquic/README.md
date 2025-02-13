@@ -17,3 +17,5 @@ docker build --build-arg VERSION=1.0.0 --no-cache -t aioquic-server:1.0.0 .
 ```
 docker run aioquic-server:1.0.0
 ```
+
+python3 examples/http3_server.py -c /testserver.crt -k /testserver.key --host 0.0.0.0 --port 8443 --retry

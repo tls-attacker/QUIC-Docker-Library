@@ -6,16 +6,16 @@
 
 ## Supported Versions:
 
-2.3.5, 2.4.7
+2.3.5
 
 ## Building the Docker Image
 ```
-docker build --build-arg VERSION=2.4.7 --no-cache -t msquic-server:2.4.7 .
+docker build --build-arg VERSION=2.3.5 --no-cache -t msquic-server:2.3.5 .
 ```
 
 ## Starting the Docker Container
 ```
-docker run -p 8443:4567/udp msquic-server:2.4.7
+docker run -p 8443:4567/udp msquic-server:2.3.5
 ```
 
 ##Info

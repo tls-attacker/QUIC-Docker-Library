@@ -1,0 +1,43 @@
+version: "3.8"
+
+services:
+  msquic:
+    build:
+      context: ./msquic
+      args:
+        VERSION: "2.4.7"
+    ports:
+      - "8001:4567/udp"
+    tty: true
+  
+  quiche-cloudflare:
+    build:
+      context: ./quiche-cloudflare
+      args:
+        VERSION: "0.23.2"
+    ports:
+      - "8002:8443/udp"
+
+  mvfst:
+    build:
+      context: ./proxygen-mvfst
+      args:
+        VERSION: "2025.02.10.00"
+    ports:
+      - "8003:6666/udp"
+  
+  ngtcp2:
+    build:
+      context: ./ngtcp2
+      args:
+        VERSION: "1.10.0"
+    ports:
+      - "8004:8443/udp"
+  
+  s2n-quic:
+    build:
+      context: ./s2n-quic
+      args:
+        VERSION: "1.52.1"
+    ports:
+      - "8005:4433/udp"

@@ -1,4 +1,4 @@
-FROM alpine-build:3.19 as msquic
+FROM alpine-build:3.19 AS msquic
 ARG VERSION
 
 RUN apk update
@@ -16,7 +16,7 @@ RUN ln -s /opt/microsoft/powershell/7/pwsh /usr/bin/pwsh
 
 #Clone Repo
 RUN git clone --recursive --depth=1 --branch=v${VERSION} https://github.com/microsoft/msquic.git
-WORKDIR msquic
+WORKDIR /msquic
 
 #Per default, their sample server rejects any connection not advertising "sample" in the ALPN extension. We replace this with h3 so the server does not always close the connection immediately.
 RUN sed -i -e 's/\"sample\"/\"h3\"/g' src/tools/sample/sample.c
