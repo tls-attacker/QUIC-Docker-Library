@@ -1,5 +1,3 @@
-version: "3.8"
-
 services:
   msquic:
     build:
@@ -41,3 +39,20 @@ services:
         VERSION: "1.52.1"
     ports:
       - "8005:4433/udp"
+  
+  aioquic:
+    build:
+      context: ./aioquic
+      args:
+        VERSION: "1.2.0"
+    ports:
+      - "8006:8443/udp"
+  
+  xquic:
+    build:
+      context: ./xquic
+      args:
+        VERSION: "1.8.2"
+    ports:
+      - "8007:8443/udp"
+    command: ["-r", "-l", "d"]

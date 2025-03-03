@@ -1,4 +1,4 @@
-FROM alpine-build:3.19 as aioquic
+FROM alpine-build:3.19 AS aioquic
 ARG VERSION
 
 WORKDIR /
