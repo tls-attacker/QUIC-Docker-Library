@@ -56,3 +56,9 @@ services:
     ports:
       - "8007:8443/udp"
     command: ["-r", "-l", "d"]
+
+  picoquic:
+    build:
+      context: ./picoquic
+    ports:
+      - "8008:8443/udp"

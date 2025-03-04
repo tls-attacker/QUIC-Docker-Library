@@ -6,7 +6,7 @@
 
 ## Supported Versions:
 
-1.7.1, 1.7.2
+1.7.1, 1.7.2, 1.8.2
 
 ## Building the Docker Image
 ```
