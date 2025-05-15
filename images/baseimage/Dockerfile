@@ -6,6 +6,7 @@ RUN apk update
 RUN apk add \
     git \
     openssl-dev \
+    openssl \
     python3-dev \
     bsd-compat-headers \
     libffi-dev \
