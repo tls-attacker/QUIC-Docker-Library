@@ -1,19 +1,21 @@
 # quic-go
 
-## Source:
+## Source
 
 [https://github.com/quic-go/quic-go](https://github.com/quic-go/quic-go)
 
-## Supported Versions:
+## Supported Versions
 
-0.41.0, 0.42.0
+0.41.0, 0.42.0, 0.50.0, 0.50.1, 0.51.0
 
-## Building the Docker Image
-```
-docker build --build-arg VERSION=0.42.0 --no-cache -t quic-go-server:0.42.0 .
+## Requiered Server Parameters
+
+```bash
+-bind "[IP:PORT]"
 ```
 
-## Starting the Docker Container
-```
-docker run quic-go-server:0.42.0
+## Requiered Client Parameters
+
+```bash
+[URL] # e.g., https://localhost:4433
 ```

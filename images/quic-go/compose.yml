@@ -1,0 +1,81 @@
+services:
+  quic-go-server-0.51.0:
+    image: rub-nds/quic/quic-go-server:0.51.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: quic-go-server
+      args:
+        VERSION: "0.51.0"
+  quic-go-client-0.51.0:
+    image: rub-nds/quic/quic-go-client:0.51.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: quic-go-client
+      args:
+        VERSION: "0.51.0"
+  quic-go-server-0.50.1:
+    image: rub-nds/quic/quic-go-server:0.50.1
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: quic-go-server
+      args:
+        VERSION: "0.50.1"
+  quic-go-client-0.50.1:
+    image: rub-nds/quic/quic-go-client:0.50.1
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: quic-go-client
+      args:
+        VERSION: "0.50.1"
+  quic-go-server-0.50.0:
+    image: rub-nds/quic/quic-go-server:0.50.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: quic-go-server
+      args:
+        VERSION: "0.50.0"
+  quic-go-client-0.50.0:
+    image: rub-nds/quic/quic-go-client:0.50.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: quic-go-client
+      args:
+        VERSION: "0.50.0"
+  quic-go-server-0.42.0:
+    image: rub-nds/quic/quic-go-server:0.42.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: quic-go-server
+      args:
+        VERSION: "0.42.0"
+  quic-go-client-0.42.0:
+    image: rub-nds/quic/quic-go-client:0.42.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: quic-go-client
+      args:
+        VERSION: "0.42.0"
+  quic-go-server-0.41.0:
+    image: rub-nds/quic/quic-go-server:0.41.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: quic-go-server
+      args:
+        VERSION: "0.41.0"
+  quic-go-client-0.41.0:
+    image: rub-nds/quic/quic-go-client:0.41.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: quic-go-client
+      args:
+        VERSION: "0.41.0"
