@@ -1,0 +1,8 @@
+services:
+  alpine-build-3.19:
+    image: rub-nds/quic/alpine-build:3.19
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args: 
+        VERSION: 3.19
