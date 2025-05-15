@@ -62,3 +62,13 @@ services:
       context: ./picoquic
     ports:
       - "8008:8443/udp"
+
+
+  lsquic:
+    build:
+      context: ./lsquic
+      args:
+        VERSION: "4.0.9"
+    ports:
+      - "8009:8443/udp"
+

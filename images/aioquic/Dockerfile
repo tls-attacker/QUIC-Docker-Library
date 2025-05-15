@@ -10,4 +10,4 @@ WORKDIR /aioquic
 
 RUN python3 setup.py install
 
-ENTRYPOINT ["python3", "examples/http3_server.py", "-c", "/testserver.crt", "-k", "/testserver.key", "--host", "0.0.0.0", "--port", "8443", "--retry"]
+ENTRYPOINT ["python3", "examples/http3_server.py", "-c", "/testserver.crt", "-k", "/testserver.key", "--host", "0.0.0.0", "--port", "8443", "--retry", "--verbose"]
