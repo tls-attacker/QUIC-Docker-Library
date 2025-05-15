@@ -1,4 +1,3 @@
-# Ignore certificate authority files
 *.crt
 *.key
 *.srl
