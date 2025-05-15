@@ -1,4 +1,5 @@
-FROM alpine-build:3.19 AS s2n-quic
+FROM rub-nds/quic/alpine-build:3.21.2 AS s2n-quic-base
+
 ARG VERSION
 
 RUN git clone --depth=1 --branch=v${VERSION} https://github.com/aws/s2n-quic
@@ -8,4 +9,8 @@ RUN sed -i 's/tls-s2n\"/tls-s2n\", \"provider-address-token-default\"/g' Cargo.t
 RUN cargo build
 WORKDIR /s2n-quic/examples/resumption/
 
-ENTRYPOINT ["cargo", "run", "--bin", "server"]
+FROM s2n-quic-base AS s2n-quic-server
+ENTRYPOINT ["cargo", "run", "--bin", "server", "--"]
+
+FROM s2n-quic-base AS s2n-quic-client
+ENTRYPOINT ["cargo", "run", "--bin", "client", "--"]
