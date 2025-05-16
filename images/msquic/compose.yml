@@ -1,0 +1,33 @@
+services:
+  msquic-server-2.3.5:
+    image: rub-nds/quic/msquic-server:2.3.5
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: msquic-server
+      args:
+        VERSION: "2.3.5"
+  msquic-client-2.3.5:
+    image: rub-nds/quic/msquic-client:2.3.5
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: msquic-client
+      args:
+        VERSION: "2.3.5"
+  msquic-server-2.4.7:
+    image: rub-nds/quic/msquic-server:2.4.7
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: msquic-server
+      args:
+        VERSION: "2.4.7"
+  msquic-client-2.4.7:
+    image: rub-nds/quic/msquic-client:2.4.7
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: msquic-client
+      args:
+        VERSION: "2.4.7"

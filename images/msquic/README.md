@@ -1,23 +1,25 @@
 # msquic
 
-## Source:
+## Source
 
 [https://github.com/microsoft/msquic](https://github.com/microsoft/msquic)
 
-## Supported Versions:
+## Supported Versions
 
 2.3.5, 2.4.7
 
-## Building the Docker Image
-```
-docker build --build-arg VERSION=2.4.7 --no-cache -t msquic-server:2.4.7 .
+## Requiered Server Parameters
+
+```bash
+-cert_file:[CERTIFICATE] -key_file:[PRIVATE_KEY] 
 ```
 
-## Starting the Docker Container
-```
-docker run -p 8443:4567/udp msquic-server:2.4.7
+## Requiered Client Parameters
+
+```bash
+-target:[IP]
 ```
 
-##Info
+## Note
 
-The sample server does not speak HTTP/3 but only a "sample" protocol. We replace the "sample" ALPN with h3 so TLS-Scanner can connect to the server without the connection being immediately closed due to no application protocol supported.
+- The implementation does not speak HTTP/3 but only a "sample" protocol. We replace the "sample" ALPN with h3.
