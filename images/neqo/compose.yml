@@ -1,0 +1,65 @@
+services:
+  neqo-server-0.8.0:
+    image: rub-nds/quic/neqo-server:0.8.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: neqo-server
+      args:
+        VERSION: "0.8.0"
+  neqo-client-0.8.0:
+    image: rub-nds/quic/neqo-client:0.8.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: neqo-client
+      args:
+        VERSION: "0.8.0"
+  neqo-server-0.9.0:
+    image: rub-nds/quic/neqo-server:0.9.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: neqo-server
+      args:
+        VERSION: "0.9.0"
+  neqo-client-0.9.0:
+    image: rub-nds/quic/neqo-client:0.9.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: neqo-client
+      args:
+        VERSION: "0.9.0"
+  neqo-server-0.10.0:
+    image: rub-nds/quic/neqo-server:0.10.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: neqo-server
+      args:
+        VERSION: "0.10.0"
+  neqo-client-0.10.0:
+    image: rub-nds/quic/neqo-client:0.10.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: neqo-client
+      args:
+        VERSION: "0.10.0"
+  neqo-server-0.11.0:
+    image: rub-nds/quic/neqo-server:0.11.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: neqo-server
+      args:
+        VERSION: "0.11.0"
+  neqo-client-0.11.0:
+    image: rub-nds/quic/neqo-client:0.11.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: neqo-client
+      args:
+        VERSION: "0.11.0"
