@@ -5,13 +5,9 @@ services:
       context: .
       dockerfile: Dockerfile
       target: quicly-server
-      args:
-        VERSION: "latest"
   quicly-client-latest:
     image: rub-nds/quic/quicly-client:latest
     build:
       context: .
       dockerfile: Dockerfile
       target: quicly-client
-      args:
-        VERSION: "latest"
