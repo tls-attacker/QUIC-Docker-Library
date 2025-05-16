@@ -1,23 +1,21 @@
-# msquic
+# quicly
 
-## Source:
+## Source
 
-[https://github.com/microsoft/msquic](https://github.com/microsoft/msquic)
+[https://github.com/h2o/quicly](https://github.com/h2o/quicly.git)
 
-## Supported Versions:
+## Supported Versions
 
-2.3.5
+Does not have versioning.
 
-## Building the Docker Image
-```
-docker build --build-arg VERSION=2.3.5 --no-cache -t msquic-server:2.3.5 .
-```
+## Requiered Server Parameters
 
-## Starting the Docker Container
-```
-docker run -p 8443:4567/udp msquic-server:2.3.5
+```bash
+-k [PRIVATE_KEY] -c [CERTIFICATE] [IP] [PORT]
 ```
 
-##Info
+## Requiered Client Parameters
 
-The sample server does not speak HTTP/3 but only a "sample" protocol. We replace the "sample" ALPN with h3 so TLS-Scanner can connect to the server without the connection being immediately closed due to no application protocol supported.
+```bash
+[IP] [PORT]
+```
