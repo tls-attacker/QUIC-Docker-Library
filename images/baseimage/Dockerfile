@@ -33,6 +33,7 @@ RUN apk add \
     bash \
     gyp \
     zlib-dev \
+    zlib-static \
     llvm-dev \
     boost-dev \
     m4 \
@@ -46,4 +47,7 @@ RUN apk add \
     glog-dev \
     double-conversion-dev \
     py3-httpbin \
-    py3-asgiref
+    py3-asgiref \
+    libev \
+    libev-dev \
+    shared-mime-info
