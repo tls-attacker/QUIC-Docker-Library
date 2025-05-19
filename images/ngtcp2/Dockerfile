@@ -1,37 +1,39 @@
-FROM alpine-build:3.19 as ngtcp2
-ARG VERSION
+FROM rub-nds/quic/alpine-build:3.19 AS ngtcp2-base
 
-RUN apk update
-RUN apk add openssl
-RUN openssl req -newkey rsa:2048 -nodes -keyout testserver.key -x509 -days 3650 -out testserver.crt -subj "/CN=localhost"
-RUN apk del openssl
-RUN apk add libev libev-dev shared-mime-info
-#RUN update-mime-database /etc/
-RUN git clone https://boringssl.googlesource.com/boringssl
+ARG VERSION_NGTCP2
+ARG VERSION_NGHTTP3
+ARG VERSION_BORINGSSL
+
+# Clone projects
+RUN git clone --depth=1 --branch=${VERSION_BORINGSSL} https://github.com/google/boringssl.git
+RUN git clone --depth=1 --branch=v${VERSION_NGHTTP3} https://github.com/ngtcp2/nghttp3.git
+RUN git clone --depth=1 --branch=v${VERSION_NGTCP2} https://github.com/ngtcp2/ngtcp2.git
+
+# Build boringssl
 WORKDIR /boringssl
-RUN git checkout c361e279402ec359834b7eaa7d737462d02675e1
 RUN cmake -B build -DCMAKE_POSITION_INDEPENDENT_CODE=ON
-RUN make -j$(nproc) -C build
-WORKDIR /
-RUN git clone --recursive https://github.com/ngtcp2/nghttp3
+RUN make -C build
+
+# Build nghttp3
 WORKDIR /nghttp3
+RUN git submodule update --init
 RUN autoreconf -i
 RUN ./configure --prefix=$PWD/build --enable-lib-only
-RUN make -j$(nproc) check
+RUN make check
 RUN make install
-WORKDIR /
-RUN git clone --recursive --depth=1 --branch=v${VERSION} https://github.com/ngtcp2/ngtcp2.git
+
+# Build ngtcp2
 WORKDIR /ngtcp2
+RUN git submodule update --init
 RUN autoreconf -i
 RUN ./configure PKG_CONFIG_PATH=$PWD/../nghttp3/build/lib/pkgconfig \
     BORINGSSL_LIBS="-L$PWD/../boringssl/build/ssl -lssl -L$PWD/../boringssl/build/crypto -lcrypto" \
     BORINGSSL_CFLAGS="-I$PWD/../boringssl/include" \
     --with-boringssl
-RUN make -j$(nproc) check
-WORKDIR /
-RUN mkdir docroot
+RUN make check
 
-EXPOSE 8443:8443/udp
-ENTRYPOINT ["/ngtcp2/examples/bsslserver", "-V", "-d", "/docroot", "0.0.0.0", "8443", "testserver.key", "testserver.crt"]
+FROM ngtcp2-base AS ngtcp2-server
+ENTRYPOINT ["/ngtcp2/examples/bsslserver"]
 
-
+FROM ngtcp2-base AS ngtcp2-client
+ENTRYPOINT ["/ngtcp2/examples/bsslclient"]
