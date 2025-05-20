@@ -1,4 +1,4 @@
-FROM alpine-build:3.19 AS quicly-base
+FROM rub-nds/quic/alpine-build:3.19 AS quicly-base
 
 RUN git clone --depth=1  https://github.com/h2o/quicly.git
 WORKDIR /quicly
