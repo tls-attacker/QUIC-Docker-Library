@@ -1,0 +1,200 @@
+services:
+  # BASE IMAGES
+  alpine-build-3.21.2:
+    image: rub-nds/quic/alpine-build:3.21.2
+    build:
+      context: ../images/baseimage
+      dockerfile: Dockerfile
+      args: 
+        VERSION: 3.21.2
+  alpine-build-3.19:
+    image: rub-nds/quic/alpine-build:3.19
+    build:
+      context: ../images/baseimage
+      dockerfile: Dockerfile
+      args: 
+        VERSION: 3.19
+  # QUIC SERVERS
+  aioquic:
+    image: rub-nds/quic/aioquic-server:1.2.0
+    build:
+      context: ../images/aioquic
+      dockerfile: Dockerfile
+      target: aioquic-server
+      args:
+        VERSION: "1.2.0"
+    ports:
+      - "8000:4433/udp"
+    volumes:
+      - ../certs:/certs
+    command: --port 4433 -c /certs/server.crt -k /certs/server.key
+  kwik-server-0.8.11:
+    image: rub-nds/quic/kwik-server:0.8.11
+    build:
+      context: ../images/kwik
+      dockerfile: Dockerfile
+      target: kwik-server
+      args:
+        VERSION: "0.8.11"
+    ports:
+      - "8001:4433/udp"
+    volumes:
+      - ../certs:/certs
+    command: /certs/server.crt /certs/server.key 4433
+  lsquic-server-4.2.0:
+    image: rub-nds/quic/lsquic-server:4.2.0
+    build:
+      context: ../images/lsquic
+      dockerfile: Dockerfile
+      target: lsquic-server
+      args:
+        VERSION_LSQUIC: "4.2.0"
+        VERSION_BORINGSSL: "0.20250415.0"
+    ports:
+      - "8002:4433/udp"
+    volumes:
+      - ../certs:/certs
+    command: -s 127.0.0.1:4433 -c server.example.org,/certs/server.crt,/certs/server.key
+  msquic-server-2.4.7:
+    image: rub-nds/quic/msquic-server:2.4.7
+    build:
+      context: ../images/msquic
+      dockerfile: Dockerfile
+      target: msquic-server
+      args:
+        VERSION: "2.4.7"
+    ports:
+      - "8003:4567/udp"
+    volumes:
+      - ../certs:/certs
+    command: -cert_file:/certs/server.crt -key_file:/certs/server.key
+    tty: true
+  neqo-server-0.11.0:
+    image: rub-nds/quic/neqo-server:0.11.0
+    build:
+      context: ../images/neqo
+      dockerfile: Dockerfile
+      target: neqo-server
+      args:
+        VERSION: "0.11.0"
+    ports:
+      - "8004:4433/udp"
+    volumes:
+      - ../certs:/certs
+    command: 127.0.0.1:4433
+  ngtcp2-server-1.12.0:
+    image: rub-nds/quic/ngtcp2-server:1.12.0
+    build:
+      context: ../images/ngtcp2
+      dockerfile: Dockerfile
+      target: ngtcp2-server
+      args:
+        VERSION_NGTCP2: "1.12.0"
+        VERSION_NGHTTP3: "1.9.0"
+        VERSION_BORINGSSL: "0.20250415.0"
+    ports:
+      - "8005:4443/udp"
+    volumes:
+      - ../certs:/certs
+    command: 127.0.0.1 4433 /certs/server.key /certs/server.crt 
+  picoquic-server-latest:
+    image: rub-nds/quic/picoquic-server:latest
+    build:
+      context: ../images/picoquic
+      dockerfile: Dockerfile
+      target: picoquic-server
+    ports:
+      - "8006:4443/udp"
+    volumes:
+      - ../certs:/certs
+    command: -p 4433 -k /certs/server.key -c /certs/server.crt 
+  proxygen-mvfst-server-2025.02.10.00:
+    image: rub-nds/quic/proxygen-mvfst-server:2025.02.10.00
+    build:
+      context: ../images/proxygen-mvfst
+      dockerfile: Dockerfile
+      target: proxygen-mvfst-server
+      args:
+        VERSION: "2025.02.10.00"
+    ports:
+      - "8007:4443/udp"
+    volumes:
+      - ../certs:/certs
+    command: -port 4433 -key /certs/server.key -cert /certs/server.crt 
+  quic-go-server-0.51.0:
+    image: rub-nds/quic/quic-go-server:0.51.0
+    build:
+      context: ../images/quic-go
+      dockerfile: Dockerfile
+      target: quic-go-server
+      args:
+        VERSION: "0.51.0"
+    ports:
+      - "8008:4443/udp"
+    volumes:
+      - ../certs:/certs
+    command: -bind 127.0.0.1:4433 -key /certs/server.key -cert /certs/server.crt 
+  quiche-cloudflare-server-0.20.1:
+    image: rub-nds/quic/quiche-cloudflare-server:0.20.1
+    build:
+      context: ../images/quiche-cloudflare
+      dockerfile: Dockerfile
+      target: quiche-cloudflare-server
+      args:
+        VERSION: "0.20.1"
+    ports:
+      - "8009:4443/udp"
+    volumes:
+      - ../certs:/certs
+    command: --listen  127.0.0.1:4433 --key /certs/server.key --cert /certs/server.crt 
+  quicly-server-latest:
+    image: rub-nds/quic/quicly-server:latest
+    build:
+      context: ../images/quicly
+      dockerfile: Dockerfile
+      target: quicly-server
+    ports:
+      - "8010:4443/udp"
+    volumes:
+      - ../certs:/certs
+    command: -k /certs/server.key -c /certs/server.crt 127.0.0.1 4433
+  quinn-server-0.10.4:
+    image: rub-nds/quic/quinn-server:0.10.4
+    build:
+      context: ../images/quinn
+      dockerfile: Dockerfile
+      target: quinn-server
+      args:
+        VERSION: "0.10.4"
+    ports:
+      - "8011:4443/udp"
+    volumes:
+      - ../certs:/certs
+    command: --listen  127.0.0.1:4433 -k /certs/server.key -c /certs/server.crt /
+  s2n-quic-server-1.58.0:
+    image: rub-nds/quic/s2n-quic-server:1.58.0
+    build:
+      context: ../images/s2n-quic
+      dockerfile: Dockerfile
+      target: s2n-quic-server
+      args:
+        VERSION: "1.58.0"
+    ports:
+      - "8012:4443/udp"
+    volumes:
+      - ../certs:/certs
+    command: 
+  xquic-server-1.8.3:
+    image: rub-nds/quic/xquic-server:1.8.3
+    build:
+      context: ../images/xquic
+      dockerfile: Dockerfile
+      target: xquic-server
+      args:
+        VERSION_XQUIC: "1.8.3"
+        VERSION_BABASSL: "8.3-stable"
+    ports:
+      - "8013:4443/udp"
+    volumes:
+      - ../certs:/certs
+    command: -p 4433
