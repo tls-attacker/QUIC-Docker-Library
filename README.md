@@ -8,20 +8,27 @@ To generate certificates and keys, use the `generateCerts.sh` script located in 
 
 ## Building QUIC Implementations
 
-1. Navigate to the folder of your desired QUIC implementation.
-2. List the available versions of the implementation:
+1. Navigate to the `images/baseimage` folder and build the base images using Docker Compose:
+
+    ```bash
+    docker compose build
+    ```
+
+2. Navigate to the folder of your desired QUIC implementation.
+
+3. List the available versions of the implementation:
 
     ```bash
     docker compose config --services
     ```
 
-3. Build a specific version:
+4. Build a specific version of the implementation:
 
     ```bash
     docker compose build [SERVICE]
     ```
 
-    Or build all versions:
+    Alternatively, build all available versions:
 
     ```bash
     docker compose build
