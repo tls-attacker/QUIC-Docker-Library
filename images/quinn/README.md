@@ -11,7 +11,7 @@
 ## Requiered Server Parameters
 
 ```bash
---listen [IP:PORT] [DIRECTORY TO SERVE FILES FROM]
+--listen [IP:PORT] -k [PRIVATE_KEY] -c [CERTIFICATE] [DIRECTORY TO SERVE FILES FROM]
 ```
 
 ## Requiered Client Parameters
