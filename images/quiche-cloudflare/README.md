@@ -19,3 +19,7 @@
 ```bash
 [URL] # e.g., https://localhost:4433
 ```
+
+## Note
+
+- The server sends a Stateless Retry by default.
