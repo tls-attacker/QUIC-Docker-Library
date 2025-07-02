@@ -1,19 +1,21 @@
 # neqo
 
-## Source:
+## Source
 
 [https://github.com/mozilla/neqo](https://github.com/mozilla/neqo)
 
-## Supported Versions:
+## Supported Versions
 
-0.7.9
+0.8.0, 0.9.0, 0.10.0, 0.11.0
 
-## Building the Docker Image
-```
-docker build --build-arg VERSION=0.7.9 --no-cache -t neqo-server:0.7.9 .
+## Requiered Server Parameters
+
+```bash
+[IP]:[PORT]
 ```
 
-## Starting the Docker Container
-```
-docker run neqo-server:0.7.9
+## Requiered Client Parameters
+
+```bash
+[URL] # e.g., https://localhost:4433
 ```

@@ -1,20 +1,21 @@
-# ngtcp2
+# lsquic
 
-## Source:
+## Source
 
 [https://github.com/litespeedtech/lsquic](https://github.com/litespeedtech/lsquic)
 
-## Supported Versions:
+## Supported Versions
 
-4.0.9
+4.1.0, 4.2.0
 
-## Building the Docker Image
-```
-docker build --build-arg VERSION=4.0.9 --no-cache -t lsquic:4.0.9 .
-```
+## Requiered Server Parameters
 
-## Starting the Docker Container
-```
-docker run -p 8443:8443/udp lsquic:4.0.9
+```bash
+-s [IP]:[PORT] -c [DOMAIN_NAME],[CERTIFICATE],[PRIVATE_KEY]
 ```
 
+## Requiered Client Parameters
+
+```bash
+-s [IP]:[PORT]
+```

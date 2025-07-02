@@ -1,0 +1,13 @@
+services:
+  picoquic-server-latest:
+    image: rub-nds/quic/picoquic-server:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: picoquic-server
+  picoquic-client-latest:
+    image: rub-nds/quic/picoquic-client:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: picoquic-client

@@ -1,21 +1,21 @@
 # picoquic
 
-## Source:
+## Source
 
 [https://github.com/private-octopus/picoquic](https://github.com/private-octopus/picoquic)
 
-## Supported Versions:
+## Supported Versions
 
-_Does not have versioning_
+Does not have versioning.
 
-## Building the Docker Image
-```
-docker build -t picoquic-server:latest .
-```
+## Requiered Server Parameters
 
-## Starting the Docker Container
-```
-docker run -p 8443:8443/udp picoquic-server:latest
+```bash
+-p [PORT] -c [CERTIFICATE] -k [PRIVATE_KEY]
 ```
 
+## Requiered Client Parameters
 
+```bash
+[IP] [PORT]
+```

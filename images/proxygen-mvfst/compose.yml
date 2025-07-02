@@ -1,0 +1,17 @@
+services:
+  proxygen-mvfst-server-2025.02.10.00:
+    image: rub-nds/quic/proxygen-mvfst-server:2025.02.10.00
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: proxygen-mvfst-server
+      args:
+        VERSION: "2025.02.10.00"
+  proxygen-mvfst-client-2025.02.10.00:
+    image: rub-nds/quic/proxygen-mvfst-client:2025.02.10.00
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: proxygen-mvfst-client
+      args:
+        VERSION: "2025.02.10.00"

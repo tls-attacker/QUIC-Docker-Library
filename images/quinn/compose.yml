@@ -1,0 +1,33 @@
+services:
+  quinn-server-0.10.4:
+    image: rub-nds/quic/quinn-server:0.10.4
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: quinn-server
+      args:
+        VERSION: "0.10.4"
+  quinn-client-0.10.4:
+    image: rub-nds/quic/quinn-client:0.10.4
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: quinn-client
+      args:
+        VERSION: "0.10.4"
+  quinn-server-0.10.3:
+    image: rub-nds/quic/quinn-server:0.10.3
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: quinn-server
+      args:
+        VERSION: "0.10.3"
+  quinn-client-0.10.3:
+    image: rub-nds/quic/quinn-client:0.10.3
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: quinn-client
+      args:
+        VERSION: "0.10.3"

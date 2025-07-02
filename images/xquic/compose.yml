@@ -1,0 +1,73 @@
+services:
+  xquic-server-1.7.1:
+    image: rub-nds/quic/xquic-server:1.7.1
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: xquic-server
+      args:
+        VERSION_XQUIC: "1.7.1"
+        VERSION_BABASSL: "8.3-stable"
+  xquic-client-1.7.1:
+    image: rub-nds/quic/xquic-client:1.7.1
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: xquic-client
+      args:
+        VERSION_XQUIC: "1.7.1"
+        VERSION_BABASSL: "8.3-stable"
+  xquic-server-1.7.2:
+    image: rub-nds/quic/xquic-server:1.7.2
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: xquic-server
+      args:
+        VERSION_XQUIC: "1.7.2"
+        VERSION_BABASSL: "8.3-stable"
+  xquic-client-1.7.2:
+    image: rub-nds/quic/xquic-client:1.7.2
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: xquic-client
+      args:
+        VERSION_XQUIC: "1.7.2"
+        VERSION_BABASSL: "8.3-stable"
+  xquic-server-1.8.2:
+    image: rub-nds/quic/xquic-server:1.8.2
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: xquic-server
+      args:
+        VERSION_XQUIC: "1.8.2"
+        VERSION_BABASSL: "8.3-stable"
+  xquic-client-1.8.2:
+    image: rub-nds/quic/xquic-client:1.8.2
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: xquic-client
+      args:
+        VERSION_XQUIC: "1.8.2"
+        VERSION_BABASSL: "8.3-stable"
+  xquic-server-1.8.3:
+    image: rub-nds/quic/xquic-server:1.8.3
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: xquic-server
+      args:
+        VERSION_XQUIC: "1.8.3"
+        VERSION_BABASSL: "8.3-stable"
+  xquic-client-1.8.3:
+    image: rub-nds/quic/xquic-client:1.8.3
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: xquic-client
+      args:
+        VERSION_XQUIC: "1.8.3"
+        VERSION_BABASSL: "8.3-stable"

@@ -1,19 +1,26 @@
 # xquic
 
-## Source:
+## Source
 
 [https://github.com/alibaba/xquic](https://github.com/alibaba/xquic)
 
-## Supported Versions:
+## Supported Versions
 
-1.7.1, 1.7.2, 1.8.2
+1.7.1, 1.7.2, 1.8.2, 1.8.3
 
-## Building the Docker Image
-```
-docker build --build-arg VERSION=1.7.2 --no-cache -t xquic-server:1.7.2 .
+## Requiered Server Parameters
+
+```bash
+-p [PORT]
 ```
 
-## Starting the Docker Container
+## Requiered Client Parameters
+
+```bash
+-a [IP] -p [PORT]
 ```
-docker run xquic-server:1.7.2 
-```
+
+## Note
+
+- Server requires the SNI extension with the Common Name (CN) from the certificate that is passed.
+- Client crashes after start. Needs to be fixed.

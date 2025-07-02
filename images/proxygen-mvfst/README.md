@@ -1,21 +1,21 @@
-# Proxygen with mvfst
+# proxygen with mvfst
 
-## Source:
+## Source
 
-[https://github.com/facebook/mvfst](https://github.com/facebook/mvfst)
+[https://github.com/facebook/proxygen](https://github.com/facebook/proxygen)
 
-## Supported Versions:
+## Supported Versions
 
 2025.02.10.00
 
-## Building the Docker Image
-```
-docker build --build-arg VERSION=2024.07.01.00 --no-cache -t proxygen-mvfst-server:2024.07.01.00 .
+## Requiered Server Parameters
+
+```bash
+-port [PORT] -key [PRIVATE_KEY] -cert [CERTIFICATE]
 ```
 
-## Starting the Docker Container
-```
-docker run -p 8443:8443/udp proxygen-mvfst-server:2024.07.01.00
-```
+## Requiered Client Parameters
 
-
+```bash
+-host [IP] -port [PORT]
+```

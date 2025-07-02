@@ -1,0 +1,37 @@
+services:
+  lsquic-server-4.2.0:
+    image: rub-nds/quic/lsquic-server:4.2.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: lsquic-server
+      args:
+        VERSION_LSQUIC: "4.2.0"
+        VERSION_BORINGSSL: "0.20250415.0"
+  lsquic-client-4.2.0:
+    image: rub-nds/quic/lsquic-client:4.2.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: lsquic-client
+      args:
+        VERSION_LSQUIC: "4.2.0"
+        VERSION_BORINGSSL: "0.20250415.0"
+  lsquic-server-4.1.0:
+    image: rub-nds/quic/lsquic-server:4.1.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: lsquic-server
+      args:
+        VERSION_LSQUIC: "4.1.0"
+        VERSION_BORINGSSL: "0.20250415.0"
+  lsquic-client-4.1.0:
+    image: rub-nds/quic/lsquic-client:4.1.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: lsquic-client
+      args:
+        VERSION_LSQUIC: "4.1.0"
+        VERSION_BORINGSSL: "0.20250415.0"

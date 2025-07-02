@@ -1,0 +1,97 @@
+services:
+  s2n-quic-server-1.52.1:
+    image: rub-nds/quic/s2n-quic-server:1.52.1
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: s2n-quic-server
+      args:
+        VERSION: "1.52.1"
+  s2n-quic-client-1.52.1:
+    image: rub-nds/quic/s2n-quic-client:1.52.1
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: s2n-quic-client
+      args:
+        VERSION: "1.52.1"
+  s2n-quic-server-1.54.0:
+    image: rub-nds/quic/s2n-quic-server:1.54.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: s2n-quic-server
+      args:
+        VERSION: "1.54.0"
+  s2n-quic-client-1.54.0:
+    image: rub-nds/quic/s2n-quic-client:1.54.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: s2n-quic-client
+      args:
+        VERSION: "1.54.0"
+  s2n-quic-server-1.55.0:
+    image: rub-nds/quic/s2n-quic-server:1.55.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: s2n-quic-server
+      args:
+        VERSION: "1.55.0"
+  s2n-quic-client-1.55.0:
+    image: rub-nds/quic/s2n-quic-client:1.55.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: s2n-quic-client
+      args:
+        VERSION: "1.55.0"
+  s2n-quic-server-1.56.0:
+    image: rub-nds/quic/s2n-quic-server:1.56.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: s2n-quic-server
+      args:
+        VERSION: "1.56.0"
+  s2n-quic-client-1.56.0:
+    image: rub-nds/quic/s2n-quic-client:1.56.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: s2n-quic-client
+      args:
+        VERSION: "1.56.0"
+  s2n-quic-server-1.57.0:
+    image: rub-nds/quic/s2n-quic-server:1.57.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: s2n-quic-server
+      args:
+        VERSION: "1.57.0"
+  s2n-quic-client-1.57.0:
+    image: rub-nds/quic/s2n-quic-client:1.57.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: s2n-quic-client
+      args:
+        VERSION: "1.57.0"
+  s2n-quic-server-1.58.0:
+    image: rub-nds/quic/s2n-quic-server:1.58.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: s2n-quic-server
+      args:
+        VERSION: "1.58.0"
+  s2n-quic-client-1.58.0:
+    image: rub-nds/quic/s2n-quic-client:1.58.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: s2n-quic-client
+      args:
+        VERSION: "1.58.0"

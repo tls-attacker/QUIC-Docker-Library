@@ -1,9 +1,13 @@
-FROM alpine-build:3.19 as quinn
+FROM rub-nds/quic/alpine-build:3.21.2 AS quinn-base
+
 ARG VERSION
 
 RUN git clone --depth=1 --branch=${VERSION} --recursive https://github.com/quinn-rs/quinn
 WORKDIR /quinn
-
 RUN cargo build --examples
 
-ENTRYPOINT ["cargo", "run", "--example", "server"]
+FROM quinn-base AS quinn-server
+ENTRYPOINT ["cargo", "run", "--example", "server", "--"]
+
+FROM quinn-base AS quinn-client
+ENTRYPOINT ["cargo", "run", "--example", "client","--"]

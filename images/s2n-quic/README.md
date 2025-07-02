@@ -1,19 +1,21 @@
 # s2n-quic
 
-## Source:
+## Source
 
 [https://github.com/aws/s2n-quic](https://github.com/aws/s2n-quic)
 
-## Supported Versions:
+## Supported Versions
 
-1.52.1
+1.52.1, 1.54.0, 1.55.0, 1.56.0, 1.57.0, 1.58.0
 
-## Building the Docker Image
-```
-docker build --build-arg VERSION=1.52.1 --no-cache -t s2n-quic-server:1.52.1 .
+## Requiered Server Parameters
+
+```bash
+None
 ```
 
-## Starting the Docker Container
-```
-docker run s2n-quic-server:1.52.1
+## Requiered Client Parameters
+
+```bash
+None
 ```

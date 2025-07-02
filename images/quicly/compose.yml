@@ -1,0 +1,13 @@
+services:
+  quicly-server-latest:
+    image: rub-nds/quic/quicly-server:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: quicly-server
+  quicly-client-latest:
+    image: rub-nds/quic/quicly-client:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: quicly-client

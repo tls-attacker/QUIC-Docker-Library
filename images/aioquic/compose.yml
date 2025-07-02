@@ -1,0 +1,162 @@
+services:
+  aioquic-server-1.2.0:
+    image: rub-nds/quic/aioquic-server:1.2.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: aioquic-server
+      args:
+        VERSION: "1.2.0"
+
+  aioquic-client-1.2.0:
+    image: rub-nds/quic/aioquic-client:1.2.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: aioquic-client
+      args:
+        VERSION: "1.2.0"
+
+  aioquic-server-1.1.0:
+    image: rub-nds/quic/aioquic-server:1.1.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: aioquic-server
+      args:
+        VERSION: "1.1.0"
+
+  aioquic-client-1.1.0:
+    image: rub-nds/quic/aioquic-client:1.1.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: aioquic-client
+      args:
+        VERSION: "1.1.0"
+
+  aioquic-server-1.0.0:
+    image: rub-nds/quic/aioquic-server:1.0.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: aioquic-server
+      args:
+        VERSION: "1.0.0"
+
+  aioquic-client-1.0.0:
+    image: rub-nds/quic/aioquic-client:1.0.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: aioquic-client
+      args:
+        VERSION: "1.0.0"
+
+  aioquic-server-0.9.25:
+    image: rub-nds/quic/aioquic-server:0.9.25
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: aioquic-server
+      args:
+        VERSION: "0.9.25"
+
+  aioquic-client-0.9.25:
+    image: rub-nds/quic/aioquic-client:0.9.25
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: aioquic-client
+      args:
+        VERSION: "0.9.25"
+
+  aioquic-server-0.9.24:
+    image: rub-nds/quic/aioquic-server:0.9.24
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: aioquic-server
+      args:
+        VERSION: "0.9.24"
+
+  aioquic-client-0.9.24:
+    image: rub-nds/quic/aioquic-client:0.9.24
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: aioquic-client
+      args:
+        VERSION: "0.9.24"
+
+  aioquic-server-0.9.23:
+    image: rub-nds/quic/aioquic-server:0.9.23
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: aioquic-server
+      args:
+        VERSION: "0.9.23"
+
+  aioquic-client-0.9.23:
+    image: rub-nds/quic/aioquic-client:0.9.23
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: aioquic-client
+      args:
+        VERSION: "0.9.23"
+
+  aioquic-server-0.9.22:
+    image: rub-nds/quic/aioquic-server:0.9.22
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: aioquic-server
+      args:
+        VERSION: "0.9.22"
+
+  aioquic-client-0.9.22:
+    image: rub-nds/quic/aioquic-client:0.9.22
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: aioquic-client
+      args:
+        VERSION: "0.9.22"
+
+  aioquic-server-0.9.21:
+    image: rub-nds/quic/aioquic-server:0.9.21
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: aioquic-server
+      args:
+        VERSION: "0.9.21"
+
+  aioquic-client-0.9.21:
+    image: rub-nds/quic/aioquic-client:0.9.21
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: aioquic-client
+      args:
+        VERSION: "0.9.21"
+
+  aioquic-server-0.9.20:
+    image: rub-nds/quic/aioquic-server:0.9.20
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: aioquic-server
+      args:
+        VERSION: "0.9.20"
+
+  aioquic-client-0.9.20:
+    image: rub-nds/quic/aioquic-client:0.9.20
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: aioquic-client
+      args:
+        VERSION: "0.9.20"

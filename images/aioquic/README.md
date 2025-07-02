@@ -1,21 +1,21 @@
 # aioquic
 
-## Source:
+## Source
 
 [https://github.com/aiortc/aioquic](https://github.com/aiortc/aioquic)
 
-## Supported Versions:
+## Supported Versions
 
-0.9.25, 1.0.0
+0.9.20, 0.9.21, 0.9.22, 0.9.23, 0.9.24, 0.9.25, 1.0.0, 1.1.0, 1.2.0
 
-## Building the Docker Image
-```
-docker build --build-arg VERSION=1.0.0 --no-cache -t aioquic-server:1.0.0 .
-```
+## Requiered Server Parameters
 
-## Starting the Docker Container
-```
-docker run aioquic-server:1.0.0
+```bash
+--port [PORT] -k [PRIVATE_KEY] -c [CERTIFICATE]
 ```
 
-python3 examples/http3_server.py -c /testserver.crt -k /testserver.key --host 0.0.0.0 --port 8443 --retry
+## Requiered Client Parameters
+
+```bash
+[URL] # e.g., https://localhost:4433
+```
