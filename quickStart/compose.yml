@@ -107,7 +107,7 @@ services:
       - "8006:4433/udp"
     volumes:
       - ../certs:/certs
-    command: -p 4433 -k /certs/server.key -c /certs/server.crt 
+    command: -p 4433 -k /certs/server.key -c /certs/server.crt
   proxygen-mvfst-server-2025.02.10.00:
     image: rub-nds/quic/proxygen-mvfst-server:2025.02.10.00
     build:
@@ -120,7 +120,7 @@ services:
       - "8007:4433/udp"
     volumes:
       - ../certs:/certs
-    command: -port 4433 -key /certs/server.key -cert /certs/server.crt 
+    command: -host 0.0.0.0 -port 4433 -key /certs/server.key -cert /certs/server.crt
   quic-go-server-0.51.0:
     image: rub-nds/quic/quic-go-server:0.51.0
     build:
