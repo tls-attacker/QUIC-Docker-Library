@@ -11,7 +11,7 @@
 ## Requiered Server Parameters
 
 ```bash
--port [PORT] -key [PRIVATE_KEY] -cert [CERTIFICATE]
+-host [IP] -port [PORT] -key [PRIVATE_KEY] -cert [CERTIFICATE]
 ```
 
 ## Requiered Client Parameters
