@@ -15,7 +15,7 @@ services:
       args: 
         VERSION: 3.19
   # QUIC SERVERS
-  aioquic-1.2.0:
+  aioquic-server-1.2.0:
     image: rub-nds/quic/aioquic-server:1.2.0
     build:
       context: ../images/aioquic
