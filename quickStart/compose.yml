@@ -7,6 +7,8 @@ services:
       dockerfile: Dockerfile
       args: 
         VERSION: 3.21.2
+    deploy:
+      replicas: 0
   alpine-build-3.19:
     image: rub-nds/quic/alpine-build:3.19
     build:
@@ -14,6 +16,8 @@ services:
       dockerfile: Dockerfile
       args: 
         VERSION: 3.19
+    deploy:
+      replicas: 0
   # QUIC SERVERS
   aioquic-server-1.2.0:
     image: rub-nds/quic/aioquic-server:1.2.0
@@ -198,3 +202,17 @@ services:
     volumes:
       - ../certs:/certs
     command: -p 4433
+  openssl-server-3.5.1:
+    image: rub-nds/quic/openssl-server:3.5.1
+    build:
+      context: ../images/openssl
+      dockerfile: Dockerfile
+      target: openssl-server
+      args:
+        VERSION: "3.5.1"
+    ports:
+      - "8014:4433/udp"
+    volumes:
+      - ../certs:/certs
+    command: 4433 /certs/server.crt /certs/server.key
+    

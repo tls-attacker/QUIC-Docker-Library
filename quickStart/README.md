@@ -36,3 +36,4 @@ The table below lists the QUIC server implementations that can be built and star
 | quinn                            | 0.10.4            | 8011     |
 | s2n-quic                         | 1.58.0            | 8012     |
 | xquic                            | 1.8.3             | 8013     |
+| openssl                          | 3.5.1             | 8014     |

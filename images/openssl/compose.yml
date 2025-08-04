@@ -1,0 +1,18 @@
+services:
+  openssl-server-3.5.1:
+    image: rub-nds/quic/openssl-server:3.5.1
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: openssl-server
+      args:
+        VERSION: "3.5.1"
+
+  openssl-client-3.5.1:
+    image: rub-nds/quic/openssl-client:3.5.1
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: openssl-client
+      args:
+        VERSION: "3.5.1"
