@@ -1,3 +1,6 @@
+#!/usr/bin/env bash
+set -e
+
 echo "0/6 - Removing existing files"
 rm -f ca.key ca.crt ca.srl server.key server.csr server.crt
 
