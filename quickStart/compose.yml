@@ -73,14 +73,14 @@ services:
       - ../certs:/certs
     command: -cert_file:/certs/server.crt -key_file:/certs/server.key
     tty: true
-  neqo-server-0.11.0:
-    image: rub-nds/quic/neqo-server:0.11.0
+  neqo-server-0.12.0:
+    image: rub-nds/quic/neqo-server:0.12.0
     build:
       context: ../images/neqo
       dockerfile: Dockerfile
       target: neqo-server
       args:
-        VERSION: "0.11.0"
+        VERSION: "0.12.0"
     ports:
       - "8004:4433/udp"
     volumes:
@@ -175,14 +175,14 @@ services:
     volumes:
       - ../certs:/certs
     command: --listen 0.0.0.0:4433 -k /certs/server.key -c /certs/server.crt /
-  s2n-quic-server-1.58.0:
-    image: rub-nds/quic/s2n-quic-server:1.58.0
+  s2n-quic-server-1.64.0:
+    image: rub-nds/quic/s2n-quic-server:1.64.0
     build:
       context: ../images/s2n-quic
       dockerfile: Dockerfile
       target: s2n-quic-server
       args:
-        VERSION: "1.58.0"
+        VERSION: "1.64.0"
     ports:
       - "8012:4433/udp"
     volumes:
