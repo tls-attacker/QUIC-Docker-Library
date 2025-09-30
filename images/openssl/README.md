@@ -13,10 +13,10 @@
 ## Requiered Client Parameters
 
 ```bash
--quic -alpn [ALPN] -connect [IP:PORT]
+[HOST[:PORT]]
 ```
 
 ## Note
 
 - The server sends a Stateless Retry by default.
-- The server requires "ossltest" as ALPN.
+- The client does not work yet (handshake alerts/certificate verify)
