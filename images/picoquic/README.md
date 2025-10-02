@@ -19,3 +19,7 @@ Does not have versioning.
 ```bash
 [IP] [PORT]
 ```
+
+## Note
+
+- The signature and hash algorithms list should only contain TLS 1.3 allowed algorithms.

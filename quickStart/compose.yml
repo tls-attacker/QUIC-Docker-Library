@@ -58,7 +58,7 @@ services:
       - "8002:4433/udp"
     volumes:
       - ../certs:/certs
-    command: -s 0.0.0.0:4433 -c server.example.org,/certs/server.crt,/certs/server.key
+    command: -s 0.0.0.0:4433 -c localhost,/certs/server.crt,/certs/server.key
   msquic-server-2.4.7:
     image: rub-nds/quic/msquic-server:2.4.7
     build:
