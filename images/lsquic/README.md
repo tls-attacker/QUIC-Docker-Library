@@ -19,3 +19,7 @@
 ```bash
 -s [IP]:[PORT]
 ```
+
+## Note
+
+- The server requires the SNI extension with the Common Name (CN) that is passed.

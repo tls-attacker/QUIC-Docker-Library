@@ -22,5 +22,5 @@
 
 ## Note
 
-- Server requires the SNI extension with the Common Name (CN) from the certificate that is passed.
+- Server requires the SNI extension with the Common Name (CN) that is passed.
 - Client crashes after start. Needs to be fixed.
