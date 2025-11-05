@@ -22,20 +22,21 @@ The table below lists the QUIC server implementations that can be built and star
 
 **Important:** Some servers require specific algorithms or extensions for the handshake. See the README files of the individual libraries for details.
 
-| Implementation                   | Version           | Port     |
-|----------------------------------|-------------------|----------|
-| aioquic                          | 1.2.0             | 8000     |
-| kwik                             | 0.8.11            | 8001     |
-| lsquic                           | 4.2.0             | 8002     |
-| msquic                           | 2.4.7             | 8003     |
-| neqo                             | 0.12.0            | 8004     |
-| ngtcp2                           | 1.12.0            | 8005     |
-| picoquic                         | latest            | 8006     |
-| proxygen-mvfst                   | 2025.02.10.00     | 8007     |
-| quic-go                          | 0.51.0            | 8008     |
-| quiche-cloudflare                | 0.20.1            | 8009     |
-| quicly                           | latest            | 8010     |
-| quinn                            | 0.10.4            | 8011     |
-| s2n-quic                         | 1.64.0            | 8012     |
-| xquic                            | 1.8.3             | 8013     |
-| openssl                          | 3.5.1             | 8014     |
+| Implementation                   | Port     |
+|----------------------------------|----------|
+| aioquic                          | 8000     |
+| kwik                             | 8001     |
+| lsquic                           | 8002     |
+| msquic                           | 8003     |
+| neqo                             | 8004     |
+| ngtcp2                           | 8005     |
+| picoquic                         | 8006     |
+| proxygen-mvfst                   | 8007     |
+| quic-go                          | 8008     |
+| quiche-cloudflare                | 8009     |
+| quicly                           | 8010     |
+| quinn                            | 8011     |
+| s2n-quic                         | 8012     |
+| xquic (babassl)                  | 8013     |
+| xquic (boringssl)                | 8014     |
+| openssl                          | 8015     |

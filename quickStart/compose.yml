@@ -59,14 +59,14 @@ services:
     volumes:
       - ../certs:/certs
     command: -s 0.0.0.0:4433 -c localhost,/certs/server.crt,/certs/server.key
-  msquic-server-2.4.7:
-    image: rub-nds/quic/msquic-server:2.4.7
+  msquic-server-2.5.5:
+    image: rub-nds/quic/msquic-server:2.5.5
     build:
       context: ../images/msquic
       dockerfile: Dockerfile
       target: msquic-server
       args:
-        VERSION: "2.4.7"
+        VERSION: "2.5.5"
     ports:
       - "8003:4567/udp"
     volumes:
@@ -124,7 +124,7 @@ services:
       - "8007:4433/udp"
     volumes:
       - ../certs:/certs
-    command: -host 0.0.0.0 -port 4433 -key /certs/server.key -cert /certs/server.crt
+    command: -host 0.0.0.0 -port 4433 -key /certs/server.key -cert /certs/server.crt -quic_version 0x00000001
   quic-go-server-0.51.0:
     image: rub-nds/quic/quic-go-server:0.51.0
     build:
@@ -188,30 +188,44 @@ services:
     volumes:
       - ../certs:/certs
     command: 
-  xquic-server-1.8.3:
-    image: rub-nds/quic/xquic-server:1.8.3
+  xquic-server-babassl-1.9.0:
+    image: rub-nds/quic/xquic-server-babassl:1.9.0
     build:
       context: ../images/xquic
       dockerfile: Dockerfile
       target: xquic-server
       args:
-        VERSION_XQUIC: "1.8.3"
+        VERSION_XQUIC: "1.9.0"
         VERSION_BABASSL: "8.3-stable"
     ports:
       - "8013:4433/udp"
     volumes:
       - ../certs:/certs
     command: -p 4433
-  openssl-server-3.5.1:
-    image: rub-nds/quic/openssl-server:3.5.1
+  xquic-server-boringssl-1.9.0:
+    image: rub-nds/quic/xquic-server-boringssl:1.9.0
+    build:
+      context: ../images/xquic
+      dockerfile: Dockerfile-2
+      target: xquic-server
+      args:
+        VERSION_XQUIC: "1.9.0"
+        VERSION_BORINGSSL: "0.20250415.0"
+    ports:
+      - "8014:4433/udp"
+    volumes:
+      - ../certs:/certs
+    command: -p 4433
+  openssl-server-3.6.0:
+    image: rub-nds/quic/openssl-server:3.6.0
     build:
       context: ../images/openssl
       dockerfile: Dockerfile
       target: openssl-server
       args:
-        VERSION: "3.5.1"
+        VERSION: "3.6.0"
     ports:
-      - "8014:4433/udp"
+      - "8015:4433/udp"
     volumes:
       - ../certs:/certs
     command: 4433 /certs/server.crt /certs/server.key
