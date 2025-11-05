@@ -19,14 +19,14 @@ services:
     deploy:
       replicas: 0
   # QUIC SERVERS
-  aioquic-server-1.2.0:
-    image: rub-nds/quic/aioquic-server:1.2.0
+  aioquic-server-1.3.0:
+    image: rub-nds/quic/aioquic-server:1.3.0
     build:
       context: ../images/aioquic
       dockerfile: Dockerfile
       target: aioquic-server
       args:
-        VERSION: "1.2.0"
+        VERSION: "1.3.0"
     ports:
       - "8000:4433/udp"
     volumes:
