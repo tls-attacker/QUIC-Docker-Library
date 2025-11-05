@@ -1,4 +1,22 @@
 services:
+  aioquic-server-1.3.0:
+    image: rub-nds/quic/aioquic-server:1.3.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: aioquic-server
+      args:
+        VERSION: "1.3.0"
+
+  aioquic-client-1.3.0:
+    image: rub-nds/quic/aioquic-client:1.3.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: aioquic-client
+      args:
+        VERSION: "1.3.0"
+
   aioquic-server-1.2.0:
     image: rub-nds/quic/aioquic-server:1.2.0
     build:
