@@ -6,6 +6,8 @@ services:
       dockerfile: Dockerfile
       args: 
         VERSION: 3.21.2
+    deploy:
+      replicas: 0
   alpine-build-3.19:
     image: rub-nds/quic/alpine-build:3.19
     build:
@@ -13,3 +15,5 @@ services:
       dockerfile: Dockerfile
       args: 
         VERSION: 3.19
+    deploy:
+      replicas: 0
