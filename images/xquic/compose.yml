@@ -1,73 +1,109 @@
 services:
-  xquic-server-1.7.1:
-    image: rub-nds/quic/xquic-server:1.7.1
+  xquic-server-babassl-1.7.1:
+    image: rub-nds/quic/xquic-server-babassl:1.7.1
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile-babassl
       target: xquic-server
       args:
         VERSION_XQUIC: "1.7.1"
         VERSION_BABASSL: "8.3-stable"
-  xquic-client-1.7.1:
-    image: rub-nds/quic/xquic-client:1.7.1
+  xquic-client-babassl-1.7.1:
+    image: rub-nds/quic/xquic-client-babassl:1.7.1
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile-babassl
       target: xquic-client
       args:
         VERSION_XQUIC: "1.7.1"
         VERSION_BABASSL: "8.3-stable"
-  xquic-server-1.7.2:
-    image: rub-nds/quic/xquic-server:1.7.2
+  xquic-server-babassl-1.7.2:
+    image: rub-nds/quic/xquic-server-babassl:1.7.2
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile-babassl
       target: xquic-server
       args:
         VERSION_XQUIC: "1.7.2"
         VERSION_BABASSL: "8.3-stable"
-  xquic-client-1.7.2:
-    image: rub-nds/quic/xquic-client:1.7.2
+  xquic-clien-babasslt-1.7.2:
+    image: rub-nds/quic/xquic-client-babassl:1.7.2
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile-babassl
       target: xquic-client
       args:
         VERSION_XQUIC: "1.7.2"
         VERSION_BABASSL: "8.3-stable"
-  xquic-server-1.8.2:
-    image: rub-nds/quic/xquic-server:1.8.2
+  xquic-server-babassl-1.8.2:
+    image: rub-nds/quic/xquic-server-babassl:1.8.2
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile-babassl
       target: xquic-server
       args:
         VERSION_XQUIC: "1.8.2"
         VERSION_BABASSL: "8.3-stable"
-  xquic-client-1.8.2:
-    image: rub-nds/quic/xquic-client:1.8.2
+  xquic-client-babassl-1.8.2:
+    image: rub-nds/quic/xquic-client-babassl:1.8.2
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile-babassl
       target: xquic-client
       args:
         VERSION_XQUIC: "1.8.2"
         VERSION_BABASSL: "8.3-stable"
-  xquic-server-1.8.3:
-    image: rub-nds/quic/xquic-server:1.8.3
+  xquic-server-babassl-1.8.3:
+    image: rub-nds/quic/xquic-server-babassl:1.8.3
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile-babassl
       target: xquic-server
       args:
         VERSION_XQUIC: "1.8.3"
         VERSION_BABASSL: "8.3-stable"
-  xquic-client-1.8.3:
-    image: rub-nds/quic/xquic-client:1.8.3
+  xquic-client-babassl-1.8.3:
+    image: rub-nds/quic/xquic-client-babassl:1.8.3
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile-babassl
       target: xquic-client
       args:
         VERSION_XQUIC: "1.8.3"
         VERSION_BABASSL: "8.3-stable"
+  xquic-server-babassl-1.9.0:
+    image: rub-nds/quic/xquic-server-babassl:1.9.0
+    build:
+      context: .
+      dockerfile: Dockerfile-babassl
+      target: xquic-server
+      args:
+        VERSION_XQUIC: "1.9.0"
+        VERSION_BABASSL: "8.3-stable"
+  xquic-client-babassl-1.9.0:
+    image: rub-nds/quic/xquic-client-babassl:1.9.0
+    build:
+      context: .
+      dockerfile: Dockerfile-babassl
+      target: xquic-client
+      args:
+        VERSION_XQUIC: "1.9.0"
+        VERSION_BABASSL: "8.3-stable"
+  xquic-server-boringssl-1.9.0:
+    image: rub-nds/quic/xquic-server-boringssl:1.9.0
+    build:
+      context: .
+      dockerfile: Dockerfile-boringssl
+      target: xquic-server
+      args:
+        VERSION_XQUIC: "1.9.0"
+        VERSION_BORINGSSL: "0.20250415.0"
+  xquic-client-boringssl-1.9.0:
+    image: rub-nds/quic/xquic-client-boringssl:1.9.0
+    build:
+      context: .
+      dockerfile: Dockerfile-boringssl
+      target: xquic-client
+      args:
+        VERSION_XQUIC: "1.9.0"
+        VERSION_BORINGSSL: "0.20250415.0"
