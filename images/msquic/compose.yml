@@ -7,6 +7,8 @@ services:
       target: msquic-server
       args:
         VERSION: "2.3.5"
+        TLS_IMPLEMENTATION: "openssl"
+    tty: true
   msquic-client-2.3.5:
     image: rub-nds/quic/msquic-client:2.3.5
     build:
@@ -15,6 +17,8 @@ services:
       target: msquic-client
       args:
         VERSION: "2.3.5"
+        TLS_IMPLEMENTATION: "openssl"
+    tty: true
   msquic-server-2.4.7:
     image: rub-nds/quic/msquic-server:2.4.7
     build:
@@ -23,6 +27,8 @@ services:
       target: msquic-server
       args:
         VERSION: "2.4.7"
+        TLS_IMPLEMENTATION: "openssl"
+    tty: true
   msquic-client-2.4.7:
     image: rub-nds/quic/msquic-client:2.4.7
     build:
@@ -31,3 +37,65 @@ services:
       target: msquic-client
       args:
         VERSION: "2.4.7"
+        TLS_IMPLEMENTATION: "openssl"
+    tty: true
+  msquic-server-2.5.3:
+    image: rub-nds/quic/msquic-server:2.5.3
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: msquic-server
+      args:
+        VERSION: "2.5.3"
+        TLS_IMPLEMENTATION: "quictls"
+    tty: true
+  msquic-client-2.5.3:
+    image: rub-nds/quic/msquic-client:2.5.3
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: msquic-client
+      args:
+        VERSION: "2.5.3"
+        TLS_IMPLEMENTATION: "quictls"
+    tty: true
+  msquic-server-2.5.4:
+    image: rub-nds/quic/msquic-server:2.5.4
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: msquic-server
+      args:
+        VERSION: "2.5.4"
+        TLS_IMPLEMENTATION: "quictls"
+    tty: true
+  msquic-client-2.5.4:
+    image: rub-nds/quic/msquic-client:2.5.4
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: msquic-client
+      args:
+        VERSION: "2.5.4"
+        TLS_IMPLEMENTATION: "quictls"
+    tty: true
+  msquic-server-2.5.5:
+    image: rub-nds/quic/msquic-server:2.5.5
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: msquic-server
+      args:
+        VERSION: "2.5.5"
+        TLS_IMPLEMENTATION: "quictls"
+    tty: true
+  msquic-client-2.5.5:
+    image: rub-nds/quic/msquic-client:2.5.5
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: msquic-client
+      args:
+        VERSION: "2.5.5"
+        TLS_IMPLEMENTATION: "quictls"
+    tty: true

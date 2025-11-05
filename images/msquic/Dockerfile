@@ -1,6 +1,7 @@
 FROM rub-nds/quic/alpine-build:3.19 AS msquic-base
 
 ARG VERSION
+ARG TLS_IMPLEMENTATION
 
 # Install PowerShell and .NET core
 RUN apk add --no-cache ca-certificates less ncurses-terminfo-base krb5-libs libgcc libintl openssl-dev libstdc++ tzdata userspace-rcu zlib icu-libs curl dotnet6-runtime
@@ -21,10 +22,12 @@ RUN sed -i -e 's/\"sample\"/\"h3\"/g' src/tools/sample/sample.c
 RUN pwsh /msquic/scripts/prepare-machine.ps1
 
 # Build project
-RUN pwsh /msquic/scripts/build.ps1 -Tls openssl
+RUN pwsh /msquic/scripts/build.ps1 -Tls ${TLS_IMPLEMENTATION}
 
 FROM msquic-base AS msquic-server
-ENTRYPOINT ["/msquic/artifacts/bin/linux/x64_Debug_openssl/quicsample", "-server"]
+ENV TLS_IMPLEMENTATION=${TLS_IMPLEMENTATION}
+ENTRYPOINT ["/bin/sh", "-c", "/msquic/artifacts/bin/linux/x64_Debug_${TLS_IMPLEMENTATION}/quicsample -server \"$@\"", "--"]
 
 FROM msquic-base AS msquic-client
-ENTRYPOINT ["/msquic/artifacts/bin/linux/x64_Debug_openssl/quicsample", "-client"]
+ENV TLS_IMPLEMENTATION=${TLS_IMPLEMENTATION}
+ENTRYPOINT ["/bin/sh", "-c", "/msquic/artifacts/bin/linux/x64_Debug_${TLS_IMPLEMENTATION}/quicsample -client \"$@\"", "--"]
