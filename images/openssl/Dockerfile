@@ -5,7 +5,7 @@ ARG VERSION
 RUN git clone --depth=1 --branch=openssl-${VERSION} https://github.com/openssl/openssl
 WORKDIR /openssl
 RUN ./config --prefix=/build/ --openssldir=/build/ enable-demos
-RUN make && make install
+RUN make -j && make install
 
 # Copy all required libraries
 RUN mkdir /libdeps

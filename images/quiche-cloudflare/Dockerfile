@@ -1,4 +1,4 @@
-FROM rub-nds/quic/alpine-build:3.19 AS quiche-cloudflare-base
+FROM rub-nds/quic/alpine-build:3.21.2 AS quiche-cloudflare-base
 
 ARG VERSION
 
