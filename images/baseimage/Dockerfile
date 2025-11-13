@@ -1,4 +1,4 @@
-ARG VERSION=3.19
+ARG VERSION
 
 FROM alpine:$VERSION
 
@@ -50,4 +50,5 @@ RUN apk add \
     py3-asgiref \
     libev \
     libev-dev \
-    shared-mime-info
+    shared-mime-info \
+    pcre-dev
