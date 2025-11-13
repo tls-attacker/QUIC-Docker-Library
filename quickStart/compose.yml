@@ -67,6 +67,7 @@ services:
       target: msquic-server
       args:
         VERSION: "2.5.5"
+        TLS_IMPLEMENTATION: "quictls"
     ports:
       - "8003:4567/udp"
     volumes:
@@ -192,7 +193,7 @@ services:
     image: rub-nds/quic/xquic-server-babassl:1.9.0
     build:
       context: ../images/xquic
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile-babassl
       target: xquic-server
       args:
         VERSION_XQUIC: "1.9.0"
@@ -206,7 +207,7 @@ services:
     image: rub-nds/quic/xquic-server-boringssl:1.9.0
     build:
       context: ../images/xquic
-      dockerfile: Dockerfile-2
+      dockerfile: Dockerfile-boringssl
       target: xquic-server
       args:
         VERSION_XQUIC: "1.9.0"
