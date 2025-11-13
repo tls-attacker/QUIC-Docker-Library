@@ -4,10 +4,6 @@
 
 [https://github.com/cloudflare/quiche](https://github.com/cloudflare/quiche)
 
-## Supported Versions
-
-0.20.0, 0.20.1
-
 ## Requiered Server Parameters
 
 ```bash

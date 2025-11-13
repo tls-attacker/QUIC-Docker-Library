@@ -4,10 +4,6 @@
 
 [https://github.com/facebook/proxygen](https://github.com/facebook/proxygen)
 
-## Supported Versions
-
-2025.02.10.00
-
 ## Requiered Server Parameters
 
 ```bash

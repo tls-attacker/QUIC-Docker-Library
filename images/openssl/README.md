@@ -4,10 +4,6 @@
 
 [https://github.com/openssl/openssl](https://github.com/openssl/openssl)
 
-## Supported Versions
-
-3.5.1
-
 ## Requiered Server Parameters
 
 ```bash

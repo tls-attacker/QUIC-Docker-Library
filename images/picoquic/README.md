@@ -4,10 +4,6 @@
 
 [https://github.com/private-octopus/picoquic](https://github.com/private-octopus/picoquic)
 
-## Supported Versions
-
-Does not have versioning.
-
 ## Requiered Server Parameters
 
 ```bash

@@ -4,10 +4,6 @@
 
 [https://github.com/litespeedtech/lsquic](https://github.com/litespeedtech/lsquic)
 
-## Supported Versions
-
-4.1.0, 4.2.0
-
 ## Requiered Server Parameters
 
 ```bash

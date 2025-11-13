@@ -4,10 +4,6 @@
 
 [https://github.com/google/quiche](https://github.com/google/quiche)
 
-## Supported Versions
-
-TODO
-
 ## Requiered Server Parameters
 
 ```bash

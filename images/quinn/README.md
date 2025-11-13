@@ -4,10 +4,6 @@
 
 [https://github.com/quinn-rs/quinn](https://github.com/quinn-rs/quinn)
 
-## Supported Versions
-
-0.10.3, 0.10.4
-
 ## Requiered Server Parameters
 
 ```bash

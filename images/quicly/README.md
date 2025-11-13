@@ -4,10 +4,6 @@
 
 [https://github.com/h2o/quicly](https://github.com/h2o/quicly.git)
 
-## Supported Versions
-
-Does not have versioning.
-
 ## Requiered Server Parameters
 
 ```bash

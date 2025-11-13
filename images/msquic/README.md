@@ -4,10 +4,6 @@
 
 [https://github.com/microsoft/msquic](https://github.com/microsoft/msquic)
 
-## Supported Versions
-
-2.3.5, 2.4.7
-
 ## Requiered Server Parameters
 
 ```bash
