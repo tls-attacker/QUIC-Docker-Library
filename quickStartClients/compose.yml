@@ -1,0 +1,221 @@
+services:
+  # BASE IMAGES
+  alpine-build-3.21.2:
+    image: rub-nds/quic/alpine-build:3.21.2
+    build:
+      context: ../images/baseimage
+      dockerfile: Dockerfile
+      args: 
+        VERSION: 3.21.2
+    deploy:
+      replicas: 0
+  alpine-build-3.19:
+    image: rub-nds/quic/alpine-build:3.19
+    build:
+      context: ../images/baseimage
+      dockerfile: Dockerfile
+      args: 
+        VERSION: 3.19
+    deploy:
+      replicas: 0
+  # QUIC CLIENTS
+  aioquic-client-1.3.0:
+    image: rub-nds/quic/aioquic-client:1.3.0
+    build:
+      context: ../images/aioquic
+      dockerfile: Dockerfile
+      target: aioquic-client
+      args:
+        VERSION: "1.3.0"
+    network_mode: host
+    volumes:
+      - ../certs:/certs
+    command: https://localhost:4433 --insecure
+  kwik-client-0.8.11:
+    image: rub-nds/quic/kwik-client:0.8.11
+    build:
+      context: ../images/kwik
+      dockerfile: Dockerfile
+      target: kwik-client
+      args:
+        VERSION: "0.8.11"
+    network_mode: host
+    volumes:
+      - ../certs:/certs
+    command: "4433"
+  lsquic-client-4.2.0:
+    image: rub-nds/quic/lsquic-client:4.2.0
+    build:
+      context: ../images/lsquic
+      dockerfile: Dockerfile
+      target: lsquic-client
+      args:
+        VERSION_LSQUIC: "4.2.0"
+        VERSION_BORINGSSL: "0.20250415.0"
+    network_mode: host
+    volumes:
+      - ../certs:/certs
+    command: -s localhost:4433 -p /
+  msquic-client-2.5.5:
+    image: rub-nds/quic/msquic-client:2.5.5
+    build:
+      context: ../images/msquic
+      dockerfile: Dockerfile
+      target: msquic-client
+      args:
+        VERSION: "2.5.5"
+        TLS_IMPLEMENTATION: "quictls"
+    network_mode: host
+    volumes:
+      - ../certs:/certs
+    # Note: Connects only to port 4567.
+    command: -target:localhost -unsecure
+    tty: true
+  neqo-client-0.12.0:
+    image: rub-nds/quic/neqo-client:0.12.0
+    build:
+      context: ../images/neqo
+      dockerfile: Dockerfile
+      target: neqo-client
+      args:
+        VERSION: "0.12.0"
+    network_mode: host
+    volumes:
+      - ../certs:/certs
+    command: https://localhost:4433
+  ngtcp2-client-1.12.0:
+    image: rub-nds/quic/ngtcp2-client:1.12.0
+    build:
+      context: ../images/ngtcp2
+      dockerfile: Dockerfile
+      target: ngtcp2-client
+      args:
+        VERSION_NGTCP2: "1.12.0"
+        VERSION_NGHTTP3: "1.9.0"
+        VERSION_BORINGSSL: "0.20250415.0"
+    network_mode: host
+    volumes:
+      - ../certs:/certs
+    command: localhost 4433
+  picoquic-client-latest:
+    image: rub-nds/quic/picoquic-client:latest
+    build:
+      context: ../images/picoquic
+      dockerfile: Dockerfile
+      target: picoquic-client
+    network_mode: host
+    volumes:
+      - ../certs:/certs
+    command: localhost 4433
+  proxygen-mvfst-client-2025.02.10.00:
+    image: rub-nds/quic/proxygen-mvfst-client:2025.02.10.00
+    build:
+      context: ../images/proxygen-mvfst
+      dockerfile: Dockerfile
+      target: proxygen-mvfst-client
+      args:
+        VERSION: "2025.02.10.00"
+    network_mode: host
+    volumes:
+      - ../certs:/certs
+    command: -host localhost -port 4433 -quic_version 0x00000001
+  quic-go-client-0.51.0:
+    image: rub-nds/quic/quic-go-client:0.51.0
+    build:
+      context: ../images/quic-go
+      dockerfile: Dockerfile
+      target: quic-go-client
+      args:
+        VERSION: "0.51.0"
+    network_mode: host
+    volumes:
+      - ../certs:/certs
+    command: -insecure https://localhost:4433
+  quiche-cloudflare-client-0.20.1:
+    image: rub-nds/quic/quiche-cloudflare-client:0.20.1
+    build:
+      context: ../images/quiche-cloudflare
+      dockerfile: Dockerfile
+      target: quiche-cloudflare-client
+      args:
+        VERSION: "0.20.1"
+    network_mode: host
+    volumes:
+      - ../certs:/certs
+    command: --no-verify --wire-version 00000001 https://localhost:4433
+  quicly-client-latest:
+    image: rub-nds/quic/quicly-client:latest
+    build:
+      context: ../images/quicly
+      dockerfile: Dockerfile
+      target: quicly-client
+    network_mode: host
+    volumes:
+      - ../certs:/certs
+    command: localhost 4433
+  quinn-client-0.10.4:
+    image: rub-nds/quic/quinn-client:0.10.4
+    build:
+      context: ../images/quinn
+      dockerfile: Dockerfile
+      target: quinn-client
+      args:
+        VERSION: "0.10.4"
+    network_mode: host
+    volumes:
+      - ../certs:/certs
+    # TODO: Error in reading CA certificate.
+    command: --ca /certs/ca.crt https://localhost:4433
+  s2n-quic-client-1.64.0:
+    image: rub-nds/quic/s2n-quic-client:1.64.0
+    build:
+      context: ../images/s2n-quic
+      dockerfile: Dockerfile
+      target: s2n-quic-client
+      args:
+        VERSION: "1.64.0"
+    network_mode: host
+    volumes:
+      - ../certs:/certs
+    # TODO: Error in server certificate validation.
+    # Note: Connects only to port 4433.
+    command: ""
+  xquic-client-babassl-1.9.0:
+    image: rub-nds/quic/xquic-client-babassl:1.9.0
+    build:
+      context: ../images/xquic
+      dockerfile: Dockerfile-babassl
+      target: xquic-client
+      args:
+        VERSION_XQUIC: "1.9.0"
+        VERSION_BABASSL: "8.3-stable"
+    network_mode: host
+    volumes:
+      - ../certs:/certs
+    command: -a localhost -p 4433 -U https://localhost.com/ -A h3
+  xquic-client-boringssl-1.9.0:
+    image: rub-nds/quic/xquic-client--boringssl:1.9.0
+    build:
+      context: ../images/xquic
+      dockerfile: Dockerfile-boringssl
+      target: xquic-client
+      args:
+        VERSION_XQUIC: "1.9.0"
+        VERSION_BORINGSSL: "0.20250415.0"
+    network_mode: host
+    volumes:
+      - ../certs:/certs
+    command: -a localhost -p 4433 -U https://localhost.com/ -A h3
+  openssl-client-3.6.0:
+    image: rub-nds/quic/openssl-client:3.6.0
+    build:
+      context: ../images/openssl
+      dockerfile: Dockerfile
+      target: openssl-client
+      args:
+        VERSION: "3.6.0"
+    network_mode: host
+    volumes:
+      - ../certs:/certs
+    command: -quic -alpn h3 -connect localhost:8000 
+    tty: true
