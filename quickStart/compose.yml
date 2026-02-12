@@ -31,6 +31,7 @@ services:
       - "8000:4433/udp"
     volumes:
       - ../certs:/certs
+      - ../www:/www
     command: --port 4433 -c /certs/server.crt -k /certs/server.key
   kwik-server-0.8.11:
     image: rub-nds/quic/kwik-server:0.8.11
@@ -44,6 +45,7 @@ services:
       - "8001:4433/udp"
     volumes:
       - ../certs:/certs
+      - ../www:/www
     command: /certs/server.crt /certs/server.key 4433
   lsquic-server-4.2.0:
     image: rub-nds/quic/lsquic-server:4.2.0
@@ -58,6 +60,7 @@ services:
       - "8002:4433/udp"
     volumes:
       - ../certs:/certs
+      - ../www:/www
     command: -s 0.0.0.0:4433 -c localhost,/certs/server.crt,/certs/server.key
   msquic-server-2.5.5:
     image: rub-nds/quic/msquic-server:2.5.5
@@ -72,6 +75,7 @@ services:
       - "8003:4567/udp"
     volumes:
       - ../certs:/certs
+      - ../www:/www
     command: -cert_file:/certs/server.crt -key_file:/certs/server.key
     tty: true
   neqo-server-0.12.0:
@@ -86,6 +90,7 @@ services:
       - "8004:4433/udp"
     volumes:
       - ../certs:/certs
+      - ../www:/www
     command: 0.0.0.0:4433
   ngtcp2-server-1.12.0:
     image: rub-nds/quic/ngtcp2-server:1.12.0
@@ -101,6 +106,7 @@ services:
       - "8005:4433/udp"
     volumes:
       - ../certs:/certs
+      - ../www:/www
     command: 0.0.0.0 4433 /certs/server.key /certs/server.crt 
   picoquic-server-latest:
     image: rub-nds/quic/picoquic-server:latest
@@ -112,6 +118,7 @@ services:
       - "8006:4433/udp"
     volumes:
       - ../certs:/certs
+      - ../www:/www
     command: -p 4433 -k /certs/server.key -c /certs/server.crt
   proxygen-mvfst-server-2025.02.10.00:
     image: rub-nds/quic/proxygen-mvfst-server:2025.02.10.00
@@ -125,6 +132,7 @@ services:
       - "8007:4433/udp"
     volumes:
       - ../certs:/certs
+      - ../www:/www
     command: -host 0.0.0.0 -port 4433 -key /certs/server.key -cert /certs/server.crt -quic_version 0x00000001
   quic-go-server-0.51.0:
     image: rub-nds/quic/quic-go-server:0.51.0
@@ -138,6 +146,7 @@ services:
       - "8008:4433/udp"
     volumes:
       - ../certs:/certs
+      - ../www:/www
     command: -bind 0.0.0.0:4433 -key /certs/server.key -cert /certs/server.crt 
   quiche-cloudflare-server-0.20.1:
     image: rub-nds/quic/quiche-cloudflare-server:0.20.1
@@ -151,6 +160,7 @@ services:
       - "8009:4433/udp"
     volumes:
       - ../certs:/certs
+      - ../www:/www
     command: --listen  0.0.0.0:4433 --key /certs/server.key --cert /certs/server.crt --no-retry
   quicly-server-latest:
     image: rub-nds/quic/quicly-server:latest
@@ -162,6 +172,7 @@ services:
       - "8010:4433/udp"
     volumes:
       - ../certs:/certs
+      - ../www:/www
     command: -k /certs/server.key -c /certs/server.crt  0.0.0.0 4433
   quinn-server-0.10.4:
     image: rub-nds/quic/quinn-server:0.10.4
@@ -175,7 +186,8 @@ services:
       - "8011:4433/udp"
     volumes:
       - ../certs:/certs
-    command: --listen 0.0.0.0:4433 -k /certs/server.key -c /certs/server.crt /
+      - ../www:/www
+    command: --listen 0.0.0.0:4433 -k /certs/server.key -c /certs/server.crt /www
   s2n-quic-server-1.64.0:
     image: rub-nds/quic/s2n-quic-server:1.64.0
     build:
@@ -188,6 +200,7 @@ services:
       - "8012:4433/udp"
     volumes:
       - ../certs:/certs
+      - ../www:/www
     command: 
   xquic-server-babassl-1.9.0:
     image: rub-nds/quic/xquic-server-babassl:1.9.0
@@ -202,6 +215,7 @@ services:
       - "8013:4433/udp"
     volumes:
       - ../certs:/certs
+      - ../www:/www
     command: -p 4433
   xquic-server-boringssl-1.9.0:
     image: rub-nds/quic/xquic-server-boringssl:1.9.0
@@ -216,6 +230,7 @@ services:
       - "8014:4433/udp"
     volumes:
       - ../certs:/certs
+      - ../www:/www
     command: -p 4433
   openssl-server-3.6.0:
     image: rub-nds/quic/openssl-server:3.6.0
@@ -229,5 +244,6 @@ services:
       - "8015:4433/udp"
     volumes:
       - ../certs:/certs
+      - ../www:/www
     command: 4433 /certs/server.crt /certs/server.key
     
