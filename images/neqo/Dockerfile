@@ -1,4 +1,4 @@
-FROM rub-nds/quic/alpine-build:3.21.2 AS neqo-base
+FROM rub-nds/quic/alpine-build:3.23.3 AS neqo-base
 
 ARG VERSION
 
