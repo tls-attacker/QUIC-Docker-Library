@@ -8,21 +8,3 @@ services:
         VERSION: 3.23.3
     deploy:
       replicas: 0
-  alpine-build-3.21.2:
-    image: rub-nds/quic/alpine-build:3.21.2
-    build:
-      context: .
-      dockerfile: Dockerfile
-      args: 
-        VERSION: 3.21.2
-    deploy:
-      replicas: 0
-  alpine-build-3.19:
-    image: rub-nds/quic/alpine-build:3.19
-    build:
-      context: .
-      dockerfile: Dockerfile
-      args: 
-        VERSION: 3.19
-    deploy:
-      replicas: 0

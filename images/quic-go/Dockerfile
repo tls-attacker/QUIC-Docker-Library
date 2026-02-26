@@ -1,4 +1,4 @@
-FROM rub-nds/quic/alpine-build:3.21.2 AS quic-go-base
+FROM rub-nds/quic/alpine-build:3.23.3 AS quic-go-base
 
 ARG VERSION
 

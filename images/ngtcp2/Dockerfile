@@ -1,4 +1,4 @@
-FROM rub-nds/quic/alpine-build:3.19 AS ngtcp2-base
+FROM rub-nds/quic/alpine-build:3.23.3 AS ngtcp2-base
 
 ARG VERSION_NGTCP2
 ARG VERSION_NGHTTP3

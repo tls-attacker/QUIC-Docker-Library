@@ -1,4 +1,4 @@
-FROM rub-nds/quic/alpine-build:3.19 AS lsquic-base
+FROM rub-nds/quic/alpine-build:3.23.3 AS lsquic-base
 
 ARG VERSION_LSQUIC
 ARG VERSION_BORINGSSL

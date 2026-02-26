@@ -1,4 +1,4 @@
-FROM rub-nds/quic/alpine-build:3.19 AS xquic-base
+FROM rub-nds/quic/alpine-build:3.23.3 AS xquic-base
 
 ARG VERSION_XQUIC
 ARG VERSION_BORINGSSL

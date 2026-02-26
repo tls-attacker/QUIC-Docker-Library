@@ -1,11 +1,13 @@
-FROM rub-nds/quic/alpine-build:3.19 AS kwik-base
+FROM rub-nds/quic/alpine-build:3.23.3 AS kwik-base
 
 ARG VERSION
 ENV VERSION=${VERSION}
 
+# Install gradle
+RUN apk add --no-cache gradle
 RUN git clone --depth=1 --branch=v${VERSION} https://github.com/ptrd/kwik
 WORKDIR /kwik
-RUN ./gradlew build -x test
+RUN gradle build -x test
 WORKDIR /kwik/build/libs
 
 FROM kwik-base AS kwik-server

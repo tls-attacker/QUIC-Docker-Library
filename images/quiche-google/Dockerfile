@@ -1,4 +1,4 @@
-FROM rub-nds/quic/alpine-build:3.19 AS quiche-google-base
+FROM rub-nds/quic/alpine-build:3.23.3 AS quiche-google-base
 
 ARG VERSION
 

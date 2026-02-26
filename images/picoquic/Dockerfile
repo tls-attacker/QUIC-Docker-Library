@@ -1,4 +1,4 @@
-FROM rub-nds/quic/alpine-build:3.19  AS picoquic-base
+FROM rub-nds/quic/alpine-build:3.23.3  AS picoquic-base
 
 RUN git clone --depth=1 --recursive https://github.com/private-octopus/picoquic.git
 WORKDIR /picoquic

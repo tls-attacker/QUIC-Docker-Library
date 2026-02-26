@@ -1,4 +1,4 @@
-FROM rub-nds/quic/alpine-build:3.19 AS aioquic-base
+FROM rub-nds/quic/alpine-build:3.23.3 AS aioquic-base
 
 ARG VERSION
 
