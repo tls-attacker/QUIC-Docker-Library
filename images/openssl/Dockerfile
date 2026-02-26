@@ -2,7 +2,7 @@ FROM rub-nds/quic/alpine-build:3.23.3 AS openssl-base
 
 ARG VERSION
 
-RUN git clone --depth=1 -b v1.11.0 https://github.com/ngtcp2/nghttp3
+RUN git clone --depth=1 -b v1.15.0 https://github.com/ngtcp2/nghttp3
 WORKDIR nghttp3
 RUN git submodule update --init
 RUN autoreconf -i && ./configure
