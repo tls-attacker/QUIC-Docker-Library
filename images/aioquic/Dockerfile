@@ -9,6 +9,7 @@ RUN if [ "$VERSION" = "1.3.0" ]; then \
     sed -i 's/^license = "BSD-3-Clause"/license = { file = "LICENSE" }/' pyproject.toml; \
     fi
 
+RUN apk add --no-cache py3-certifi-pyc py3-service_identity py3-openssl py3-pylsqpack
 RUN python3 setup.py install
 
 FROM aioquic-base AS aioquic-server
