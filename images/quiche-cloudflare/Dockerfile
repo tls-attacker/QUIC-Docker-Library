@@ -4,12 +4,12 @@ ARG VERSION
 
 RUN git clone --depth=1 --branch=${VERSION} --recursive https://github.com/cloudflare/quiche
 WORKDIR /quiche
-RUN cargo build
+RUN cargo build --release
 WORKDIR /quiche/apps
-RUN cargo build
+RUN cargo build --release
 
 FROM quiche-cloudflare-base AS quiche-cloudflare-server
-ENTRYPOINT ["cargo", "run", "--bin", "quiche-server", "--"]
+ENTRYPOINT ["cargo", "run", "--release", "--bin", "quiche-server", "--"]
 
 FROM quiche-cloudflare-base AS quiche-cloudflare-client
-ENTRYPOINT ["cargo", "run", "--bin", "quiche-client", "--"]
+ENTRYPOINT ["cargo", "run", "--release", "--bin", "quiche-client", "--"]

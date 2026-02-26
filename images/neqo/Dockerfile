@@ -4,10 +4,10 @@ ARG VERSION
 
 RUN git clone --depth=1 --branch=v${VERSION} https://github.com/mozilla/neqo
 WORKDIR /neqo
-RUN cargo build
+RUN cargo build --release
 
 FROM neqo-base AS neqo-server
-ENTRYPOINT ["cargo", "run", "--bin", "neqo-server", "--"]
+ENTRYPOINT ["cargo", "run", "--release", "--bin", "neqo-server", "--"]
 
 FROM neqo-base AS neqo-client
-ENTRYPOINT ["cargo", "run", "--bin", "neqo-client", "--"]
+ENTRYPOINT ["cargo", "run", "--release", "--bin", "neqo-client", "--"]
