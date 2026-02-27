@@ -22,7 +22,7 @@ RUN make -j
 
 # Add a self-signed certificate for the server
 WORKDIR /xquic/build/demo/
-RUN openssl req -newkey rsa:2048 -nodes -keyout server.key -x509 -days 3650 -out server.crt -subj "/CN=localhost"
+RUN openssl req -newkey rsa:2048 -nodes -keyout server.key -x509 -days 3650 -out server.crt -subj "/CN=server.example.org"
 
 FROM xquic-base AS xquic-server
 ENTRYPOINT [ "./demo_server"]
