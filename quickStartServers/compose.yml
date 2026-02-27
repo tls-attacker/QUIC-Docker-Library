@@ -52,7 +52,7 @@ services:
     volumes:
       - ../certs:/certs
       - ../www:/www
-    command: -s 0.0.0.0:4433 -c server.example.org,/certs/server.crt,/certs/server.key
+    command: -s 0.0.0.0:4433 -c server.example.org,/certs/server.crt,/certs/server.key -r /www
   msquic-server-2.5.5:
     image: rub-nds/quic/msquic-server:2.5.5
     build:

@@ -19,10 +19,6 @@ ENV EXTRA_CFLAGS='-DLSQUIC_QIR=1'
 RUN cmake -DBORINGSSL_DIR=/boringssl .
 RUN make
 
-# Create document root
-WORKDIR /
-RUN mkdir docroot
-
 FROM lsquic-base AS lsquic-server
 ENTRYPOINT ["/lsquic/bin/http_server"]
 
