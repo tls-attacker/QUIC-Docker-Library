@@ -7,9 +7,10 @@ WORKDIR /quiche
 RUN cargo build --release
 WORKDIR /quiche/apps
 RUN cargo build --release
+WORKDIR /quiche
 
 FROM quiche-cloudflare-base AS quiche-cloudflare-server
-ENTRYPOINT ["cargo", "run", "--release", "--bin", "quiche-server", "--"]
+ENTRYPOINT ["target/release/quiche-server"]
 
 FROM quiche-cloudflare-base AS quiche-cloudflare-client
-ENTRYPOINT ["cargo", "run", "--release", "--bin", "quiche-client", "--"]
+ENTRYPOINT ["target/release/quiche-client"]

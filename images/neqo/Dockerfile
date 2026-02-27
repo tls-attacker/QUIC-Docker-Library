@@ -7,7 +7,7 @@ WORKDIR /neqo
 RUN cargo build --release
 
 FROM neqo-base AS neqo-server
-ENTRYPOINT ["cargo", "run", "--release", "--bin", "neqo-server", "--"]
+ENTRYPOINT ["target/release/neqo-server"]
 
 FROM neqo-base AS neqo-client
-ENTRYPOINT ["cargo", "run", "--release", "--bin", "neqo-client", "--"]
+ENTRYPOINT ["target/release/neqo-client"]

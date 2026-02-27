@@ -10,7 +10,7 @@ RUN cargo build --release
 WORKDIR /s2n-quic/examples/resumption/
 
 FROM s2n-quic-base AS s2n-quic-server
-ENTRYPOINT ["cargo", "run", "--release", "--bin", "server", "--"]
+ENTRYPOINT ["target/release/server"]
 
 FROM s2n-quic-base AS s2n-quic-client
-ENTRYPOINT ["cargo", "run", "--release", "--bin", "client", "--"]
+ENTRYPOINT ["target/release/client"]

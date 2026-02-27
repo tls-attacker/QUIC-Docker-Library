@@ -7,7 +7,7 @@ WORKDIR /quinn
 RUN cargo build --examples --release
 
 FROM quinn-base AS quinn-server
-ENTRYPOINT ["cargo", "run", "--release", "--example", "server", "--"]
+ENTRYPOINT ["target/release/examples/server"]
 
 FROM quinn-base AS quinn-client
-ENTRYPOINT ["cargo", "run", "--release", "--example", "client","--"]
+ENTRYPOINT ["target/release/examples/client"]
