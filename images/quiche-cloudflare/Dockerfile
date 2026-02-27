@@ -1,6 +1,8 @@
-FROM rub-nds/quic/alpine-build:3.23.3 AS quiche-cloudflare-base
+FROM ubuntu:resolute AS quiche-cloudflare-base
 
 ARG VERSION
+
+RUN apt-get -y update && apt-get install -y git cargo build-essential cmake clang
 
 RUN git clone --depth=1 --branch=${VERSION} --recursive https://github.com/cloudflare/quiche
 WORKDIR /quiche

@@ -122,14 +122,14 @@ services:
     volumes:
       - ../certs:/certs
     command: -insecure https://localhost:4433
-  quiche-cloudflare-client-0.20.1:
-    image: rub-nds/quic/quiche-cloudflare-client:0.20.1
+  quiche-cloudflare-client-0.24.5:
+    image: rub-nds/quic/quiche-cloudflare-client:0.24.5
     build:
       context: ../images/quiche-cloudflare
       dockerfile: Dockerfile
       target: quiche-cloudflare-client
       args:
-        VERSION: "0.20.1"
+        VERSION: "0.24.5"
     network_mode: host
     volumes:
       - ../certs:/certs

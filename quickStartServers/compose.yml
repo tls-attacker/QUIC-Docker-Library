@@ -139,14 +139,14 @@ services:
       - ../certs:/certs
       - ../www:/www
     command: -bind 0.0.0.0:4433 -key /certs/server.key -cert /certs/server.crt 
-  quiche-cloudflare-server-0.20.1:
-    image: rub-nds/quic/quiche-cloudflare-server:0.20.1
+  quiche-cloudflare-server-0.24.5:
+    image: rub-nds/quic/quiche-cloudflare-server:0.24.5
     build:
       context: ../images/quiche-cloudflare
       dockerfile: Dockerfile
       target: quiche-cloudflare-server
       args:
-        VERSION: "0.20.1"
+        VERSION: "0.24.5"
     ports:
       - "8009:4433/udp"
     volumes:
