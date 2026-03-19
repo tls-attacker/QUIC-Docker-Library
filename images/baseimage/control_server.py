@@ -35,7 +35,7 @@ shutdown_event = threading.Event()
 def build_command():
     base = os.environ.get("QUIC_CMD", "")
     if not base:
-        print("ERROR: QUIC_CMD environment variable is not set", file=sys.stderr)
+        print("[Control-Script] ERROR: QUIC_CMD environment variable is not set", file=sys.stderr)
         sys.exit(1)
     base = os.path.expandvars(base)
     parts = shlex.split(base)
@@ -49,7 +49,7 @@ def start_process():
         if proc and proc.poll() is None:
             return False
         proc = subprocess.Popen(quic_cmd)
-        print(f"Started process PID {proc.pid}: {' '.join(quic_cmd)}", flush=True)
+        print(f"[Control-Script] Started process PID {proc.pid}: {' '.join(quic_cmd)}", flush=True)
         return True
 
 
@@ -60,7 +60,7 @@ def kill_process():
             pid = proc.pid
             proc.kill()
             proc.wait()
-            print(f"Killed process PID {pid}", flush=True)
+            print(f"[Control-Script] Killed process PID {pid}", flush=True)
             return True
         return False
 
@@ -76,10 +76,12 @@ def monitor_loop():
             if shutdown_event.is_set():
                 break
             if mode == "server":
-                print("Process exited, restarting (server mode)...", flush=True)
+                print("[Control-Script] Process exited, restarting (server mode)...", flush=True)
                 start_process()
             else:
-                print("Process exited (client mode), waiting for /trigger", flush=True)
+                with proc_lock:
+                    proc = None
+                print("[Control-Script] Process exited (client mode), waiting for /trigger", flush=True)
         shutdown_event.wait(0.5)
 
 
@@ -116,11 +118,11 @@ class Handler(BaseHTTPRequestHandler):
             self._respond(404, {"error": "not_found"})
 
     def log_message(self, format, *args):
-        print(f"[control] {args[0]}", flush=True)
+        print(f"[Control-Script] {args[0]}", flush=True)
 
 
 def graceful_shutdown(signum, frame):
-    print(f"Received signal {signum}, shutting down...", flush=True)
+    print(f"[Control-Script] Received signal {signum}, shutting down...", flush=True)
     shutdown_event.set()
     kill_process()
     sys.exit(0)
@@ -143,7 +145,7 @@ def main():
     # Start HTTP control server
     port = int(os.environ.get("CONTROL_PORT", "8090"))
     server = HTTPServer(("0.0.0.0", port), Handler)
-    print(f"Control server listening on :{port}", flush=True)
+    print(f"[Control-Script] Control server listening on :{port}", flush=True)
     try:
         server.serve_forever()
     except KeyboardInterrupt:
