@@ -24,7 +24,11 @@ WORKDIR /
 RUN mkdir docroot
 
 FROM lsquic-base AS lsquic-server
-ENTRYPOINT ["/lsquic/bin/http_server"]
+ENV QUIC_CMD="/lsquic/bin/http_server"
+ENV CONTROL_MODE="server"
+ENTRYPOINT ["python3", "/control_server.py"]
 
 FROM lsquic-base AS lsquic-client
-ENTRYPOINT ["/lsquic/bin/http_client"]
+ENV QUIC_CMD="/lsquic/bin/http_client"
+ENV CONTROL_MODE="client"
+ENTRYPOINT ["python3", "/control_server.py"]

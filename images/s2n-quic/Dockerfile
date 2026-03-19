@@ -10,7 +10,11 @@ RUN cargo build
 WORKDIR /s2n-quic/examples/resumption/
 
 FROM s2n-quic-base AS s2n-quic-server
-ENTRYPOINT ["cargo", "run", "--bin", "server", "--"]
+ENV QUIC_CMD="cargo run --bin server --"
+ENV CONTROL_MODE="server"
+ENTRYPOINT ["python3", "/control_server.py"]
 
 FROM s2n-quic-base AS s2n-quic-client
-ENTRYPOINT ["cargo", "run", "--bin", "client", "--"]
+ENV QUIC_CMD="cargo run --bin client --"
+ENV CONTROL_MODE="client"
+ENTRYPOINT ["python3", "/control_server.py"]

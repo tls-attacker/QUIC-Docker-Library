@@ -9,7 +9,11 @@ WORKDIR /quiche/apps
 RUN cargo build
 
 FROM quiche-cloudflare-base AS quiche-cloudflare-server
-ENTRYPOINT ["cargo", "run", "--bin", "quiche-server", "--"]
+ENV QUIC_CMD="cargo run --bin quiche-server --"
+ENV CONTROL_MODE="server"
+ENTRYPOINT ["python3", "/control_server.py"]
 
 FROM quiche-cloudflare-base AS quiche-cloudflare-client
-ENTRYPOINT ["cargo", "run", "--bin", "quiche-client", "--"]
+ENV QUIC_CMD="cargo run --bin quiche-client --"
+ENV CONTROL_MODE="client"
+ENTRYPOINT ["python3", "/control_server.py"]
