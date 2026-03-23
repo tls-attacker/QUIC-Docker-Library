@@ -92,7 +92,7 @@ class Handler(BaseHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(json.dumps(body).encode())
 
-    def do_POST(self):
+    def _handle_request(self):
         if self.path == "/kill":
             if kill_process():
                 self._respond(200, {"status": "killed"})
@@ -103,11 +103,7 @@ class Handler(BaseHTTPRequestHandler):
                 self._respond(200, {"status": "started"})
             else:
                 self._respond(409, {"status": "already_running"})
-        else:
-            self._respond(404, {"error": "not_found"})
-
-    def do_GET(self):
-        if self.path == "/status":
+        elif self.path == "/status":
             with proc_lock:
                 p = proc
             if p and p.poll() is None:
@@ -116,6 +112,12 @@ class Handler(BaseHTTPRequestHandler):
                 self._respond(200, {"status": "stopped", "pid": None})
         else:
             self._respond(404, {"error": "not_found"})
+
+    def do_GET(self):
+        self._handle_request()
+
+    def do_POST(self):
+        self._handle_request()
 
     def log_message(self, format, *args):
         print(f"[Control-Script] {args[0]}", flush=True)
