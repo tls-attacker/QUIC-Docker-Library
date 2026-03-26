@@ -14,6 +14,8 @@ Endpoints:
     POST /kill    - SIGKILL the running process
     POST /trigger - Start the process (client mode)
     GET  /status  - Report process state
+    GET  /config  - View or modify command parameters
+                    Query params: setFlag, setTo, replace, replaceWith, restart
 """
 
 import json
@@ -24,6 +26,7 @@ import subprocess
 import sys
 import threading
 from http.server import HTTPServer, BaseHTTPRequestHandler
+from urllib.parse import urlparse, parse_qs
 
 proc = None
 proc_lock = threading.Lock()
@@ -92,24 +95,92 @@ class Handler(BaseHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(json.dumps(body).encode())
 
+    def _handle_config(self, params):
+        global quic_cmd
+        set_flag = params.get("setFlag", [None])[0]
+        set_to = params.get("setTo", [None])[0]
+        replace = params.get("replace", [None])[0]
+        replace_with = params.get("replaceWith", [None])[0]
+        do_restart = params.get("restart", ["false"])[0].lower() == "true"
+
+        has_modification = set_flag is not None or replace is not None
+
+        # Read-only: no modification params
+        if not has_modification:
+            with proc_lock:
+                cmd = list(quic_cmd)
+            self._respond(200, {"command": " ".join(cmd), "parts": cmd})
+            return
+
+        with proc_lock:
+            if set_flag is not None and set_to is not None:
+                # setFlag + setTo: replace the value after the flag
+                try:
+                    idx = quic_cmd.index(set_flag)
+                except ValueError:
+                    self._respond(400, {"error": f"flag '{set_flag}' not found in command"})
+                    return
+                if idx + 1 >= len(quic_cmd):
+                    self._respond(400, {"error": f"flag '{set_flag}' has no value after it"})
+                    return
+                quic_cmd[idx + 1] = set_to
+
+            elif set_flag is not None and replace is not None and replace_with is not None:
+                # setFlag + replace + replaceWith: substring replace within flag's value
+                try:
+                    idx = quic_cmd.index(set_flag)
+                except ValueError:
+                    self._respond(400, {"error": f"flag '{set_flag}' not found in command"})
+                    return
+                if idx + 1 >= len(quic_cmd):
+                    self._respond(400, {"error": f"flag '{set_flag}' has no value after it"})
+                    return
+                quic_cmd[idx + 1] = quic_cmd[idx + 1].replace(replace, replace_with)
+
+            elif replace is not None and replace_with is not None:
+                # Global string replace on entire command
+                full = " ".join(quic_cmd)
+                full = full.replace(replace, replace_with)
+                quic_cmd = shlex.split(full)
+
+            else:
+                self._respond(400, {"error": "incomplete parameters: setFlag requires setTo, replace requires replaceWith"})
+                return
+
+            cmd = list(quic_cmd)
+
+        restarted = False
+        if do_restart:
+            kill_process()
+            start_process()
+            restarted = True
+
+        print(f"[Control-Script] Config updated: {' '.join(cmd)}", flush=True)
+        self._respond(200, {"status": "updated", "command": " ".join(cmd), "restarted": restarted})
+
     def _handle_request(self):
-        if self.path == "/kill":
+        parsed = urlparse(self.path)
+        path = parsed.path
+
+        if path == "/kill":
             if kill_process():
                 self._respond(200, {"status": "killed"})
             else:
                 self._respond(404, {"status": "not_running"})
-        elif self.path == "/trigger":
+        elif path == "/trigger":
             if start_process():
                 self._respond(200, {"status": "started"})
             else:
                 self._respond(409, {"status": "already_running"})
-        elif self.path == "/status":
+        elif path == "/status":
             with proc_lock:
                 p = proc
             if p and p.poll() is None:
                 self._respond(200, {"status": "running", "pid": p.pid})
             else:
                 self._respond(200, {"status": "stopped", "pid": None})
+        elif path == "/config":
+            self._handle_config(parse_qs(parsed.query))
         else:
             self._respond(404, {"error": "not_found"})
 
