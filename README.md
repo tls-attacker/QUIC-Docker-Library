@@ -45,3 +45,7 @@ docker run --rm -v [PATH_TO_CERTS_FOLDER]:/certs rub-nds/quic/[SERVICE] [FLAGS]
 - Replace `[PATH_TO_CERTS_FOLDER]` with the path to your local `certs` folder.
 - Replace `[SERVICE]` with the desired implementation.
 - Replace `[FLAGS]` with any additional flags required.
+
+## Control Server
+
+Each container runs a control server that exposes an HTTP API for managing the QUIC process at runtime. This allows you to check the process status, kill or restart it, and modify command parameters without rebuilding the container. See the [base image README](images/baseimage/README.md) for available endpoints and usage examples.

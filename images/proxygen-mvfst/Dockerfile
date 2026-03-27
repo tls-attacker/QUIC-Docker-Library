@@ -9,6 +9,7 @@ RUN apt update && \
 
 RUN git clone --depth=1 --branch=v${VERSION} https://github.com/facebook/proxygen.git
 WORKDIR /proxygen/proxygen/
+ENV MAKEFLAGS="-j2"
 RUN ./build.sh
 RUN ./install.sh
 
