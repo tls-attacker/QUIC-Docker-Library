@@ -7,7 +7,11 @@ WORKDIR /neqo
 RUN cargo build
 
 FROM neqo-base AS neqo-server
-ENTRYPOINT ["cargo", "run", "--bin", "neqo-server", "--"]
+ENV QUIC_CMD="cargo run --bin neqo-server --"
+ENV CONTROL_MODE="server"
+ENTRYPOINT ["python3", "/control_server.py"]
 
 FROM neqo-base AS neqo-client
-ENTRYPOINT ["cargo", "run", "--bin", "neqo-client", "--"]
+ENV QUIC_CMD="cargo run --bin neqo-client --"
+ENV CONTROL_MODE="client"
+ENTRYPOINT ["python3", "/control_server.py"]

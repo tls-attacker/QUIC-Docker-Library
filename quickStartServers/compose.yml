@@ -22,13 +22,14 @@ services:
   aioquic-server-1.3.0:
     image: rub-nds/quic/aioquic-server:1.3.0
     build:
-      context: ../images/aioquic
-      dockerfile: Dockerfile
+      context: ../images
+      dockerfile: aioquic/Dockerfile
       target: aioquic-server
       args:
         VERSION: "1.3.0"
     ports:
       - "8000:4433/udp"
+      - "9000:8090"
     volumes:
       - ../certs:/certs
       - ../www:/www
@@ -36,13 +37,14 @@ services:
   kwik-server-0.8.11:
     image: rub-nds/quic/kwik-server:0.8.11
     build:
-      context: ../images/kwik
-      dockerfile: Dockerfile
+      context: ../images
+      dockerfile: kwik/Dockerfile
       target: kwik-server
       args:
         VERSION: "0.8.11"
     ports:
       - "8001:4433/udp"
+      - "9001:8090"
     volumes:
       - ../certs:/certs
       - ../www:/www
@@ -50,14 +52,15 @@ services:
   lsquic-server-4.2.0:
     image: rub-nds/quic/lsquic-server:4.2.0
     build:
-      context: ../images/lsquic
-      dockerfile: Dockerfile
+      context: ../images
+      dockerfile: lsquic/Dockerfile
       target: lsquic-server
       args:
         VERSION_LSQUIC: "4.2.0"
         VERSION_BORINGSSL: "0.20250415.0"
     ports:
       - "8002:4433/udp"
+      - "9002:8090"
     volumes:
       - ../certs:/certs
       - ../www:/www
@@ -65,14 +68,15 @@ services:
   msquic-server-2.5.5:
     image: rub-nds/quic/msquic-server:2.5.5
     build:
-      context: ../images/msquic
-      dockerfile: Dockerfile
+      context: ../images
+      dockerfile: msquic/Dockerfile
       target: msquic-server
       args:
         VERSION: "2.5.5"
         TLS_IMPLEMENTATION: "quictls"
     ports:
       - "8003:4567/udp"
+      - "9003:8090"
     volumes:
       - ../certs:/certs
       - ../www:/www
@@ -81,13 +85,14 @@ services:
   neqo-server-0.12.0:
     image: rub-nds/quic/neqo-server:0.12.0
     build:
-      context: ../images/neqo
-      dockerfile: Dockerfile
+      context: ../images
+      dockerfile: neqo/Dockerfile
       target: neqo-server
       args:
         VERSION: "0.12.0"
     ports:
       - "8004:4433/udp"
+      - "9004:8090"
     volumes:
       - ../certs:/certs
       - ../www:/www
@@ -95,8 +100,8 @@ services:
   ngtcp2-server-1.12.0:
     image: rub-nds/quic/ngtcp2-server:1.12.0
     build:
-      context: ../images/ngtcp2
-      dockerfile: Dockerfile
+      context: ../images
+      dockerfile: ngtcp2/Dockerfile
       target: ngtcp2-server
       args:
         VERSION_NGTCP2: "1.12.0"
@@ -104,6 +109,7 @@ services:
         VERSION_BORINGSSL: "0.20250415.0"
     ports:
       - "8005:4433/udp"
+      - "9005:8090"
     volumes:
       - ../certs:/certs
       - ../www:/www
@@ -111,11 +117,12 @@ services:
   picoquic-server-latest:
     image: rub-nds/quic/picoquic-server:latest
     build:
-      context: ../images/picoquic
-      dockerfile: Dockerfile
+      context: ../images
+      dockerfile: picoquic/Dockerfile
       target: picoquic-server
     ports:
       - "8006:4433/udp"
+      - "9006:8090"
     volumes:
       - ../certs:/certs
       - ../www:/www
@@ -123,13 +130,14 @@ services:
   proxygen-mvfst-server-2025.02.10.00:
     image: rub-nds/quic/proxygen-mvfst-server:2025.02.10.00
     build:
-      context: ../images/proxygen-mvfst
-      dockerfile: Dockerfile
+      context: ../images
+      dockerfile: proxygen-mvfst/Dockerfile
       target: proxygen-mvfst-server
       args:
         VERSION: "2025.02.10.00"
     ports:
       - "8007:4433/udp"
+      - "9007:8090"
     volumes:
       - ../certs:/certs
       - ../www:/www
@@ -137,13 +145,14 @@ services:
   quic-go-server-0.51.0:
     image: rub-nds/quic/quic-go-server:0.51.0
     build:
-      context: ../images/quic-go
-      dockerfile: Dockerfile
+      context: ../images
+      dockerfile: quic-go/Dockerfile
       target: quic-go-server
       args:
         VERSION: "0.51.0"
     ports:
       - "8008:4433/udp"
+      - "9008:8090"
     volumes:
       - ../certs:/certs
       - ../www:/www
@@ -151,13 +160,14 @@ services:
   quiche-cloudflare-server-0.20.1:
     image: rub-nds/quic/quiche-cloudflare-server:0.20.1
     build:
-      context: ../images/quiche-cloudflare
-      dockerfile: Dockerfile
+      context: ../images
+      dockerfile: quiche-cloudflare/Dockerfile
       target: quiche-cloudflare-server
       args:
         VERSION: "0.20.1"
     ports:
       - "8009:4433/udp"
+      - "9009:8090"
     volumes:
       - ../certs:/certs
       - ../www:/www
@@ -165,11 +175,12 @@ services:
   quicly-server-latest:
     image: rub-nds/quic/quicly-server:latest
     build:
-      context: ../images/quicly
-      dockerfile: Dockerfile
+      context: ../images
+      dockerfile: quicly/Dockerfile
       target: quicly-server
     ports:
       - "8010:4433/udp"
+      - "9010:8090"
     volumes:
       - ../certs:/certs
       - ../www:/www
@@ -177,13 +188,14 @@ services:
   quinn-server-0.10.4:
     image: rub-nds/quic/quinn-server:0.10.4
     build:
-      context: ../images/quinn
-      dockerfile: Dockerfile
+      context: ../images
+      dockerfile: quinn/Dockerfile
       target: quinn-server
       args:
         VERSION: "0.10.4"
     ports:
       - "8011:4433/udp"
+      - "9011:8090"
     volumes:
       - ../certs:/certs
       - ../www:/www
@@ -191,13 +203,14 @@ services:
   s2n-quic-server-1.64.0:
     image: rub-nds/quic/s2n-quic-server:1.64.0
     build:
-      context: ../images/s2n-quic
-      dockerfile: Dockerfile
+      context: ../images
+      dockerfile: s2n-quic/Dockerfile
       target: s2n-quic-server
       args:
         VERSION: "1.64.0"
     ports:
       - "8012:4433/udp"
+      - "9012:8090"
     volumes:
       - ../certs:/certs
       - ../www:/www
@@ -205,14 +218,15 @@ services:
   xquic-server-babassl-1.9.0:
     image: rub-nds/quic/xquic-server-babassl:1.9.0
     build:
-      context: ../images/xquic
-      dockerfile: Dockerfile-babassl
+      context: ../images
+      dockerfile: xquic/Dockerfile-babassl
       target: xquic-server
       args:
         VERSION_XQUIC: "1.9.0"
         VERSION_BABASSL: "8.3-stable"
     ports:
       - "8013:4433/udp"
+      - "9013:8090"
     volumes:
       - ../certs:/certs
       - ../www:/www
@@ -220,14 +234,15 @@ services:
   xquic-server-boringssl-1.9.0:
     image: rub-nds/quic/xquic-server-boringssl:1.9.0
     build:
-      context: ../images/xquic
-      dockerfile: Dockerfile-boringssl
+      context: ../images
+      dockerfile: xquic/Dockerfile-boringssl
       target: xquic-server
       args:
         VERSION_XQUIC: "1.9.0"
         VERSION_BORINGSSL: "0.20250415.0"
     ports:
       - "8014:4433/udp"
+      - "9014:8090"
     volumes:
       - ../certs:/certs
       - ../www:/www
@@ -235,13 +250,14 @@ services:
   openssl-server-3.6.0:
     image: rub-nds/quic/openssl-server:3.6.0
     build:
-      context: ../images/openssl
-      dockerfile: Dockerfile
+      context: ../images
+      dockerfile: openssl/Dockerfile
       target: openssl-server
       args:
         VERSION: "3.6.0"
     ports:
       - "8015:4433/udp"
+      - "9015:8090"
     volumes:
       - ../certs:/certs
       - ../www:/www

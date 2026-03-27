@@ -9,11 +9,18 @@ RUN apt update && \
 
 RUN git clone --depth=1 --branch=v${VERSION} https://github.com/facebook/proxygen.git
 WORKDIR /proxygen/proxygen/
+ENV MAKEFLAGS="-j2"
 RUN ./build.sh
 RUN ./install.sh
 
 FROM proxygen-mvfst-base AS proxygen-mvfst-server
-ENTRYPOINT ["/proxygen/proxygen/_build/proxygen/httpserver/hq", "--mode=server"]
+COPY --from=rub-nds/quic/alpine-build:3.19 /control_server.py /control_server.py
+ENV QUIC_CMD="/proxygen/proxygen/_build/proxygen/httpserver/hq --mode=server"
+ENV CONTROL_MODE="server"
+ENTRYPOINT ["python3", "/control_server.py"]
 
 FROM proxygen-mvfst-base AS proxygen-mvfst-client
-ENTRYPOINT ["/proxygen/proxygen/_build/proxygen/httpserver/hq", "--mode=client"]
+COPY --from=rub-nds/quic/alpine-build:3.19 /control_server.py /control_server.py
+ENV QUIC_CMD="/proxygen/proxygen/_build/proxygen/httpserver/hq --mode=client"
+ENV CONTROL_MODE="client"
+ENTRYPOINT ["python3", "/control_server.py"]

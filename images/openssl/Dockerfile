@@ -16,7 +16,11 @@ RUN cp $(LD_LIBRARY_PATH="/build/lib/" ldd /build/bin/openssl | \
     awk '$3=="" {print $1}; $3!="" {print $3}') /libdeps/
 
 FROM openssl-base AS openssl-server
-ENTRYPOINT ["/openssl/demos/quic/server/server"]
+ENV QUIC_CMD="/openssl/demos/quic/server/server"
+ENV CONTROL_MODE="server"
+ENTRYPOINT ["python3", "/control_server.py"]
 
 FROM openssl-base AS openssl-client
-ENTRYPOINT ["openssl", "s_client"]
+ENV QUIC_CMD="openssl s_client"
+ENV CONTROL_MODE="client"
+ENTRYPOINT ["python3", "/control_server.py"]

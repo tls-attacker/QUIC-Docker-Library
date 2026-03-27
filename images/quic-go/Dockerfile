@@ -6,7 +6,11 @@ RUN git clone --depth=1 --branch=v${VERSION} https://github.com/quic-go/quic-go
 WORKDIR /quic-go
 
 FROM quic-go-base AS quic-go-server
-ENTRYPOINT ["go", "run", "example/main.go"]
+ENV QUIC_CMD="go run example/main.go"
+ENV CONTROL_MODE="server"
+ENTRYPOINT ["python3", "/control_server.py"]
 
 FROM quic-go-base AS quic-go-client
-ENTRYPOINT ["go", "run", "example/client/main.go"]
+ENV QUIC_CMD="go run example/client/main.go"
+ENV CONTROL_MODE="client"
+ENTRYPOINT ["python3", "/control_server.py"]

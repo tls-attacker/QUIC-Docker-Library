@@ -52,3 +52,5 @@ RUN apk add \
     libev-dev \
     shared-mime-info \
     pcre-dev
+
+COPY control_server.py /control_server.py
