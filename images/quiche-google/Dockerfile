@@ -19,11 +19,13 @@ RUN CC=clang CXX=clang++ bazel build -c opt //quiche:quic_server //quiche:quic_c
     install -D bazel-bin/quiche/quic_client /usr/local/bin/quic_client
 
 FROM quiche-google-base AS quiche-google-server
+COPY --from=rub-nds/quic/alpine-build:3.19 /control_server.py /control_server.py
 ENV QUIC_CMD="/usr/local/bin/quic_server"
 ENV CONTROL_MODE="server"
 ENTRYPOINT ["python3", "/control_server.py"]
 
 FROM quiche-google-base AS quiche-google-client
+COPY --from=rub-nds/quic/alpine-build:3.19 /control_server.py /control_server.py
 ENV QUIC_CMD="/usr/local/bin/quic_client"
 ENV CONTROL_MODE="client"
 ENTRYPOINT ["python3", "/control_server.py"]

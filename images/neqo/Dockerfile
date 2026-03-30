@@ -1,10 +1,10 @@
-FROM rub-nds/quic/alpine-build:3.21.2 AS neqo-base
+FROM rub-nds/quic/alpine-build:3.23.3 AS neqo-base
 
 ARG VERSION
 
 RUN git clone --depth=1 --branch=v${VERSION} https://github.com/mozilla/neqo
 WORKDIR /neqo
-RUN cargo build
+RUN cargo build --locked || cargo build
 
 FROM neqo-base AS neqo-server
 ENV QUIC_CMD="cargo run --bin neqo-server --"
