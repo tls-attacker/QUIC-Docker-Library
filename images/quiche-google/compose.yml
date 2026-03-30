@@ -1,0 +1,13 @@
+services:
+  quiche-google-server-latest:
+    image: rub-nds/quic/quiche-google-server:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: quiche-google-server
+  quiche-google-client-latest:
+    image: rub-nds/quic/quiche-google-client:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: quiche-google-client
