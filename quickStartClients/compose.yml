@@ -249,5 +249,17 @@ services:
       CONTROL_PORT: "9115"
     volumes:
       - ../certs:/certs
-    command: -quic -alpn h3 -connect localhost:8000
+    command: -quic -alpn h3 -connect localhost:4433 
     tty: true
+  quiche-google-client-latest:
+    image: rub-nds/quic/quiche-google-client:latest
+    build:
+      context: ../images
+      dockerfile: quiche-google/Dockerfile
+      target: quiche-google-client
+    network_mode: host
+    environment:
+      CONTROL_PORT: "9116"
+    volumes:
+      - ../certs:/certs
+    command: --disable_certificate_verification https://localhost:4433
