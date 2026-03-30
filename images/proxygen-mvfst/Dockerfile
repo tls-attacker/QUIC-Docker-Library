@@ -1,6 +1,6 @@
 # Using Debian because facebook does not know Alpine Linux 
 # and reverts to compiling all dependencies which is unnecessary
-FROM linuxcontainers/debian-slim:12.5 AS proxygen-mvfst-base
+FROM debian:13-slim AS proxygen-mvfst-base
 
 ARG VERSION
 
