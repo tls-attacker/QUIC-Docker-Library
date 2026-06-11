@@ -14,7 +14,7 @@ Easily set up and run the latest QUIC server implementations in our library usin
     docker compose up
     ```
 
-**Important:** Before starting, ensure you generate the required certificates and keys by executing the [generateCerts.sh](../certs/generateCerts.sh) script located in the [certs](certs) directory. These certificates and keys will be mounted as a volume and used by the containers.
+**Important:** Before starting, ensure you generate the required certificates and keys by executing the [generateCerts.sh](../certs/generateCerts.sh) script located in the [certs](../certs) directory. These certificates and keys will be mounted as a volume and used by the containers.
 
 ## Available Implementations
 
