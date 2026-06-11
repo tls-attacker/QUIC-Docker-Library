@@ -4,17 +4,17 @@ This project provides Dockerfiles for various QUIC implementations, supporting b
 
 ## Generating Certificates and Keys
 
-To generate certificates and keys, use the `generateCerts.sh` script located in the `certs` folder. This script uses [OpenSSL](https://github.com/openssl/openssl).
+To generate certificates and keys, use the [generateCerts.sh](certs/generateCerts.sh) script located in the [certs](certs) directory. This script uses [OpenSSL](https://github.com/openssl/openssl).
 
 ## Building QUIC Implementations
 
-1. Navigate to the `images/baseimage` folder and build the base images using Docker Compose:
+1. Navigate to the [images/baseimage](images/baseimage) directory and build the base images using Docker Compose:
 
     ```bash
     docker compose build
     ```
 
-2. Navigate to the folder of your desired QUIC implementation.
+2. Navigate to the directory for the desired QUIC implementation.
 
 3. List the available versions of the implementation:
 
@@ -36,16 +36,28 @@ To generate certificates and keys, use the `generateCerts.sh` script located in 
 
 ## Running a QUIC Implementation
 
-Once built, start the selected service with:
+After building the images, start the selected service with:
 
 ```bash
 docker run --rm -v [PATH_TO_CERTS_FOLDER]:/certs rub-nds/quic/[SERVICE] [FLAGS]
 ```
 
-- Replace `[PATH_TO_CERTS_FOLDER]` with the path to your local `certs` folder.
+- Replace `[PATH_TO_CERTS_FOLDER]` with the path to your local `certs` directory.
 - Replace `[SERVICE]` with the desired implementation.
 - Replace `[FLAGS]` with any additional flags required.
+
+## Quick Start
+
+For fast setup of the newest implementations, see the [quickStartClients](quickStartClients/) and [quickStartServers](quickStartServers/) directories.
 
 ## Control Server
 
 Each container runs a control server that exposes an HTTP API for managing the QUIC process at runtime. This allows you to check the process status, kill or restart it, and modify command parameters without rebuilding the container. See the [base image README](images/baseimage/README.md) for available endpoints and usage examples.
+
+## Publication
+
+This project is introduced in the following USENIX Security 2026 publication:
+
+```
+Nurullah Erinola, Marcel Maehren, Marcus Brinkmann, and Jörg Schwenk. Breaking the Boundaries: Analyzing QUIC Frame-Packet Interactions With QUIC-Attacker. USENIX Security 2026.
+```
