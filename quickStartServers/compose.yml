@@ -33,6 +33,20 @@ services:
       - ../certs:/certs
       - ../www:/www
     command: --port 4433 -c /certs/server.crt -k /certs/server.key
+  kwik-server-0.8.11:
+    image: rub-nds/quic/kwik-server:0.8.11
+    build:
+      context: ../images/kwik
+      dockerfile: Dockerfile
+      target: kwik-server
+      args:
+        VERSION: "0.8.11"
+    ports:
+      - "8001:4433/udp"
+    volumes:
+      - ../certs:/certs
+      - ../www:/www
+    command: /certs/server.crt /certs/server.key 4433
   lsquic-server-4.6.0:
     image: rub-nds/quic/lsquic-server:4.6.0
     build:
@@ -48,6 +62,20 @@ services:
       - ../certs:/certs
       - ../www:/www
     command: -s 0.0.0.0:4433 -c localhost,/certs/server.crt,/certs/server.key -r /www/
+  neqo-server-0.12.0:
+    image: rub-nds/quic/neqo-server:0.12.0
+    build:
+      context: ../images/neqo
+      dockerfile: Dockerfile
+      target: neqo-server
+      args:
+        VERSION: "0.12.0"
+    ports:
+      - "8004:4433/udp"
+    volumes:
+      - ../certs:/certs
+      - ../www:/www
+    command: 0.0.0.0:4433
   msquic-server-2.5.6:
     image: rub-nds/quic/msquic-server:2.5.6
     build:
