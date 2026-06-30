@@ -43,27 +43,27 @@ services:
     volumes:
       - ../certs:/certs
     command: "4433"
-  lsquic-client-4.2.0:
-    image: rub-nds/quic/lsquic-client:4.2.0
+  lsquic-client-4.6.0:
+    image: rub-nds/quic/lsquic-client:4.6.0
     build:
       context: ../images/lsquic
       dockerfile: Dockerfile
       target: lsquic-client
       args:
-        VERSION_LSQUIC: "4.2.0"
+        VERSION_LSQUIC: "4.6.0"
         VERSION_BORINGSSL: "0.20250415.0"
     network_mode: host
     volumes:
       - ../certs:/certs
     command: -s localhost:4433 -p /
-  msquic-client-2.5.5:
-    image: rub-nds/quic/msquic-client:2.5.5
+  msquic-client-2.5.6:
+    image: rub-nds/quic/msquic-client:2.5.6
     build:
       context: ../images/msquic
       dockerfile: Dockerfile
       target: msquic-client
       args:
-        VERSION: "2.5.5"
+        VERSION: "2.5.6"
         TLS_IMPLEMENTATION: "quictls"
     network_mode: host
     volumes:
@@ -83,15 +83,15 @@ services:
     volumes:
       - ../certs:/certs
     command: https://localhost:4433
-  ngtcp2-client-1.12.0:
-    image: rub-nds/quic/ngtcp2-client:1.12.0
+  ngtcp2-client-1.21.0:
+    image: rub-nds/quic/ngtcp2-client:1.21.0
     build:
       context: ../images/ngtcp2
       dockerfile: Dockerfile
       target: ngtcp2-client
       args:
-        VERSION_NGTCP2: "1.12.0"
-        VERSION_NGHTTP3: "1.9.0"
+        VERSION_NGTCP2: "1.21.0"
+        VERSION_NGHTTP3: "1.15.0"
         VERSION_BORINGSSL: "0.20250415.0"
     network_mode: host
     volumes:
@@ -166,14 +166,14 @@ services:
       - ../certs:/certs
     # TODO: Error in reading CA certificate.
     command: --ca /certs/ca.crt https://localhost:4433
-  s2n-quic-client-1.64.0:
-    image: rub-nds/quic/s2n-quic-client:1.64.0
+  s2n-quic-client-1.75.0:
+    image: rub-nds/quic/s2n-quic-client:1.75.0
     build:
       context: ../images/s2n-quic
       dockerfile: Dockerfile
       target: s2n-quic-client
       args:
-        VERSION: "1.64.0"
+        VERSION: "1.75.0"
     network_mode: host
     volumes:
       - ../certs:/certs

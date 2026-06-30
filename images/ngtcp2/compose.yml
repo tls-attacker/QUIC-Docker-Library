@@ -59,3 +59,23 @@ services:
         VERSION_NGTCP2: "1.12.0"
         VERSION_NGHTTP3: "1.9.0"
         VERSION_BORINGSSL: "0.20250415.0"
+  ngtcp2-server-1.21.0:
+    image: rub-nds/quic/ngtcp2-server:1.21.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: ngtcp2-server
+      args:
+        VERSION_NGTCP2: "1.21.0"
+        VERSION_NGHTTP3: "1.15.0"
+        VERSION_BORINGSSL: "0.20250415.0"
+  ngtcp2-client-1.21.0:
+    image: rub-nds/quic/ngtcp2-client:1.21.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: ngtcp2-client
+      args:
+        VERSION_NGTCP2: "1.21.0"
+        VERSION_NGHTTP3: "1.15.0"
+        VERSION_BORINGSSL: "0.20250415.0"

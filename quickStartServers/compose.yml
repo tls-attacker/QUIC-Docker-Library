@@ -33,43 +33,29 @@ services:
       - ../certs:/certs
       - ../www:/www
     command: --port 4433 -c /certs/server.crt -k /certs/server.key
-  kwik-server-0.8.11:
-    image: rub-nds/quic/kwik-server:0.8.11
-    build:
-      context: ../images/kwik
-      dockerfile: Dockerfile
-      target: kwik-server
-      args:
-        VERSION: "0.8.11"
-    ports:
-      - "8001:4433/udp"
-    volumes:
-      - ../certs:/certs
-      - ../www:/www
-    command: /certs/server.crt /certs/server.key 4433
-  lsquic-server-4.2.0:
-    image: rub-nds/quic/lsquic-server:4.2.0
+  lsquic-server-4.6.0:
+    image: rub-nds/quic/lsquic-server:4.6.0
     build:
       context: ../images/lsquic
       dockerfile: Dockerfile
       target: lsquic-server
       args:
-        VERSION_LSQUIC: "4.2.0"
+        VERSION_LSQUIC: "4.6.0"
         VERSION_BORINGSSL: "0.20250415.0"
     ports:
       - "8002:4433/udp"
     volumes:
       - ../certs:/certs
       - ../www:/www
-    command: -s 0.0.0.0:4433 -c localhost,/certs/server.crt,/certs/server.key
-  msquic-server-2.5.5:
-    image: rub-nds/quic/msquic-server:2.5.5
+    command: -s 0.0.0.0:4433 -c localhost,/certs/server.crt,/certs/server.key -r /www/
+  msquic-server-2.5.6:
+    image: rub-nds/quic/msquic-server:2.5.6
     build:
       context: ../images/msquic
       dockerfile: Dockerfile
       target: msquic-server
       args:
-        VERSION: "2.5.5"
+        VERSION: "2.5.6"
         TLS_IMPLEMENTATION: "quictls"
     ports:
       - "8003:4567/udp"
@@ -78,29 +64,15 @@ services:
       - ../www:/www
     command: -cert_file:/certs/server.crt -key_file:/certs/server.key
     tty: true
-  neqo-server-0.12.0:
-    image: rub-nds/quic/neqo-server:0.12.0
-    build:
-      context: ../images/neqo
-      dockerfile: Dockerfile
-      target: neqo-server
-      args:
-        VERSION: "0.12.0"
-    ports:
-      - "8004:4433/udp"
-    volumes:
-      - ../certs:/certs
-      - ../www:/www
-    command: 0.0.0.0:4433
-  ngtcp2-server-1.12.0:
-    image: rub-nds/quic/ngtcp2-server:1.12.0
+  ngtcp2-server-1.21.0:
+    image: rub-nds/quic/ngtcp2-server:1.21.0
     build:
       context: ../images/ngtcp2
       dockerfile: Dockerfile
       target: ngtcp2-server
       args:
-        VERSION_NGTCP2: "1.12.0"
-        VERSION_NGHTTP3: "1.9.0"
+        VERSION_NGTCP2: "1.21.0"
+        VERSION_NGHTTP3: "1.15.0"
         VERSION_BORINGSSL: "0.20250415.0"
     ports:
       - "8005:4433/udp"
@@ -188,14 +160,14 @@ services:
       - ../certs:/certs
       - ../www:/www
     command: --listen 0.0.0.0:4433 -k /certs/server.key -c /certs/server.crt /www
-  s2n-quic-server-1.64.0:
-    image: rub-nds/quic/s2n-quic-server:1.64.0
+  s2n-quic-server-1.75.0:
+    image: rub-nds/quic/s2n-quic-server:1.75.0
     build:
       context: ../images/s2n-quic
       dockerfile: Dockerfile
       target: s2n-quic-server
       args:
-        VERSION: "1.64.0"
+        VERSION: "1.75.0"
     ports:
       - "8012:4433/udp"
     volumes:
@@ -246,4 +218,3 @@ services:
       - ../certs:/certs
       - ../www:/www
     command: 4433 /certs/server.crt /certs/server.key
-    
