@@ -17,9 +17,9 @@ RUN make -j && make install
 
 # Copy all required libraries
 RUN mkdir /libdeps
-RUN cp libcrypto.so.3 /usr/lib/
+RUN cp libcrypto.so.4 /usr/lib/
 RUN cp libcrypto.a /usr/lib/
-RUN cp libssl.so.3 /usr/lib/
+RUN cp libssl.so.4 /usr/lib/
 RUN cp $(LD_LIBRARY_PATH="/build/lib/" ldd /build/bin/openssl | \
     awk '$3=="" {print $1}; $3!="" {print $3}') /libdeps/
 

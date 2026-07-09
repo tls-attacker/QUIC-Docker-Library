@@ -49,22 +49,22 @@ services:
       - ../certs:/certs
       - ../www:/www
     command: /certs/server.crt /certs/server.key 4433
-  lsquic-server-4.2.0:
-    image: rub-nds/quic/lsquic-server:4.2.0
+  lsquic-server-4.8.0:
+    image: rub-nds/quic/lsquic-server:4.8.0
     build:
       context: ../images
       dockerfile: lsquic/Dockerfile
       target: lsquic-server
       args:
-        VERSION_LSQUIC: "4.2.0"
-        VERSION_BORINGSSL: "0.20250415.0"
+        VERSION_LSQUIC: "4.8.0"
+        VERSION_BORINGSSL: "0.20250807.0"
     ports:
       - "8002:4433/udp"
       - "9002:8090"
     volumes:
       - ../certs:/certs
       - ../www:/www
-    command: -s 0.0.0.0:4433 -c localhost,/certs/server.crt,/certs/server.key -r /www
+    command: -s 0.0.0.0:4433 -c server.example.org,/certs/server.crt,/certs/server.key -r /www
   msquic-server-2.5.5:
     image: rub-nds/quic/msquic-server:2.5.5
     build:
@@ -97,16 +97,16 @@ services:
       - ../certs:/certs
       - ../www:/www
     command: 0.0.0.0:4433
-  ngtcp2-server-1.12.0:
-    image: rub-nds/quic/ngtcp2-server:1.12.0
+  ngtcp2-server-1.24.0:
+    image: rub-nds/quic/ngtcp2-server:1.24.0
     build:
       context: ../images
-      dockerfile: ngtcp2/Dockerfile
+      dockerfile: ngtcp2/Dockerfile_1.24.0
       target: ngtcp2-server
       args:
-        VERSION_NGTCP2: "1.12.0"
-        VERSION_NGHTTP3: "1.9.0"
-        VERSION_BORINGSSL: "0.20250415.0"
+        VERSION_NGTCP2: "1.24.0"
+        VERSION_NGHTTP3: "1.17.0"
+        VERSION_BORINGSSL: "3c6315e00ab02d7bc9b8922aff1f85d8f81ee130"
     ports:
       - "8005:4433/udp"
       - "9005:8090"
@@ -157,20 +157,21 @@ services:
       - ../certs:/certs
       - ../www:/www
     command: -bind 0.0.0.0:4433 -key /certs/server.key -cert /certs/server.crt 
-  quiche-cloudflare-server-0.20.1:
-    image: rub-nds/quic/quiche-cloudflare-server:0.20.1
+  quiche-cloudflare-server-0.29.0:
+    image: rub-nds/quic/quiche-cloudflare-server:0.29.0
     build:
       context: ../images
       dockerfile: quiche-cloudflare/Dockerfile
       target: quiche-cloudflare-server
       args:
-        VERSION: "0.20.1"
+        VERSION: "0.29.0"
     ports:
       - "8009:4433/udp"
       - "9009:8090"
     volumes:
       - ../certs:/certs
       - ../www:/www
+      - ../images/baseimage/control_server.py:/control_server.py
     command: --listen  0.0.0.0:4433 --key /certs/server.key --cert /certs/server.crt --no-retry
   quicly-server-latest:
     image: rub-nds/quic/quicly-server:latest
@@ -200,14 +201,14 @@ services:
       - ../certs:/certs
       - ../www:/www
     command: --listen 0.0.0.0:4433 -k /certs/server.key -c /certs/server.crt /www
-  s2n-quic-server-1.64.0:
-    image: rub-nds/quic/s2n-quic-server:1.64.0
+  s2n-quic-server-1.83.0:
+    image: rub-nds/quic/s2n-quic-server:1.83.0
     build:
       context: ../images
       dockerfile: s2n-quic/Dockerfile
       target: s2n-quic-server
       args:
-        VERSION: "1.64.0"
+        VERSION: "1.83.0"
     ports:
       - "8012:4433/udp"
       - "9012:8090"
@@ -255,6 +256,21 @@ services:
       target: openssl-server
       args:
         VERSION: "3.6.0"
+    ports:
+      - "8015:4433/udp"
+      - "9015:8090"
+    volumes:
+      - ../certs:/certs
+      - ../www:/www
+    command: 4433 /certs/server.crt /certs/server.key
+  openssl-server-4.0.0:
+    image: rub-nds/quic/openssl-server:4.0.0
+    build:
+      context: ../images
+      dockerfile: openssl/Dockerfile_4
+      target: openssl-server
+      args:
+        VERSION: "4.0.0"
     ports:
       - "8015:4433/udp"
       - "9015:8090"

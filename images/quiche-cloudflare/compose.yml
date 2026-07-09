@@ -31,3 +31,19 @@ services:
       target: quiche-cloudflare-client
       args:
         VERSION: "0.20.1"
+  quiche-cloudflare-server-0.29.0:
+    image: rub-nds/quic/quiche-cloudflare-server:0.29.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: quiche-cloudflare-server
+      args:
+        VERSION: "0.29.0"
+  quiche-cloudflare-client-0.29.0:
+    image: rub-nds/quic/quiche-cloudflare-client:0.29.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: quiche-cloudflare-client
+      args:
+        VERSION: "0.29.0"

@@ -111,3 +111,19 @@ services:
       target: s2n-quic-client
       args:
         VERSION: "1.64.0"
+  s2n-quic-server-1.83.0:
+    image: rub-nds/quic/s2n-quic-server:1.83.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: s2n-quic-server
+      args:
+        VERSION: "1.83.0"
+  s2n-quic-client-1.83.0:
+    image: rub-nds/quic/s2n-quic-client:1.83.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: s2n-quic-client
+      args:
+        VERSION: "1.83.0"

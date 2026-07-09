@@ -31,3 +31,19 @@ services:
       target: openssl-client
       args:
         VERSION: "3.6.0"
+  openssl-server-4.0.0:
+    image: rub-nds/quic/openssl-server:4.0.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: openssl-server
+      args:
+        VERSION: "4.0.0"
+  openssl-client-4.0.0:
+    image: rub-nds/quic/openssl-client:4.0.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: openssl-client
+      args:
+        VERSION: "4.0.0"
