@@ -5,7 +5,7 @@ ARG VERSION
 WORKDIR /
 RUN git clone --depth=1 --branch=openssl-${VERSION} https://github.com/openssl/openssl
 WORKDIR /openssl
-COPY openssl-4.0.0.patch .
+COPY openssl/openssl-4.0.0.patch .
 RUN git apply openssl-4.0.0.patch
 RUN ./config --prefix=/build/ --openssldir=/build/ enable-demos
 RUN make -j && make install
