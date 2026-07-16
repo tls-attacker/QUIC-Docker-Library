@@ -7,7 +7,7 @@ index 46b1f97f44..3e136f7ed7 100644
  static const unsigned char alpn_ossltest[] = {
      /* "\x08ossltest" (hex for EBCDIC resilience) */
 -    0x08, 0x6f, 0x73, 0x73, 0x6c, 0x74, 0x65, 0x73, 0x74
-+    0x68, 0x33
++    0x02, 0x68, 0x33
  };
  
  /* This callback validates and negotiates the desired ALPN on the server side. */
