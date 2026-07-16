@@ -1,0 +1,33 @@
+diff --git a/demos/quic/server/server.c b/demos/quic/server/server.c
+index 46b1f97f44..3e136f7ed7 100644
+--- a/demos/quic/server/server.c
++++ b/demos/quic/server/server.c
+@@ -25,7 +25,7 @@
+ /* ALPN string for TLS handshake */
+ static const unsigned char alpn_ossltest[] = {
+     /* "\x08ossltest" (hex for EBCDIC resilience) */
+-    0x08, 0x6f, 0x73, 0x73, 0x6c, 0x74, 0x65, 0x73, 0x74
++    0x68, 0x33
+ };
+ 
+ /* This callback validates and negotiates the desired ALPN on the server side. */
+@@ -143,7 +143,7 @@ static int run_quic_server(SSL_CTX *ctx, int fd)
+     SSL *listener = NULL, *conn = NULL;
+ 
+     /* Create a new QUIC listener. */
+-    if ((listener = SSL_new_listener(ctx, 0)) == NULL)
++    if ((listener = SSL_new_listener(ctx, SSL_LISTENER_FLAG_NO_VALIDATE)) == NULL)
+         goto err;
+ 
+     /* Provide the listener with our UDP socket. */
+@@ -181,8 +181,8 @@ static int run_quic_server(SSL_CTX *ctx, int fd)
+          * accepted and serviced at a time.
+          */
+         if (!run_quic_conn(conn)) {
+-            SSL_free(conn);
+-            goto err;
++            // SSL_free(conn);
++            // goto err;
+         }
+ 
+         /* Free the connection, then loop again, accepting another connection. */

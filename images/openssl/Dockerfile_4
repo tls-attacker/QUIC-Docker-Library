@@ -2,17 +2,12 @@ FROM rub-nds/quic/alpine-build:3.21.2 AS openssl-base
 
 ARG VERSION
 
-RUN git clone --depth=1 -b v1.15.0 https://github.com/ngtcp2/nghttp3
-WORKDIR nghttp3
-RUN git submodule update --init
-RUN autoreconf -i && ./configure
-RUN make && make install
-
 WORKDIR /
 RUN git clone --depth=1 --branch=openssl-${VERSION} https://github.com/openssl/openssl
 WORKDIR /openssl
-RUN sed -i 's/SSL_new_listener(ctx, 0)/SSL_new_listener(ctx, SSL_LISTENER_FLAG_NO_VALIDATE)/g' demos/http3/ossl-nghttp3-demo-server.c
-RUN ./config --prefix=/build/ --openssldir=/build/ enable-demos enable-h3demo
+COPY openssl-4.0.0.patch .
+RUN git apply openssl-4.0.0.patch
+RUN ./config --prefix=/build/ --openssldir=/build/ enable-demos
 RUN make -j && make install
 
 # Copy all required libraries
@@ -26,9 +21,9 @@ RUN cp $(LD_LIBRARY_PATH="/build/lib/" ldd /build/bin/openssl | \
 FROM openssl-base AS openssl-server
 ENV QUIC_CMD="/openssl/demos/quic/server/server"
 ENV CONTROL_MODE="server"
-ENTRYPOINT ["/openssl/demos/http3/ossl-nghttp3-demo-server"]
+ENTRYPOINT ["python3", "/control_server.py"]
 
 FROM openssl-base AS openssl-client
 ENV QUIC_CMD="openssl s_client"
 ENV CONTROL_MODE="client"
-ENTRYPOINT ["/openssl/demos/http3/ossl-nghttp3-demo"]
+ENTRYPOINT ["python3", "/control_server.py"]
