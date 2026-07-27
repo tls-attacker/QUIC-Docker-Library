@@ -56,6 +56,6 @@ Each container runs a control server that exposes an HTTP API for managing the Q
 
 ## Publication
 
-This project is introduced in the following USENIX Security 2026 publication:
+This project is introduced in the following USENIX Security '26 publication:
 
-> Nurullah Erinola, Marcel Maehren, Marcus Brinkmann, and Jörg Schwenk. Breaking the Boundaries: Analyzing QUIC Frame-Packet Interactions With QUIC-Attacker. USENIX Security 2026.
+> Nurullah Erinola, Marcel Maehren, Marcus Brinkmann, and Jörg Schwenk. 2026. Breaking the Boundaries: Analyzing QUIC Frame-Packet Interactions With QUIC-Attacker. In 35th USENIX Security Symposium (USENIX Security '26). <https://www.usenix.org/conference/usenixsecurity26/presentation/erinola>
