@@ -1,0 +1,91 @@
+diff --git a/demos/quic/server/server.c b/demos/quic/server/server.c
+index 46b1f97f44..c2ec2cdf5a 100644
+--- a/demos/quic/server/server.c
++++ b/demos/quic/server/server.c
+@@ -16,6 +16,8 @@
+ #include <unistd.h>
+ #endif
+ #include <assert.h>
++#include <string.h>
++#include <strings.h>
+ 
+ /*
+  * This is a basic demo of QUIC server functionality in which one connection at
+@@ -25,7 +27,7 @@
+ /* ALPN string for TLS handshake */
+ static const unsigned char alpn_ossltest[] = {
+     /* "\x08ossltest" (hex for EBCDIC resilience) */
+-    0x08, 0x6f, 0x73, 0x73, 0x6c, 0x74, 0x65, 0x73, 0x74
++    0x02, 0x68, 0x33
+ };
+ 
+ /* This callback validates and negotiates the desired ALPN on the server side. */
+@@ -42,6 +44,39 @@ static int select_alpn(SSL *ssl,
+     return SSL_TLSEXT_ERR_OK;
+ }
+ 
++/*
++ * Validate the TLS Server Name Indication.
++ *
++ * SNI is the hostname sent by the client in the TLS handshake. This checks
++ * that it matches the hostname configured for this server.
++ */
++static int validate_sni(SSL *ssl, int *al, void *arg)
++{
++    const char *expected_name = arg;
++    const char *received_name;
++
++    received_name = SSL_get_servername(ssl, TLSEXT_NAMETYPE_host_name);
++
++    if (received_name == NULL ||
++        expected_name == NULL ||
++        strcasecmp(received_name, expected_name) != 0) {
++        fprintf(stderr, "invalid SNI: received '%s', expected '%s'\n",
++                received_name != NULL ? received_name : "(none)",
++                expected_name != NULL ? expected_name : "(none)");
++
++        /*
++         * Send an unrecognized_name TLS alert to the client.
++         */
++        if (al != NULL)
++            *al = SSL_AD_UNRECOGNIZED_NAME;
++
++        return SSL_TLSEXT_ERR_ALERT_FATAL;
++        }
++
++    fprintf(stderr, "accepted SNI: %s\n", received_name);
++    return SSL_TLSEXT_ERR_OK;
++}
++
+ /* Create SSL_CTX. */
+ static SSL_CTX *create_ctx(const char *cert_path, const char *key_path)
+ {
+@@ -50,6 +85,8 @@ static SSL_CTX *create_ctx(const char *cert_path, const char *key_path)
+     ctx = SSL_CTX_new(OSSL_QUIC_server_method());
+     if (ctx == NULL)
+         goto err;
++    SSL_CTX_set_tlsext_servername_callback(ctx, validate_sni);
++    SSL_CTX_set_tlsext_servername_arg(ctx, "server.example.org");
+ 
+     /* Load certificate and corresponding private key. */
+     if (SSL_CTX_use_certificate_chain_file(ctx, cert_path) <= 0) {
+@@ -143,7 +180,7 @@ static int run_quic_server(SSL_CTX *ctx, int fd)
+     SSL *listener = NULL, *conn = NULL;
+ 
+     /* Create a new QUIC listener. */
+-    if ((listener = SSL_new_listener(ctx, 0)) == NULL)
++    if ((listener = SSL_new_listener(ctx, SSL_LISTENER_FLAG_NO_VALIDATE)) == NULL)
+         goto err;
+ 
+     /* Provide the listener with our UDP socket. */
+@@ -181,8 +218,8 @@ static int run_quic_server(SSL_CTX *ctx, int fd)
+          * accepted and serviced at a time.
+          */
+         if (!run_quic_conn(conn)) {
+-            SSL_free(conn);
+-            goto err;
++            // SSL_free(conn);
++            // goto err;
+         }
+ 
+         /* Free the connection, then loop again, accepting another connection. */
