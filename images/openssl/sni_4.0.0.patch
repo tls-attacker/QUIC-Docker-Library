@@ -1,5 +1,5 @@
 diff --git a/demos/quic/server/server.c b/demos/quic/server/server.c
-index 46b1f97f44..c2ec2cdf5a 100644
+index 46b1f97f44..da6e79d2d9 100644
 --- a/demos/quic/server/server.c
 +++ b/demos/quic/server/server.c
 @@ -16,6 +16,8 @@
@@ -20,56 +20,73 @@ index 46b1f97f44..c2ec2cdf5a 100644
  };
  
  /* This callback validates and negotiates the desired ALPN on the server side. */
-@@ -42,6 +44,39 @@ static int select_alpn(SSL *ssl,
+@@ -42,6 +44,55 @@ static int select_alpn(SSL *ssl,
      return SSL_TLSEXT_ERR_OK;
  }
  
-+/*
-+ * Validate the TLS Server Name Indication.
-+ *
-+ * SNI is the hostname sent by the client in the TLS handshake. This checks
-+ * that it matches the hostname configured for this server.
-+ */
++static int require_sni(SSL *ssl, int *al, void *arg)
++{
++    const unsigned char *ext_data = NULL;
++    size_t ext_len = 0;
++
++    /*
++     * Check whether the ClientHello contained the server_name extension.
++     */
++    if (!SSL_client_hello_get0_ext(ssl,
++                                   TLSEXT_TYPE_server_name,
++                                   &ext_data,
++                                   &ext_len)) {
++        fprintf(stderr, "ClientHello has no SNI\n");
++
++        if (al != NULL)
++            *al = SSL_AD_UNRECOGNIZED_NAME;
++
++        return 0; /* abort ClientHello processing */
++        }
++
++    return 1;
++}
++
 +static int validate_sni(SSL *ssl, int *al, void *arg)
 +{
-+    const char *expected_name = arg;
-+    const char *received_name;
++    const char *expected = arg;
++    const char *received;
 +
-+    received_name = SSL_get_servername(ssl, TLSEXT_NAMETYPE_host_name);
++    received = SSL_get_servername(ssl, TLSEXT_NAMETYPE_host_name);
 +
-+    if (received_name == NULL ||
-+        expected_name == NULL ||
-+        strcasecmp(received_name, expected_name) != 0) {
++    fprintf(stderr, "SNI received: %s\n",
++            received != NULL ? received : "(none)");
++
++    if (received == NULL ||
++        expected == NULL ||
++        strcasecmp(received, expected) != 0) {
 +        fprintf(stderr, "invalid SNI: received '%s', expected '%s'\n",
-+                received_name != NULL ? received_name : "(none)",
-+                expected_name != NULL ? expected_name : "(none)");
++                received != NULL ? received : "(none)",
++                expected != NULL ? expected : "(none)");
 +
-+        /*
-+         * Send an unrecognized_name TLS alert to the client.
-+         */
 +        if (al != NULL)
 +            *al = SSL_AD_UNRECOGNIZED_NAME;
 +
 +        return SSL_TLSEXT_ERR_ALERT_FATAL;
 +        }
 +
-+    fprintf(stderr, "accepted SNI: %s\n", received_name);
 +    return SSL_TLSEXT_ERR_OK;
 +}
 +
  /* Create SSL_CTX. */
  static SSL_CTX *create_ctx(const char *cert_path, const char *key_path)
  {
-@@ -50,6 +85,8 @@ static SSL_CTX *create_ctx(const char *cert_path, const char *key_path)
+@@ -50,6 +101,9 @@ static SSL_CTX *create_ctx(const char *cert_path, const char *key_path)
      ctx = SSL_CTX_new(OSSL_QUIC_server_method());
      if (ctx == NULL)
          goto err;
++    SSL_CTX_set_client_hello_cb(ctx, require_sni, "server.example.org");
 +    SSL_CTX_set_tlsext_servername_callback(ctx, validate_sni);
 +    SSL_CTX_set_tlsext_servername_arg(ctx, "server.example.org");
  
      /* Load certificate and corresponding private key. */
      if (SSL_CTX_use_certificate_chain_file(ctx, cert_path) <= 0) {
-@@ -143,7 +180,7 @@ static int run_quic_server(SSL_CTX *ctx, int fd)
+@@ -143,7 +197,7 @@ static int run_quic_server(SSL_CTX *ctx, int fd)
      SSL *listener = NULL, *conn = NULL;
  
      /* Create a new QUIC listener. */
@@ -78,7 +95,7 @@ index 46b1f97f44..c2ec2cdf5a 100644
          goto err;
  
      /* Provide the listener with our UDP socket. */
-@@ -181,8 +218,8 @@ static int run_quic_server(SSL_CTX *ctx, int fd)
+@@ -181,8 +235,8 @@ static int run_quic_server(SSL_CTX *ctx, int fd)
           * accepted and serviced at a time.
           */
          if (!run_quic_conn(conn)) {
