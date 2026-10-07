@@ -1,0 +1,42 @@
+FROM rub-nds/quic/alpine-build:3.19 AS kwik-base
+
+ARG VERSION
+ENV VERSION=${VERSION}
+ARG FLUPKE_VERSION=0.9.4
+ARG QPACK_VERSION=2.0.1
+
+RUN git clone --depth=1 --branch=v${VERSION} https://github.com/ptrd/kwik
+WORKDIR /kwik
+COPY sni.patch .
+RUN git apply sni.patch
+RUN ./gradlew build -x test :kwik-samples:installDist
+
+# Add the Flupke HTTP/3 plugin (loaded by reflection by SampleWebServer)
+ARG LIBDIR=/kwik/samples/build/install/kwik-samples/lib
+ARG MAVEN=https://repo1.maven.org/maven2/tech/kwik
+
+RUN apk add --no-cache curl && \
+    curl -fsSL -o ${LIBDIR}/flupke-${FLUPKE_VERSION}.jar \
+      ${MAVEN}/flupke/${FLUPKE_VERSION}/flupke-${FLUPKE_VERSION}.jar && \
+    curl -fsSL -o ${LIBDIR}/flupke-samples-${FLUPKE_VERSION}.jar \
+      ${MAVEN}/flupke-samples/${FLUPKE_VERSION}/flupke-samples-${FLUPKE_VERSION}.jar && \
+    curl -fsSL -o ${LIBDIR}/qpack-${QPACK_VERSION}.jar \
+      ${MAVEN}/qpack/${QPACK_VERSION}/qpack-${QPACK_VERSION}.jar
+
+WORKDIR /kwik/build/libs
+
+FROM kwik-base AS kwik-echo-server
+ENV QUIC_CMD="java -cp kwik-${VERSION}.jar tech.kwik.sample.echo.EchoServer"
+ENV QUIC_CMD="java -cp '/kwik/samples/build/install/kwik-samples/lib/*' tech.kwik.sample.echo.EchoServer"
+ENV CONTROL_MODE="server"
+ENTRYPOINT ["python3", "/control_server.py"]
+
+FROM kwik-base AS kwik-server
+ENV QUIC_CMD="java -cp '/kwik/samples/build/install/kwik-samples/lib/*' tech.kwik.sample.SampleWebServer"
+ENV CONTROL_MODE="server"
+ENTRYPOINT ["python3", "/control_server.py"]
+
+FROM kwik-base AS kwik-client
+ENV QUIC_CMD="java -cp kwik-${VERSION}.jar net.luminis.quic.sample.echo.SimpleEchoClient"
+ENV CONTROL_MODE="client"
+ENTRYPOINT ["python3", "/control_server.py"]

@@ -1,4 +1,20 @@
 services:
+  kwik-server-0.11:
+    image: rub-nds/quic/kwik-server:0.11
+    build:
+      context: .
+      dockerfile: Dockerfile_0_11
+      target: kwik-server
+      args:
+        VERSION: "0.11"
+  kwik-client-0.11:
+    image: rub-nds/quic/kwik-client:0.11
+    build:
+      context: .
+      dockerfile: Dockerfile_0_11
+      target: kwik-client
+      args:
+        VERSION: "0.11"
   kwik-server-0.8.11:
     image: rub-nds/quic/kwik-server:0.8.11
     build:
