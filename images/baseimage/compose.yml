@@ -1,4 +1,13 @@
 services:
+  alpine-build-3.24.2:
+    image: rub-nds/quic/alpine-build:3.24.2
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        VERSION: 3.24.2
+    deploy:
+      replicas: 0
   alpine-build-3.23.3:
     image: rub-nds/quic/alpine-build:3.23.3
     build:

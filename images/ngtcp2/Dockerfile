@@ -1,4 +1,4 @@
-FROM rub-nds/quic/alpine-build:3.19 AS ngtcp2-base
+FROM rub-nds/quic/alpine-build:3.24.2 AS ngtcp2-base
 
 ARG VERSION_NGTCP2
 ARG VERSION_NGHTTP3
@@ -12,14 +12,14 @@ RUN git clone --depth=1 --branch=v${VERSION_NGTCP2} https://github.com/ngtcp2/ng
 # Build boringssl
 WORKDIR /boringssl
 RUN cmake -B build -DCMAKE_POSITION_INDEPENDENT_CODE=ON
-RUN make -C build
+RUN make -j -C build
 
 # Build nghttp3
 WORKDIR /nghttp3
 RUN git submodule update --init
 RUN autoreconf -i
 RUN ./configure --prefix=$PWD/build --enable-lib-only
-RUN make check
+RUN make -j check
 RUN make install
 
 # Build ngtcp2
@@ -27,10 +27,10 @@ WORKDIR /ngtcp2
 RUN git submodule update --init
 RUN autoreconf -i
 RUN ./configure PKG_CONFIG_PATH=$PWD/../nghttp3/build/lib/pkgconfig \
-    BORINGSSL_LIBS="-L$PWD/../boringssl/build/ssl -lssl -L$PWD/../boringssl/build/crypto -lcrypto" \
+    BORINGSSL_LIBS="-L$PWD/../boringssl/build -lssl -lcrypto" \
     BORINGSSL_CFLAGS="-I$PWD/../boringssl/include" \
     --with-boringssl
-RUN make check
+RUN make -j check
 
 FROM ngtcp2-base AS ngtcp2-server
 ENV QUIC_CMD="/ngtcp2/examples/bsslserver"
