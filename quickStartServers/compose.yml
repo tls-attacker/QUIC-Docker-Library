@@ -271,16 +271,18 @@ services:
       - ../certs:/certs
       - ../www:/www
     command: 4433 /certs/server.crt /certs/server.key
-  quiche-google-server-latest:
-    image: rub-nds/quic/quiche-google-server:latest
+  quiche-google-server-8dfe923:
+    image: rub-nds/quic/quiche-google-server:8dfe923
     build:
       context: ../images
       dockerfile: quiche-google/Dockerfile
       target: quiche-google-server
+      args:
+        COMMIT: "8dfe9230ebee85659be8975d580e2abff3a6f5e4"
     ports:
       - "8016:4433/udp"
       - "9016:8090"
     volumes:
       - ../certs:/certs
       - ../www:/www
-    command: --port 4433 --certificate_file /certs/server.chain.crt --key_file /certs/server.pkcs8.key
+    command: --port 4433 --certificate_file /certs/server.crt --key_file /certs/server.key

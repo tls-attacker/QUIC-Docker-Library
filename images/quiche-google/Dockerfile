@@ -2,6 +2,7 @@
 FROM debian:13-slim AS quiche-google-base
 
 ARG BAZELISK_VERSION=v1.27.0
+ARG COMMIT=main
 
 RUN apt update && \
     DEBIAN_FRONTEND=noninteractive apt -y install ca-certificates clang curl git libicu-dev lld python3 xz-utils
@@ -11,10 +12,11 @@ RUN curl -fsSL \
     -o /usr/local/bin/bazel && \
     chmod +x /usr/local/bin/bazel
 
-RUN git clone --depth=1 https://github.com/google/quiche.git
+RUN git clone https://github.com/google/quiche.git
 WORKDIR /quiche
+RUN git checkout ${COMMIT}
 
-RUN CC=clang CXX=clang++ bazel build -c opt //quiche:quic_server //quiche:quic_client && \
+RUN CC=clang CXX=clang++ bazel build --cpu=multi-threaded -c opt //quiche:quic_server //quiche:quic_client && \
     install -D bazel-bin/quiche/quic_server /usr/local/bin/quic_server && \
     install -D bazel-bin/quiche/quic_client /usr/local/bin/quic_client
 
