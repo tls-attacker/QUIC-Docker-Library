@@ -6,7 +6,11 @@ RUN cmake -DPICOQUIC_FETCH_PTLS=Y .
 RUN make
 
 FROM picoquic-base AS picoquic-server
-ENTRYPOINT ["/picoquic/picoquicdemo"]
+ENV QUIC_CMD="/picoquic/picoquicdemo"
+ENV CONTROL_MODE="server"
+ENTRYPOINT ["python3", "/control_server.py"]
 
 FROM picoquic-base AS picoquic-client
-ENTRYPOINT ["/picoquic/picoquicdemo"]
+ENV QUIC_CMD="/picoquic/picoquicdemo"
+ENV CONTROL_MODE="client"
+ENTRYPOINT ["python3", "/control_server.py"]

@@ -7,15 +7,15 @@
 ## Requiered Server Parameters
 
 ```bash
-TODO
+--port [PORT] --certificate_file [CERTIFICATE] --key_file [PRIVATE_KEY]
 ```
 
 ## Requiered Client Parameters
 
 ```bash
-TODO
+[URL] # e.g., https://localhost:4433
 ```
 
 ## Note
 
-- Dockerfile and Composefile are missing and need to be implemented.
+- The server expects a certificate chain and a PKCS#8 private key.

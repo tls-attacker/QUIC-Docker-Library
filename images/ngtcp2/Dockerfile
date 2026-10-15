@@ -33,7 +33,11 @@ RUN ./configure PKG_CONFIG_PATH=$PWD/../nghttp3/build/lib/pkgconfig \
 RUN make check
 
 FROM ngtcp2-base AS ngtcp2-server
-ENTRYPOINT ["/ngtcp2/examples/bsslserver"]
+ENV QUIC_CMD="/ngtcp2/examples/bsslserver"
+ENV CONTROL_MODE="server"
+ENTRYPOINT ["python3", "/control_server.py"]
 
 FROM ngtcp2-base AS ngtcp2-client
-ENTRYPOINT ["/ngtcp2/examples/bsslclient"]
+ENV QUIC_CMD="/ngtcp2/examples/bsslclient"
+ENV CONTROL_MODE="client"
+ENTRYPOINT ["python3", "/control_server.py"]

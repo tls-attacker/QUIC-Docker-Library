@@ -12,7 +12,11 @@ RUN if [ "$VERSION" = "1.3.0" ]; then \
 RUN python3 setup.py install
 
 FROM aioquic-base AS aioquic-server
-ENTRYPOINT ["python3", "examples/http3_server.py"]
+ENV QUIC_CMD="python3 examples/http3_server.py"
+ENV CONTROL_MODE="server"
+ENTRYPOINT ["python3", "/control_server.py"]
 
 FROM aioquic-base AS aioquic-client
-ENTRYPOINT ["python3", "examples/http3_client.py"]
+ENV QUIC_CMD="python3 examples/http3_client.py"
+ENV CONTROL_MODE="client"
+ENTRYPOINT ["python3", "/control_server.py"]

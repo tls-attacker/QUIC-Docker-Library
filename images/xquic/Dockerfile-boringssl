@@ -25,7 +25,11 @@ WORKDIR /xquic/build/demo/
 RUN openssl req -newkey rsa:2048 -nodes -keyout server.key -x509 -days 3650 -out server.crt -subj "/CN=localhost"
 
 FROM xquic-base AS xquic-server
-ENTRYPOINT [ "./demo_server"]
+ENV QUIC_CMD="./demo_server"
+ENV CONTROL_MODE="server"
+ENTRYPOINT ["python3", "/control_server.py"]
 
 FROM xquic-base AS xquic-client
-ENTRYPOINT [ "./demo_client"]
+ENV QUIC_CMD="./demo_client"
+ENV CONTROL_MODE="client"
+ENTRYPOINT ["python3", "/control_server.py"]

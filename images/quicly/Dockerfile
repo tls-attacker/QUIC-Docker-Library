@@ -7,7 +7,11 @@ RUN cmake .
 RUN make
 
 FROM quicly-base AS quicly-server
-ENTRYPOINT ["./cli"]
+ENV QUIC_CMD="./cli"
+ENV CONTROL_MODE="server"
+ENTRYPOINT ["python3", "/control_server.py"]
 
 FROM quicly-base AS quicly-client
-ENTRYPOINT ["./cli"]
+ENV QUIC_CMD="./cli"
+ENV CONTROL_MODE="client"
+ENTRYPOINT ["python3", "/control_server.py"]

@@ -26,8 +26,12 @@ RUN pwsh /msquic/scripts/build.ps1 -Tls ${TLS_IMPLEMENTATION}
 
 FROM msquic-base AS msquic-server
 ENV TLS_IMPLEMENTATION=${TLS_IMPLEMENTATION}
-ENTRYPOINT ["/bin/sh", "-c", "/msquic/artifacts/bin/linux/x64_Debug_${TLS_IMPLEMENTATION}/quicsample -server \"$@\"", "--"]
+ENV QUIC_CMD="/msquic/artifacts/bin/linux/x64_Debug_${TLS_IMPLEMENTATION}/quicsample -server"
+ENV CONTROL_MODE="server"
+ENTRYPOINT ["python3", "/control_server.py"]
 
 FROM msquic-base AS msquic-client
 ENV TLS_IMPLEMENTATION=${TLS_IMPLEMENTATION}
-ENTRYPOINT ["/bin/sh", "-c", "/msquic/artifacts/bin/linux/x64_Debug_${TLS_IMPLEMENTATION}/quicsample -client \"$@\"", "--"]
+ENV QUIC_CMD="/msquic/artifacts/bin/linux/x64_Debug_${TLS_IMPLEMENTATION}/quicsample -client"
+ENV CONTROL_MODE="client"
+ENTRYPOINT ["python3", "/control_server.py"]

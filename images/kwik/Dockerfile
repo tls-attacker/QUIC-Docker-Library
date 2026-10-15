@@ -9,7 +9,11 @@ RUN ./gradlew build -x test
 WORKDIR /kwik/build/libs
 
 FROM kwik-base AS kwik-server
-ENTRYPOINT ["/bin/sh", "-c", "exec java -cp kwik-${VERSION}.jar net.luminis.quic.sample.echo.EchoServer \"$@\"", "--"]
+ENV QUIC_CMD="java -cp kwik-${VERSION}.jar net.luminis.quic.sample.echo.EchoServer"
+ENV CONTROL_MODE="server"
+ENTRYPOINT ["python3", "/control_server.py"]
 
 FROM kwik-base AS kwik-client
-ENTRYPOINT ["/bin/sh", "-c", "exec java -cp kwik-${VERSION}.jar net.luminis.quic.sample.echo.SimpleEchoClient \"$@\"", "--"]
+ENV QUIC_CMD="java -cp kwik-${VERSION}.jar net.luminis.quic.sample.echo.SimpleEchoClient"
+ENV CONTROL_MODE="client"
+ENTRYPOINT ["python3", "/control_server.py"]
