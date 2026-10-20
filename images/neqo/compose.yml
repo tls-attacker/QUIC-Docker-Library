@@ -79,3 +79,19 @@ services:
       target: neqo-client
       args:
         VERSION: "0.12.0"
+  neqo-server-0.31.0:
+    image: rub-nds/quic/neqo-server:0.31.0
+    build:
+      context: .
+      dockerfile: Dockerfile_0_31_0
+      target: neqo-server
+      args:
+        VERSION: "0.31.0"
+  neqo-client-0.31.0:
+    image: rub-nds/quic/neqo-client:0.31.0
+    build:
+      context: .
+      dockerfile: Dockerfile_0_31_0
+      target: neqo-client
+      args:
+        VERSION: "0.31.0"

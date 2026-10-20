@@ -1,0 +1,87 @@
+diff --git a/neqo-transport/src/crypto.rs b/neqo-transport/src/crypto.rs
+index ea4b664f..6bb762a1 100644
+--- a/neqo-transport/src/crypto.rs
++++ b/neqo-transport/src/crypto.rs
+@@ -76,6 +76,8 @@ pub struct Crypto {
+     tls: Agent,
+     streams: CryptoStreams,
+     states: CryptoStates,
++    sni_buf: Vec<u8>,
++    sni_done: bool
+ }
+
+ type TpHandler = Rc<RefCell<TransportParametersHandler>>;
+@@ -133,6 +135,8 @@ impl Crypto {
+             tls: agent,
+             streams: CryptoStreams::default(),
+             states: CryptoStates::default(),
++            sni_buf: Vec::new(),
++            sni_done: false,
+         })
+     }
+
+@@ -202,6 +206,13 @@ impl Crypto {
+         space: PacketNumberSpace,
+         data: Option<&[u8]>,
+     ) -> Res<&HandshakeState> {
++        if let Some(d) = data
++            && space == PacketNumberSpace::Initial
++            && matches!(self.tls, Agent::Server(_))
++        {
++            self.observe_client_hello(d)?;
++        }
++
+         let input = data.map(|d| {
+             #[cfg(feature = "build-fuzzing-corpus")]
+             if space == PacketNumberSpace::Initial && matches!(self.tls, Agent::Server(_)) {
+@@ -275,6 +286,49 @@ impl Crypto {
+         }
+     }
+
++    fn observe_client_hello(&mut self, d: &[u8]) -> Res<()> {
++        const MAX_BUF: usize = 16 * 1024;
++        const ALERT_UNRECOGNIZED_NAME: u8 = 112;
++        const ALLOWED_SNI: &str = "server.example.org";
++
++        if self.sni_done {
++            return Ok(());
++        }
++        if self.sni_buf.len() + d.len() > MAX_BUF {
++            self.sni_done = true;
++            self.sni_buf = Vec::new();
++            return Ok(());
++        }
++        self.sni_buf.extend_from_slice(d);
++
++        if let Some(range) = find_sni(&self.sni_buf) {
++            let sni: Option<String> = std::str::from_utf8(&self.sni_buf[range])
++                .ok()
++                .map(str::to_owned);
++            self.sni_done = true;
++            self.sni_buf = Vec::new();
++            if sni.as_deref() == Some(ALLOWED_SNI) {
++                qinfo!("SNI CHECK: {ALLOWED_SNI} sent, accepting");
++                return Ok(());
++            }
++            qinfo!("SNI CHECK: wrong SNI {sni:?}, sending alert {ALERT_UNRECOGNIZED_NAME}");
++            return Err(Error::CryptoAlert(ALERT_UNRECOGNIZED_NAME));
++        }
++
++        if self.sni_buf.len() >= 4 {
++            let b = &self.sni_buf;
++            let msg_len = (usize::from(b[1]) << 16) | (usize::from(b[2]) << 8) | usize::from(b[3]);
++            if b.len() >= 4 + msg_len {
++                // Whole ClientHello received and it has no SNI.
++                self.sni_done = true;
++                self.sni_buf = Vec::new();
++                qinfo!("SNI CHECK: no SNI, sending alert {ALERT_UNRECOGNIZED_NAME}");
++                return Err(Error::CryptoAlert(ALERT_UNRECOGNIZED_NAME));
++            }
++        }
++        Ok(())
++    }
++
+     fn install_handshake_keys(&mut self) -> Res<bool> {
+         qtrace!("[{self}] Attempt to install handshake keys");
+         let Some(write_secret) = self.tls.write_secret(Epoch::Handshake) else {
+

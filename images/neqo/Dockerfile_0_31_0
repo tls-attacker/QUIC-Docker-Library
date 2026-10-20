@@ -1,0 +1,38 @@
+FROM rub-nds/quic/alpine-build:3.23.3 AS neqo-base
+
+ARG VERSION
+ARG NSS_TAG=NSS_3_126_RTM
+
+RUN apk add --no-cache bash git build-base python3 py3-pip ninja zlib-dev linux-headers \
+ && pip install --break-system-packages gyp-next
+
+WORKDIR /nss-build
+RUN git clone --depth=1 https://github.com/mozilla/nspr nspr
+RUN git clone --depth=1 --branch=${NSS_TAG} https://github.com/mozilla/nss nss
+RUN cd nss && ./build.sh -o --disable-tests
+
+ENV NSS_DIR=/nss-build/nss
+ENV LD_LIBRARY_PATH=/nss-build/dist/Release/lib
+ENV PKG_CONFIG_PATH=/nss-build/dist/Release/lib/pkgconfig
+
+# Fail early if the build didn't produce what nss-rs expects
+RUN ls /nss-build/dist/Release/lib | head -20
+
+RUN cd ..
+RUN git clone --depth=1 --branch=v${VERSION} https://github.com/mozilla/neqo /neqo
+WORKDIR /neqo
+
+COPY sni.patch .
+RUN git apply sni.patch
+RUN echo "NSS_DIR=$NSS_DIR" && ls "$NSS_DIR" && ls "$NSS_DIR/../dist" && ls "$NSS_DIR/../dist/Release/lib" | head
+RUN cargo build --locked || cargo build
+
+FROM neqo-base AS neqo-server
+ENV QUIC_CMD="cargo run --bin neqo-server --"
+ENV CONTROL_MODE="server"
+ENTRYPOINT ["python3", "/control_server.py"]
+
+FROM neqo-base AS neqo-client
+ENV QUIC_CMD="cargo run --bin neqo-client --"
+ENV CONTROL_MODE="client"
+ENTRYPOINT ["python3", "/control_server.py"]
