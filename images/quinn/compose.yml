@@ -1,4 +1,228 @@
 services:
+  quinn-server-0.11.12:
+    image: rub-nds/quic/quinn-server:0.11.12
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: quinn-server
+      args:
+        VERSION: "quinn-0.11.12"
+  quinn-client-0.11.12:
+    image: rub-nds/quic/quinn-client:0.11.12
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: quinn-client
+      args:
+        VERSION: "quinn-0.11.12"
+  quinn-server-0.11.11:
+    image: rub-nds/quic/quinn-server:0.11.11
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: quinn-server
+      args:
+        VERSION: "quinn-0.11.11"
+  quinn-client-0.11.11:
+    image: rub-nds/quic/quinn-client:0.11.11
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: quinn-client
+      args:
+        VERSION: "quinn-0.11.11"
+  quinn-server-0.11.9:
+    image: rub-nds/quic/quinn-server:0.11.9
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: quinn-server
+      args:
+        VERSION: "quinn-0.11.9"
+  quinn-client-0.11.9:
+    image: rub-nds/quic/quinn-client:0.11.9
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: quinn-client
+      args:
+        VERSION: "quinn-0.11.9"
+  quinn-server-0.11.8:
+    image: rub-nds/quic/quinn-server:0.11.8
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: quinn-server
+      args:
+        VERSION: "quinn-0.11.8"
+  quinn-client-0.11.8:
+    image: rub-nds/quic/quinn-client:0.11.8
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: quinn-client
+      args:
+        VERSION: "quinn-0.11.8"
+  quinn-server-0.11.7:
+    image: rub-nds/quic/quinn-server:0.11.7
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: quinn-server
+      args:
+        VERSION: "quinn-0.11.7"
+  quinn-client-0.11.7:
+    image: rub-nds/quic/quinn-client:0.11.7
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: quinn-client
+      args:
+        VERSION: "quinn-0.11.7"
+  quinn-server-0.11.6:
+    image: rub-nds/quic/quinn-server:0.11.6
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: quinn-server
+      args:
+        VERSION: "quinn-0.11.6"
+  quinn-client-0.11.6:
+    image: rub-nds/quic/quinn-client:0.11.6
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: quinn-client
+      args:
+        VERSION: "quinn-0.11.6"
+  quinn-server-0.11.5:
+    image: rub-nds/quic/quinn-server:0.11.5
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: quinn-server
+      args:
+        VERSION: "quinn-0.11.5"
+  quinn-client-0.11.5:
+    image: rub-nds/quic/quinn-client:0.11.5
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: quinn-client
+      args:
+        VERSION: "quinn-0.11.5"
+  quinn-server-0.11.4:
+    image: rub-nds/quic/quinn-server:0.11.4
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: quinn-server
+      args:
+        VERSION: "quinn-0.11.4"
+  quinn-client-0.11.4:
+    image: rub-nds/quic/quinn-client:0.11.4
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: quinn-client
+      args:
+        VERSION: "quinn-0.11.4"
+  quinn-server-0.11.3:
+    image: rub-nds/quic/quinn-server:0.11.3
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: quinn-server
+      args:
+        VERSION: "quinn-0.11.3"
+  quinn-client-0.11.3:
+    image: rub-nds/quic/quinn-client:0.11.3
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: quinn-client
+      args:
+        VERSION: "quinn-0.11.3"
+  quinn-server-0.11.2:
+    image: rub-nds/quic/quinn-server:0.11.2
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: quinn-server
+      args:
+        VERSION: "quinn-0.11.2"
+  quinn-client-0.11.2:
+    image: rub-nds/quic/quinn-client:0.11.2
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: quinn-client
+      args:
+        VERSION: "quinn-0.11.2"
+  quinn-server-0.11.1:
+    image: rub-nds/quic/quinn-server:0.11.1
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: quinn-server
+      args:
+        VERSION: "0.11.1"
+  quinn-client-0.11.1:
+    image: rub-nds/quic/quinn-client:0.11.1
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: quinn-client
+      args:
+        VERSION: "0.11.1"
+  quinn-server-0.11.0:
+    image: rub-nds/quic/quinn-server:0.11.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: quinn-server
+      args:
+        VERSION: "0.11.0"
+  quinn-client-0.11.0:
+    image: rub-nds/quic/quinn-client:0.11.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: quinn-client
+      args:
+        VERSION: "0.11.0"
+  quinn-server-0.10.6:
+    image: rub-nds/quic/quinn-server:0.10.6
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: quinn-server
+      args:
+        VERSION: "0.10.6"
+  quinn-client-0.10.6:
+    image: rub-nds/quic/quinn-client:0.10.6
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: quinn-client
+      args:
+        VERSION: "0.10.6"
+  quinn-server-0.10.5:
+    image: rub-nds/quic/quinn-server:0.10.5
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: quinn-server
+      args:
+        VERSION: "0.10.5"
+  quinn-client-0.10.5:
+    image: rub-nds/quic/quinn-client:0.10.5
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: quinn-client
+      args:
+        VERSION: "0.10.5"
   quinn-server-0.10.4:
     image: rub-nds/quic/quinn-server:0.10.4
     build:

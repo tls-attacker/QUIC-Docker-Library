@@ -184,14 +184,14 @@ services:
     volumes:
       - ../certs:/certs
     command: localhost 4433
-  quinn-client-0.10.4:
-    image: rub-nds/quic/quinn-client:0.10.4
+  quinn-client-0.11.12:
+    image: rub-nds/quic/quinn-client:0.11.12
     build:
       context: ../images
       dockerfile: quinn/Dockerfile
       target: quinn-client
       args:
-        VERSION: "0.10.4"
+        VERSION: "quinn-0.11.12"
     network_mode: host
     environment:
       CONTROL_PORT: "9111"
