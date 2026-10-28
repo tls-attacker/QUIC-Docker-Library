@@ -91,14 +91,14 @@ services:
       - ../www:/www
     command: -cert_file:/certs/server.crt -key_file:/certs/server.key
     tty: true
-  neqo-server-0.12.0:
-    image: rub-nds/quic/neqo-server:0.12.0
+  neqo-server-0.30.1:
+    image: rub-nds/quic/neqo-server:0.30.1
     build:
       context: ../images
       dockerfile: neqo/Dockerfile
       target: neqo-server
       args:
-        VERSION: "0.12.0"
+        VERSION: "0.30.1"
     ports:
       - "8004:4433/udp"
       - "9004:8090"

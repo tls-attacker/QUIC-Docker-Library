@@ -88,14 +88,14 @@ services:
     # Note: Connects only to port 4567.
     command: -target:localhost -unsecure
     tty: true
-  neqo-client-0.12.0:
-    image: rub-nds/quic/neqo-client:0.12.0
+  neqo-client-0.30.1:
+    image: rub-nds/quic/neqo-client:0.30.1
     build:
       context: ../images
       dockerfile: neqo/Dockerfile
       target: neqo-client
       args:
-        VERSION: "0.12.0"
+        VERSION: "0.30.1"
     network_mode: host
     environment:
       CONTROL_PORT: "9104"
