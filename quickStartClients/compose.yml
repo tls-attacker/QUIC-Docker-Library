@@ -197,8 +197,7 @@ services:
       CONTROL_PORT: "9111"
     volumes:
       - ../certs:/certs
-    # TODO: Error in reading CA certificate.
-    command: --ca /certs/ca.crt https://localhost:4433
+    command: --ca /certs/ca.der https://localhost:4433
   s2n-quic-client-1.64.0:
     image: rub-nds/quic/s2n-quic-client:1.64.0
     build:
