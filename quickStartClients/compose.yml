@@ -80,22 +80,23 @@ services:
     volumes:
       - ../certs:/certs
     command: -s localhost:4433 -p /
-  msquic-client-2.5.5:
-    image: rub-nds/quic/msquic-client:2.5.5
+  msquic-client-openssl-2.6.3:
+    image: rub-nds/quic/msquic-client-openssl:2.6.3
     build:
       context: ../images
       dockerfile: msquic/Dockerfile
       target: msquic-client
       args:
-        VERSION: "2.5.5"
-        TLS_IMPLEMENTATION: "quictls"
+        VERSION: "2.6.3"
+        TLS_IMPLEMENTATION: "openssl"
     network_mode: host
     environment:
       CONTROL_PORT: "9103"
+      SSL_CERT_FILE: /certs/ca.crt
     volumes:
       - ../certs:/certs
     # Note: Connects only to port 4567.
-    command: -target:localhost -unsecure
+    command: -target:localhost
     tty: true
   neqo-client-0.30.1:
     image: rub-nds/quic/neqo-client:0.30.1
