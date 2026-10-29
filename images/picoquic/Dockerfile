@@ -1,7 +1,11 @@
-FROM rub-nds/quic/alpine-build:3.19  AS picoquic-base
+FROM rub-nds/quic/alpine-build:3.24.3 AS picoquic-base
 
-RUN git clone --depth=1 --recursive https://github.com/private-octopus/picoquic.git
+ARG COMMIT
+
 WORKDIR /picoquic
+RUN git init -q && git remote add origin https://github.com/private-octopus/picoquic.git
+RUN git fetch --depth=1 origin ${COMMIT} && git checkout -q FETCH_HEAD
+RUN git submodule update --init --recursive
 RUN cmake -DPICOQUIC_FETCH_PTLS=Y .
 RUN make
 
