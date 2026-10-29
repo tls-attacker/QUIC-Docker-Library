@@ -1,5 +1,14 @@
 services:
   # BASE IMAGES
+  alpine-build-3.24.3:
+    image: rub-nds/quic/alpine-build:3.24.3
+    build:
+      context: ../images/baseimage
+      dockerfile: Dockerfile
+      args: 
+        VERSION: 3.24.3
+    deploy:
+      replicas: 0
   alpine-build-3.23.3:
     image: rub-nds/quic/alpine-build:3.23.3
     build:
@@ -209,21 +218,21 @@ services:
       - ../certs:/certs
       - ../www:/www
     command: --listen 0.0.0.0:4433 -k /certs/server.key -c /certs/server.crt /www
-  s2n-quic-server-1.64.0:
-    image: rub-nds/quic/s2n-quic-server:1.64.0
+  s2n-quic-server-1.91.0:
+    image: rub-nds/quic/s2n-quic-server:1.91.0
     build:
       context: ../images
       dockerfile: s2n-quic/Dockerfile
       target: s2n-quic-server
       args:
-        VERSION: "1.64.0"
+        VERSION: "1.91.0"
     ports:
       - "8012:4433/udp"
       - "9012:8090"
     volumes:
       - ../certs:/certs
       - ../www:/www
-    command: 
+    command: --port 4433 --certificate /certs/server.crt --private-key /certs/server.key --www-dir /www
   xquic-server-babassl-1.9.0:
     image: rub-nds/quic/xquic-server-babassl:1.9.0
     build:

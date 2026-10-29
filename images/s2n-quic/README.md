@@ -7,11 +7,11 @@
 ## Requiered Server Parameters
 
 ```bash
-None
+--port [PORT] --certificate [CERTIFICATE] --private-key [PRIVATE_KEY] --www-dir [DIRECTORY TO SERVE FILES FROM]
 ```
 
 ## Requiered Client Parameters
 
 ```bash
-None
+--ca [CA_CERTIFICATE] --ip [IP] --port [PORT] [URL]
 ```
