@@ -15,3 +15,7 @@
 ```bash
 [URL] # e.g., https://localhost:4433
 ```
+
+## Note
+
+- The client verifies the server certificate against the system trust store unless `-insecure` is given; set `SSL_CERT_FILE` to the CA certificate.
