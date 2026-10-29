@@ -83,15 +83,15 @@ services:
       - ../certs:/certs
       - ../www:/www
     command: -s 0.0.0.0:4433 -c localhost,/certs/server.crt,/certs/server.key -r /www
-  msquic-server-2.5.5:
-    image: rub-nds/quic/msquic-server:2.5.5
+  msquic-server-openssl-2.6.3:
+    image: rub-nds/quic/msquic-server-openssl:2.6.3
     build:
       context: ../images
       dockerfile: msquic/Dockerfile
       target: msquic-server
       args:
-        VERSION: "2.5.5"
-        TLS_IMPLEMENTATION: "quictls"
+        VERSION: "2.6.3"
+        TLS_IMPLEMENTATION: "openssl"
     ports:
       - "8003:4567/udp"
       - "9003:8090"
