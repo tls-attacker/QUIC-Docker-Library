@@ -1,13 +1,17 @@
 services:
-  picoquic-server-latest:
-    image: rub-nds/quic/picoquic-server:latest
+  picoquic-server-742488f:
+    image: rub-nds/quic/picoquic-server:742488f
     build:
       context: .
       dockerfile: Dockerfile
       target: picoquic-server
-  picoquic-client-latest:
-    image: rub-nds/quic/picoquic-client:latest
+      args:
+        COMMIT: "742488f5609ce285a6f9b8aa11b4ef7581036f8a"
+  picoquic-client-742488f:
+    image: rub-nds/quic/picoquic-client:742488f
     build:
       context: .
       dockerfile: Dockerfile
       target: picoquic-client
+      args:
+        COMMIT: "742488f5609ce285a6f9b8aa11b4ef7581036f8a"

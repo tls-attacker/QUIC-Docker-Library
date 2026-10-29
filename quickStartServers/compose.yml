@@ -132,12 +132,14 @@ services:
       - ../certs:/certs
       - ../www:/www
     command: 0.0.0.0 4433 /certs/server.key /certs/server.crt 
-  picoquic-server-latest:
-    image: rub-nds/quic/picoquic-server:latest
+  picoquic-server-742488f:
+    image: rub-nds/quic/picoquic-server:742488f
     build:
       context: ../images
       dockerfile: picoquic/Dockerfile
       target: picoquic-server
+      args:
+        COMMIT: "742488f5609ce285a6f9b8aa11b4ef7581036f8a"
     ports:
       - "8006:4433/udp"
       - "9006:8090"
