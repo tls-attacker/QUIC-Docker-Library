@@ -1,5 +1,14 @@
 services:
   # BASE IMAGES
+  alpine-build-3.24.3:
+    image: rub-nds/quic/alpine-build:3.24.3
+    build:
+      context: ../images/baseimage
+      dockerfile: Dockerfile
+      args: 
+        VERSION: 3.24.3
+    deploy:
+      replicas: 0
   alpine-build-3.23.3:
     image: rub-nds/quic/alpine-build:3.23.3
     build:
@@ -198,22 +207,20 @@ services:
     volumes:
       - ../certs:/certs
     command: --ca /certs/ca.der https://localhost:4433
-  s2n-quic-client-1.64.0:
-    image: rub-nds/quic/s2n-quic-client:1.64.0
+  s2n-quic-client-1.91.0:
+    image: rub-nds/quic/s2n-quic-client:1.91.0
     build:
       context: ../images
       dockerfile: s2n-quic/Dockerfile
       target: s2n-quic-client
       args:
-        VERSION: "1.64.0"
+        VERSION: "1.91.0"
     network_mode: host
     environment:
       CONTROL_PORT: "9112"
     volumes:
       - ../certs:/certs
-    # TODO: Error in server certificate validation.
-    # Note: Connects only to port 4433.
-    command: ""
+    command: --ca /certs/ca.crt --ip 127.0.0.1 --port 4433 https://localhost:4433/index.html
   xquic-client-babassl-1.9.0:
     image: rub-nds/quic/xquic-client-babassl:1.9.0
     build:
