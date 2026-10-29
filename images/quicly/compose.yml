@@ -1,13 +1,17 @@
 services:
-  quicly-server-latest:
-    image: rub-nds/quic/quicly-server:latest
+  quicly-server-91b467f:
+    image: rub-nds/quic/quicly-server:91b467f
     build:
       context: .
       dockerfile: Dockerfile
       target: quicly-server
-  quicly-client-latest:
-    image: rub-nds/quic/quicly-client:latest
+      args:
+        COMMIT: "91b467f167cd9ef6f3e3d7f19bcec97d2c30912b"
+  quicly-client-91b467f:
+    image: rub-nds/quic/quicly-client:91b467f
     build:
       context: .
       dockerfile: Dockerfile
       target: quicly-client
+      args:
+        COMMIT: "91b467f167cd9ef6f3e3d7f19bcec97d2c30912b"
