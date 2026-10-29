@@ -1,7 +1,10 @@
-FROM rub-nds/quic/alpine-build:3.19 AS quicly-base
+FROM rub-nds/quic/alpine-build:3.24.3 AS quicly-base
 
-RUN git clone --depth=1  https://github.com/h2o/quicly.git
+ARG COMMIT
+
 WORKDIR /quicly
+RUN git init -q && git remote add origin https://github.com/h2o/quicly.git
+RUN git fetch --depth=1 origin ${COMMIT} && git checkout -q FETCH_HEAD
 RUN git submodule update --init --recursive
 RUN cmake .
 RUN make

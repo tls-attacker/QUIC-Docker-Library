@@ -181,18 +181,21 @@ services:
     volumes:
       - ../certs:/certs
     command: --no-verify --wire-version 00000001 https://localhost:4433
-  quicly-client-latest:
-    image: rub-nds/quic/quicly-client:latest
+  quicly-client-91b467f:
+    image: rub-nds/quic/quicly-client:91b467f
     build:
       context: ../images
       dockerfile: quicly/Dockerfile
       target: quicly-client
+      args:
+        COMMIT: "91b467f167cd9ef6f3e3d7f19bcec97d2c30912b"
     network_mode: host
     environment:
       CONTROL_PORT: "9110"
+      SSL_CERT_FILE: /certs/ca.crt
     volumes:
       - ../certs:/certs
-    command: localhost 4433
+    command: -V localhost 4433
   quinn-client-0.11.12:
     image: rub-nds/quic/quinn-client:0.11.12
     build:

@@ -190,12 +190,14 @@ services:
       - ../certs:/certs
       - ../www:/www
     command: --listen  0.0.0.0:4433 --key /certs/server.key --cert /certs/server.crt --no-retry
-  quicly-server-latest:
-    image: rub-nds/quic/quicly-server:latest
+  quicly-server-91b467f:
+    image: rub-nds/quic/quicly-server:91b467f
     build:
       context: ../images
       dockerfile: quicly/Dockerfile
       target: quicly-server
+      args:
+        COMMIT: "91b467f167cd9ef6f3e3d7f19bcec97d2c30912b"
     ports:
       - "8010:4433/udp"
       - "9010:8090"
