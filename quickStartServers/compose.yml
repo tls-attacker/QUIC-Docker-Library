@@ -162,14 +162,14 @@ services:
       - ../certs:/certs
       - ../www:/www
     command: -host 0.0.0.0 -port 4433 -key /certs/server.key -cert /certs/server.crt -quic_version 0x00000001
-  quic-go-server-0.51.0:
-    image: rub-nds/quic/quic-go-server:0.51.0
+  quic-go-server-0.64.1:
+    image: rub-nds/quic/quic-go-server:0.64.1
     build:
       context: ../images
       dockerfile: quic-go/Dockerfile
       target: quic-go-server
       args:
-        VERSION: "0.51.0"
+        VERSION: "0.64.1"
     ports:
       - "8008:4433/udp"
       - "9008:8090"

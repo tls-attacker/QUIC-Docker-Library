@@ -155,20 +155,21 @@ services:
     volumes:
       - ../certs:/certs
     command: -host localhost -port 4433 -quic_version 0x00000001
-  quic-go-client-0.51.0:
-    image: rub-nds/quic/quic-go-client:0.51.0
+  quic-go-client-0.64.1:
+    image: rub-nds/quic/quic-go-client:0.64.1
     build:
       context: ../images
       dockerfile: quic-go/Dockerfile
       target: quic-go-client
       args:
-        VERSION: "0.51.0"
+        VERSION: "0.64.1"
     network_mode: host
     environment:
       CONTROL_PORT: "9108"
+      SSL_CERT_FILE: /certs/ca.crt
     volumes:
       - ../certs:/certs
-    command: -insecure https://localhost:4433
+    command: https://localhost:4433
   quiche-cloudflare-client-0.20.1:
     image: rub-nds/quic/quiche-cloudflare-client:0.20.1
     build:
