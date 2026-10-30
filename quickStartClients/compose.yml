@@ -228,14 +228,14 @@ services:
     volumes:
       - ../certs:/certs
     command: --ca /certs/ca.crt --ip 127.0.0.1 --port 4433 https://localhost:4433/index.html
-  xquic-client-babassl-1.9.0:
-    image: rub-nds/quic/xquic-client-babassl:1.9.0
+  xquic-client-babassl-1.9.8:
+    image: rub-nds/quic/xquic-client-babassl:1.9.8
     build:
       context: ../images
       dockerfile: xquic/Dockerfile-babassl
       target: xquic-client
       args:
-        VERSION_XQUIC: "1.9.0"
+        VERSION_XQUIC: "1.9.8"
         VERSION_BABASSL: "8.3-stable"
     network_mode: host
     environment:
@@ -243,14 +243,14 @@ services:
     volumes:
       - ../certs:/certs
     command: -a localhost -p 4433 -U https://localhost.com/ -A h3
-  xquic-client-boringssl-1.9.0:
-    image: rub-nds/quic/xquic-client--boringssl:1.9.0
+  xquic-client-boringssl-1.9.8:
+    image: rub-nds/quic/xquic-client-boringssl:1.9.8
     build:
       context: ../images
       dockerfile: xquic/Dockerfile-boringssl
       target: xquic-client
       args:
-        VERSION_XQUIC: "1.9.0"
+        VERSION_XQUIC: "1.9.8"
         VERSION_BORINGSSL: "0.20250415.0"
     network_mode: host
     environment:

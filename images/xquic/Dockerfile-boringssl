@@ -1,24 +1,22 @@
-FROM rub-nds/quic/alpine-build:3.19 AS xquic-base
+FROM rub-nds/quic/alpine-build:3.19 AS boringssl
 
-ARG VERSION_XQUIC
 ARG VERSION_BORINGSSL
 
-# Clone projects
-RUN git clone --depth=1 --branch=v${VERSION_XQUIC} https://github.com/alibaba/xquic
-RUN git clone --depth 1 --branch=${VERSION_BORINGSSL} https://github.com/google/boringssl.git xquic/third_party/boringssl
-
-# Build boringssl
-WORKDIR /xquic/third_party/boringssl/
+# Build boringssl first, so it can be reused for several xquic versions
+RUN git clone --depth=1 --branch=${VERSION_BORINGSSL} https://github.com/google/boringssl.git /boringssl
+WORKDIR /boringssl
 RUN cmake -B build -DCMAKE_POSITION_INDEPENDENT_CODE=ON
-RUN make -C build
+RUN make -C build -j$(nproc) ssl crypto
 
-# Build xquic
-WORKDIR /xquic/
-RUN git submodule update --init --recursive
-RUN mkdir -p build
+FROM boringssl AS xquic-base
+
+ARG VERSION_XQUIC
+
+# Build xquic (only the demo programs)
+RUN git clone --depth=1 --branch=v${VERSION_XQUIC} https://github.com/alibaba/xquic /xquic
 WORKDIR /xquic/build/
-RUN cmake -DGCOV=on -DCMAKE_BUILD_TYPE=Debug -DXQC_ENABLE_TESTING=1 -DXQC_SUPPORT_SENDMMSG_BUILD=1 -DXQC_ENABLE_EVENT_LOG=1 -DXQC_ENABLE_BBR2=1 -DXQC_ENABLE_RENO=1 -DSSL_TYPE=boringssl -DSSL_PATH=/xquic/third_party/boringssl/ ..
-RUN make -j
+RUN cmake -DCMAKE_BUILD_TYPE=Debug -DXQC_ENABLE_TESTING=1 -DXQC_SUPPORT_SENDMMSG_BUILD=1 -DXQC_ENABLE_EVENT_LOG=1 -DXQC_ENABLE_BBR2=1 -DXQC_ENABLE_RENO=1 -DSSL_TYPE=boringssl -DSSL_PATH=/boringssl ..
+RUN make -j$(nproc) demo_server demo_client
 
 # Add a self-signed certificate for the server
 WORKDIR /xquic/build/demo/

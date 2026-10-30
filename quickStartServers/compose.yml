@@ -237,36 +237,38 @@ services:
       - ../certs:/certs
       - ../www:/www
     command: --port 4433 --certificate /certs/server.crt --private-key /certs/server.key --www-dir /www
-  xquic-server-babassl-1.9.0:
-    image: rub-nds/quic/xquic-server-babassl:1.9.0
+  xquic-server-babassl-1.9.8:
+    image: rub-nds/quic/xquic-server-babassl:1.9.8
     build:
       context: ../images
       dockerfile: xquic/Dockerfile-babassl
       target: xquic-server
       args:
-        VERSION_XQUIC: "1.9.0"
+        VERSION_XQUIC: "1.9.8"
         VERSION_BABASSL: "8.3-stable"
     ports:
       - "8013:4433/udp"
       - "9013:8090"
     volumes:
-      - ../certs:/certs
+      - ../certs/server.crt:/xquic/build/demo/server.crt
+      - ../certs/server.key:/xquic/build/demo/server.key
       - ../www:/www
     command: -p 4433
-  xquic-server-boringssl-1.9.0:
-    image: rub-nds/quic/xquic-server-boringssl:1.9.0
+  xquic-server-boringssl-1.9.8:
+    image: rub-nds/quic/xquic-server-boringssl:1.9.8
     build:
       context: ../images
       dockerfile: xquic/Dockerfile-boringssl
       target: xquic-server
       args:
-        VERSION_XQUIC: "1.9.0"
+        VERSION_XQUIC: "1.9.8"
         VERSION_BORINGSSL: "0.20250415.0"
     ports:
       - "8014:4433/udp"
       - "9014:8090"
     volumes:
-      - ../certs:/certs
+      - ../certs/server.crt:/xquic/build/demo/server.crt
+      - ../certs/server.key:/xquic/build/demo/server.key
       - ../www:/www
     command: -p 4433
   openssl-server-4.1.0:
