@@ -170,20 +170,20 @@ services:
     volumes:
       - ../certs:/certs
     command: https://localhost:4433
-  quiche-cloudflare-client-0.20.1:
-    image: rub-nds/quic/quiche-cloudflare-client:0.20.1
+  quiche-cloudflare-client-0.30.0:
+    image: rub-nds/quic/quiche-cloudflare-client:0.30.0
     build:
       context: ../images
       dockerfile: quiche-cloudflare/Dockerfile
       target: quiche-cloudflare-client
       args:
-        VERSION: "0.20.1"
+        VERSION: "0.30.0"
     network_mode: host
     environment:
       CONTROL_PORT: "9109"
     volumes:
       - ../certs:/certs
-    command: --no-verify --wire-version 00000001 https://localhost:4433
+    command: --trust-origin-ca-pem /certs/ca.crt --wire-version 00000001 https://localhost:4433
   quicly-client-91b467f:
     image: rub-nds/quic/quicly-client:91b467f
     build:
