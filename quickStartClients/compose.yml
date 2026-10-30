@@ -65,15 +65,14 @@ services:
     volumes:
       - ../certs:/certs
     command: "4433"
-  lsquic-client-4.2.0:
-    image: rub-nds/quic/lsquic-client:4.2.0
+  lsquic-client-4.11.1:
+    image: rub-nds/quic/lsquic-client:4.11.1
     build:
       context: ../images
       dockerfile: lsquic/Dockerfile
       target: lsquic-client
       args:
-        VERSION_LSQUIC: "4.2.0"
-        VERSION_BORINGSSL: "0.20250415.0"
+        VERSION_LSQUIC: "4.11.1"
     network_mode: host
     environment:
       CONTROL_PORT: "9102"
