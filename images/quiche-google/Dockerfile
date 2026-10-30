@@ -4,15 +4,15 @@ FROM debian:13-slim AS quiche-google-base
 ARG BAZELISK_VERSION=v1.27.0
 
 RUN apt update && \
-    DEBIAN_FRONTEND=noninteractive apt -y install ca-certificates clang curl git libicu-dev lld python3 xz-utils
+    DEBIAN_FRONTEND=noninteractive apt -y install --no-install-recommends ca-certificates clang git libicu-dev lld python3
 
-RUN curl -fsSL \
-    "https://github.com/bazelbuild/bazelisk/releases/download/${BAZELISK_VERSION}/bazelisk-linux-amd64" \
-    -o /usr/local/bin/bazel && \
-    chmod +x /usr/local/bin/bazel
+ADD --chmod=755 https://github.com/bazelbuild/bazelisk/releases/download/${BAZELISK_VERSION}/bazelisk-linux-amd64 /usr/local/bin/bazel
 
-RUN git clone --depth=1 https://github.com/google/quiche.git
+ARG COMMIT
+
 WORKDIR /quiche
+RUN git init -q && git remote add origin https://github.com/google/quiche.git
+RUN git fetch --depth=1 origin ${COMMIT} && git checkout -q FETCH_HEAD
 
 RUN CC=clang CXX=clang++ bazel build -c opt //quiche:quic_server //quiche:quic_client && \
     install -D bazel-bin/quiche/quic_server /usr/local/bin/quic_server && \
