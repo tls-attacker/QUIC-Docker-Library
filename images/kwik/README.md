@@ -15,3 +15,7 @@
 ```bash
 [PORT]
 ```
+
+## Note
+
+- The client always connects to `localhost` and does not verify the server certificate; it has no option to change either.
