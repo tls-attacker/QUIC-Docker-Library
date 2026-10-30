@@ -272,12 +272,14 @@ services:
       - ../certs:/certs
     command: -quic -alpn h3 -connect localhost:4433 -CAfile /certs/ca.crt -verify_return_error
     tty: true
-  quiche-google-client-latest:
-    image: rub-nds/quic/quiche-google-client:latest
+  quiche-google-client-cc6c73f:
+    image: rub-nds/quic/quiche-google-client:cc6c73f
     build:
       context: ../images
       dockerfile: quiche-google/Dockerfile
       target: quiche-google-client
+      args:
+        COMMIT: "cc6c73f82d1abb23d3564402a4cce60d090ec629"
     network_mode: host
     environment:
       CONTROL_PORT: "9116"

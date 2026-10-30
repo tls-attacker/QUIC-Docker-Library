@@ -1,13 +1,17 @@
 services:
-  quiche-google-server-latest:
-    image: rub-nds/quic/quiche-google-server:latest
+  quiche-google-server-cc6c73f:
+    image: rub-nds/quic/quiche-google-server:cc6c73f
     build:
       context: .
       dockerfile: Dockerfile
       target: quiche-google-server
-  quiche-google-client-latest:
-    image: rub-nds/quic/quiche-google-client:latest
+      args:
+        COMMIT: "cc6c73f82d1abb23d3564402a4cce60d090ec629"
+  quiche-google-client-cc6c73f:
+    image: rub-nds/quic/quiche-google-client:cc6c73f
     build:
       context: .
       dockerfile: Dockerfile
       target: quiche-google-client
+      args:
+        COMMIT: "cc6c73f82d1abb23d3564402a4cce60d090ec629"

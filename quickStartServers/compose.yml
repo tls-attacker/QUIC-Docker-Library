@@ -285,12 +285,14 @@ services:
       - ../certs:/certs
       - ../www:/www
     command: 4433 /certs/server.crt /certs/server.key
-  quiche-google-server-latest:
-    image: rub-nds/quic/quiche-google-server:latest
+  quiche-google-server-cc6c73f:
+    image: rub-nds/quic/quiche-google-server:cc6c73f
     build:
       context: ../images
       dockerfile: quiche-google/Dockerfile
       target: quiche-google-server
+      args:
+        COMMIT: "cc6c73f82d1abb23d3564402a4cce60d090ec629"
     ports:
       - "8016:4433/udp"
       - "9016:8090"
