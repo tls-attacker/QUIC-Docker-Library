@@ -1,4 +1,452 @@
 services:
+  lsquic-server-4.11.1:
+    image: rub-nds/quic/lsquic-server:4.11.1
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: lsquic-server
+      args:
+        VERSION_LSQUIC: "4.11.1"
+  lsquic-client-4.11.1:
+    image: rub-nds/quic/lsquic-client:4.11.1
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: lsquic-client
+      args:
+        VERSION_LSQUIC: "4.11.1"
+  lsquic-server-4.11.0:
+    image: rub-nds/quic/lsquic-server:4.11.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: lsquic-server
+      args:
+        VERSION_LSQUIC: "4.11.0"
+  lsquic-client-4.11.0:
+    image: rub-nds/quic/lsquic-client:4.11.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: lsquic-client
+      args:
+        VERSION_LSQUIC: "4.11.0"
+  lsquic-server-4.10.2:
+    image: rub-nds/quic/lsquic-server:4.10.2
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: lsquic-server
+      args:
+        VERSION_LSQUIC: "4.10.2"
+  lsquic-client-4.10.2:
+    image: rub-nds/quic/lsquic-client:4.10.2
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: lsquic-client
+      args:
+        VERSION_LSQUIC: "4.10.2"
+  lsquic-server-4.10.1:
+    image: rub-nds/quic/lsquic-server:4.10.1
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: lsquic-server
+      args:
+        VERSION_LSQUIC: "4.10.1"
+  lsquic-client-4.10.1:
+    image: rub-nds/quic/lsquic-client:4.10.1
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: lsquic-client
+      args:
+        VERSION_LSQUIC: "4.10.1"
+  lsquic-server-4.10.0:
+    image: rub-nds/quic/lsquic-server:4.10.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: lsquic-server
+      args:
+        VERSION_LSQUIC: "4.10.0"
+  lsquic-client-4.10.0:
+    image: rub-nds/quic/lsquic-client:4.10.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: lsquic-client
+      args:
+        VERSION_LSQUIC: "4.10.0"
+  lsquic-server-4.9.4:
+    image: rub-nds/quic/lsquic-server:4.9.4
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: lsquic-server
+      args:
+        VERSION_LSQUIC: "4.9.4"
+  lsquic-client-4.9.4:
+    image: rub-nds/quic/lsquic-client:4.9.4
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: lsquic-client
+      args:
+        VERSION_LSQUIC: "4.9.4"
+  lsquic-server-4.9.3:
+    image: rub-nds/quic/lsquic-server:4.9.3
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: lsquic-server
+      args:
+        VERSION_LSQUIC: "4.9.3"
+  lsquic-client-4.9.3:
+    image: rub-nds/quic/lsquic-client:4.9.3
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: lsquic-client
+      args:
+        VERSION_LSQUIC: "4.9.3"
+  lsquic-server-4.9.2:
+    image: rub-nds/quic/lsquic-server:4.9.2
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: lsquic-server
+      args:
+        VERSION_LSQUIC: "4.9.2"
+  lsquic-client-4.9.2:
+    image: rub-nds/quic/lsquic-client:4.9.2
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: lsquic-client
+      args:
+        VERSION_LSQUIC: "4.9.2"
+  lsquic-server-4.9.1:
+    image: rub-nds/quic/lsquic-server:4.9.1
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: lsquic-server
+      args:
+        VERSION_LSQUIC: "4.9.1"
+  lsquic-client-4.9.1:
+    image: rub-nds/quic/lsquic-client:4.9.1
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: lsquic-client
+      args:
+        VERSION_LSQUIC: "4.9.1"
+  lsquic-server-4.9.0:
+    image: rub-nds/quic/lsquic-server:4.9.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: lsquic-server
+      args:
+        VERSION_LSQUIC: "4.9.0"
+  lsquic-client-4.9.0:
+    image: rub-nds/quic/lsquic-client:4.9.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: lsquic-client
+      args:
+        VERSION_LSQUIC: "4.9.0"
+  lsquic-server-4.8.2:
+    image: rub-nds/quic/lsquic-server:4.8.2
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: lsquic-server
+      args:
+        VERSION_LSQUIC: "4.8.2"
+  lsquic-client-4.8.2:
+    image: rub-nds/quic/lsquic-client:4.8.2
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: lsquic-client
+      args:
+        VERSION_LSQUIC: "4.8.2"
+  lsquic-server-4.8.1:
+    image: rub-nds/quic/lsquic-server:4.8.1
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: lsquic-server
+      args:
+        VERSION_LSQUIC: "4.8.1"
+  lsquic-client-4.8.1:
+    image: rub-nds/quic/lsquic-client:4.8.1
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: lsquic-client
+      args:
+        VERSION_LSQUIC: "4.8.1"
+  lsquic-server-4.8.0:
+    image: rub-nds/quic/lsquic-server:4.8.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: lsquic-server
+      args:
+        VERSION_LSQUIC: "4.8.0"
+  lsquic-client-4.8.0:
+    image: rub-nds/quic/lsquic-client:4.8.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: lsquic-client
+      args:
+        VERSION_LSQUIC: "4.8.0"
+  lsquic-server-4.7.2:
+    image: rub-nds/quic/lsquic-server:4.7.2
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: lsquic-server
+      args:
+        VERSION_LSQUIC: "4.7.2"
+  lsquic-client-4.7.2:
+    image: rub-nds/quic/lsquic-client:4.7.2
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: lsquic-client
+      args:
+        VERSION_LSQUIC: "4.7.2"
+  lsquic-server-4.7.1:
+    image: rub-nds/quic/lsquic-server:4.7.1
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: lsquic-server
+      args:
+        VERSION_LSQUIC: "4.7.1"
+  lsquic-client-4.7.1:
+    image: rub-nds/quic/lsquic-client:4.7.1
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: lsquic-client
+      args:
+        VERSION_LSQUIC: "4.7.1"
+  lsquic-server-4.7.0:
+    image: rub-nds/quic/lsquic-server:4.7.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: lsquic-server
+      args:
+        VERSION_LSQUIC: "4.7.0"
+  lsquic-client-4.7.0:
+    image: rub-nds/quic/lsquic-client:4.7.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: lsquic-client
+      args:
+        VERSION_LSQUIC: "4.7.0"
+  lsquic-server-4.6.4:
+    image: rub-nds/quic/lsquic-server:4.6.4
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: lsquic-server
+      args:
+        VERSION_LSQUIC: "4.6.4"
+  lsquic-client-4.6.4:
+    image: rub-nds/quic/lsquic-client:4.6.4
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: lsquic-client
+      args:
+        VERSION_LSQUIC: "4.6.4"
+  lsquic-server-4.6.3:
+    image: rub-nds/quic/lsquic-server:4.6.3
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: lsquic-server
+      args:
+        VERSION_LSQUIC: "4.6.3"
+  lsquic-client-4.6.3:
+    image: rub-nds/quic/lsquic-client:4.6.3
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: lsquic-client
+      args:
+        VERSION_LSQUIC: "4.6.3"
+  lsquic-server-4.6.2:
+    image: rub-nds/quic/lsquic-server:4.6.2
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: lsquic-server
+      args:
+        VERSION_LSQUIC: "4.6.2"
+  lsquic-client-4.6.2:
+    image: rub-nds/quic/lsquic-client:4.6.2
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: lsquic-client
+      args:
+        VERSION_LSQUIC: "4.6.2"
+  lsquic-server-4.6.1:
+    image: rub-nds/quic/lsquic-server:4.6.1
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: lsquic-server
+      args:
+        VERSION_LSQUIC: "4.6.1"
+  lsquic-client-4.6.1:
+    image: rub-nds/quic/lsquic-client:4.6.1
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: lsquic-client
+      args:
+        VERSION_LSQUIC: "4.6.1"
+  lsquic-server-4.6.0:
+    image: rub-nds/quic/lsquic-server:4.6.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: lsquic-server
+      args:
+        VERSION_LSQUIC: "4.6.0"
+  lsquic-client-4.6.0:
+    image: rub-nds/quic/lsquic-client:4.6.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: lsquic-client
+      args:
+        VERSION_LSQUIC: "4.6.0"
+  lsquic-server-4.5.0:
+    image: rub-nds/quic/lsquic-server:4.5.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: lsquic-server
+      args:
+        VERSION_LSQUIC: "4.5.0"
+  lsquic-client-4.5.0:
+    image: rub-nds/quic/lsquic-client:4.5.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: lsquic-client
+      args:
+        VERSION_LSQUIC: "4.5.0"
+  lsquic-server-4.4.2:
+    image: rub-nds/quic/lsquic-server:4.4.2
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: lsquic-server
+      args:
+        VERSION_LSQUIC: "4.4.2"
+  lsquic-client-4.4.2:
+    image: rub-nds/quic/lsquic-client:4.4.2
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: lsquic-client
+      args:
+        VERSION_LSQUIC: "4.4.2"
+  lsquic-server-4.4.1:
+    image: rub-nds/quic/lsquic-server:4.4.1
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: lsquic-server
+      args:
+        VERSION_LSQUIC: "4.4.1"
+  lsquic-client-4.4.1:
+    image: rub-nds/quic/lsquic-client:4.4.1
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: lsquic-client
+      args:
+        VERSION_LSQUIC: "4.4.1"
+  lsquic-server-4.4.0:
+    image: rub-nds/quic/lsquic-server:4.4.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: lsquic-server
+      args:
+        VERSION_LSQUIC: "4.4.0"
+  lsquic-client-4.4.0:
+    image: rub-nds/quic/lsquic-client:4.4.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: lsquic-client
+      args:
+        VERSION_LSQUIC: "4.4.0"
+  lsquic-server-4.3.2:
+    image: rub-nds/quic/lsquic-server:4.3.2
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: lsquic-server
+      args:
+        VERSION_LSQUIC: "4.3.2"
+  lsquic-client-4.3.2:
+    image: rub-nds/quic/lsquic-client:4.3.2
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: lsquic-client
+      args:
+        VERSION_LSQUIC: "4.3.2"
+  lsquic-server-4.3.1:
+    image: rub-nds/quic/lsquic-server:4.3.1
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: lsquic-server
+      args:
+        VERSION_LSQUIC: "4.3.1"
+  lsquic-client-4.3.1:
+    image: rub-nds/quic/lsquic-client:4.3.1
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: lsquic-client
+      args:
+        VERSION_LSQUIC: "4.3.1"
+  lsquic-server-4.3.0:
+    image: rub-nds/quic/lsquic-server:4.3.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: lsquic-server
+      args:
+        VERSION_LSQUIC: "4.3.0"
+  lsquic-client-4.3.0:
+    image: rub-nds/quic/lsquic-client:4.3.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: lsquic-client
+      args:
+        VERSION_LSQUIC: "4.3.0"
   lsquic-server-4.2.0:
     image: rub-nds/quic/lsquic-server:4.2.0
     build:
@@ -7,7 +455,6 @@ services:
       target: lsquic-server
       args:
         VERSION_LSQUIC: "4.2.0"
-        VERSION_BORINGSSL: "0.20250415.0"
   lsquic-client-4.2.0:
     image: rub-nds/quic/lsquic-client:4.2.0
     build:
@@ -16,7 +463,6 @@ services:
       target: lsquic-client
       args:
         VERSION_LSQUIC: "4.2.0"
-        VERSION_BORINGSSL: "0.20250415.0"
   lsquic-server-4.1.0:
     image: rub-nds/quic/lsquic-server:4.1.0
     build:
@@ -25,7 +471,6 @@ services:
       target: lsquic-server
       args:
         VERSION_LSQUIC: "4.1.0"
-        VERSION_BORINGSSL: "0.20250415.0"
   lsquic-client-4.1.0:
     image: rub-nds/quic/lsquic-client:4.1.0
     build:
@@ -34,4 +479,3 @@ services:
       target: lsquic-client
       args:
         VERSION_LSQUIC: "4.1.0"
-        VERSION_BORINGSSL: "0.20250415.0"

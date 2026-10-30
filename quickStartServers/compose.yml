@@ -67,15 +67,14 @@ services:
       - ../certs:/certs
       - ../www:/www
     command: /certs/server.crt /certs/server.key 4433
-  lsquic-server-4.2.0:
-    image: rub-nds/quic/lsquic-server:4.2.0
+  lsquic-server-4.11.1:
+    image: rub-nds/quic/lsquic-server:4.11.1
     build:
       context: ../images
       dockerfile: lsquic/Dockerfile
       target: lsquic-server
       args:
-        VERSION_LSQUIC: "4.2.0"
-        VERSION_BORINGSSL: "0.20250415.0"
+        VERSION_LSQUIC: "4.11.1"
     ports:
       - "8002:4433/udp"
       - "9002:8090"
