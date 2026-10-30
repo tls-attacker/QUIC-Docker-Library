@@ -1,19 +1,11 @@
-FROM rub-nds/quic/alpine-build:3.21.2 AS openssl-base
+FROM rub-nds/quic/alpine-build:3.24.3 AS openssl-base
 
 ARG VERSION
 
 RUN git clone --depth=1 --branch=openssl-${VERSION} https://github.com/openssl/openssl
 WORKDIR /openssl
-RUN ./config --prefix=/build/ --openssldir=/build/ enable-demos
-RUN make -j && make install
-
-# Copy all required libraries
-RUN mkdir /libdeps
-RUN cp libcrypto.so.3 /usr/lib/
-RUN cp libcrypto.a /usr/lib/
-RUN cp libssl.so.3 /usr/lib/
-RUN cp $(LD_LIBRARY_PATH="/build/lib/" ldd /build/bin/openssl | \
-    awk '$3=="" {print $1}; $3!="" {print $3}') /libdeps/
+RUN ./config --prefix=/build/ --openssldir=/build/ --libdir=lib no-shared no-tests enable-demos
+RUN make -j$(nproc) && make install_sw
 
 FROM openssl-base AS openssl-server
 ENV QUIC_CMD="/openssl/demos/quic/server/server"
@@ -21,6 +13,6 @@ ENV CONTROL_MODE="server"
 ENTRYPOINT ["python3", "/control_server.py"]
 
 FROM openssl-base AS openssl-client
-ENV QUIC_CMD="openssl s_client"
+ENV QUIC_CMD="/build/bin/openssl s_client"
 ENV CONTROL_MODE="client"
 ENTRYPOINT ["python3", "/control_server.py"]
