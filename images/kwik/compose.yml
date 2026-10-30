@@ -1,4 +1,292 @@
 services:
+  kwik-server-0.12.1:
+    image: rub-nds/quic/kwik-server:0.12.1
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: kwik-server
+      args:
+        VERSION: "0.12.1"
+  kwik-client-0.12.1:
+    image: rub-nds/quic/kwik-client:0.12.1
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: kwik-client
+      args:
+        VERSION: "0.12.1"
+  kwik-server-0.12:
+    image: rub-nds/quic/kwik-server:0.12
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: kwik-server
+      args:
+        VERSION: "0.12"
+  kwik-client-0.12:
+    image: rub-nds/quic/kwik-client:0.12
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: kwik-client
+      args:
+        VERSION: "0.12"
+  kwik-server-0.11:
+    image: rub-nds/quic/kwik-server:0.11
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: kwik-server
+      args:
+        VERSION: "0.11"
+  kwik-client-0.11:
+    image: rub-nds/quic/kwik-client:0.11
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: kwik-client
+      args:
+        VERSION: "0.11"
+  kwik-server-0.10.10:
+    image: rub-nds/quic/kwik-server:0.10.10
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: kwik-server
+      args:
+        VERSION: "0.10.10"
+  kwik-client-0.10.10:
+    image: rub-nds/quic/kwik-client:0.10.10
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: kwik-client
+      args:
+        VERSION: "0.10.10"
+  kwik-server-0.10.9:
+    image: rub-nds/quic/kwik-server:0.10.9
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: kwik-server
+      args:
+        VERSION: "0.10.9"
+  kwik-client-0.10.9:
+    image: rub-nds/quic/kwik-client:0.10.9
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: kwik-client
+      args:
+        VERSION: "0.10.9"
+  kwik-server-0.10.8:
+    image: rub-nds/quic/kwik-server:0.10.8
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: kwik-server
+      args:
+        VERSION: "0.10.8"
+  kwik-client-0.10.8:
+    image: rub-nds/quic/kwik-client:0.10.8
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: kwik-client
+      args:
+        VERSION: "0.10.8"
+  kwik-server-0.10.7:
+    image: rub-nds/quic/kwik-server:0.10.7
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: kwik-server
+      args:
+        VERSION: "0.10.7"
+  kwik-client-0.10.7:
+    image: rub-nds/quic/kwik-client:0.10.7
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: kwik-client
+      args:
+        VERSION: "0.10.7"
+  kwik-server-0.10.6:
+    image: rub-nds/quic/kwik-server:0.10.6
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: kwik-server
+      args:
+        VERSION: "0.10.6"
+  kwik-client-0.10.6:
+    image: rub-nds/quic/kwik-client:0.10.6
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: kwik-client
+      args:
+        VERSION: "0.10.6"
+  kwik-server-0.10.5:
+    image: rub-nds/quic/kwik-server:0.10.5
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: kwik-server
+      args:
+        VERSION: "0.10.5"
+  kwik-client-0.10.5:
+    image: rub-nds/quic/kwik-client:0.10.5
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: kwik-client
+      args:
+        VERSION: "0.10.5"
+  kwik-server-0.10.4:
+    image: rub-nds/quic/kwik-server:0.10.4
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: kwik-server
+      args:
+        VERSION: "0.10.4"
+  kwik-client-0.10.4:
+    image: rub-nds/quic/kwik-client:0.10.4
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: kwik-client
+      args:
+        VERSION: "0.10.4"
+  kwik-server-0.10.3:
+    image: rub-nds/quic/kwik-server:0.10.3
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: kwik-server
+      args:
+        VERSION: "0.10.3"
+  kwik-client-0.10.3:
+    image: rub-nds/quic/kwik-client:0.10.3
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: kwik-client
+      args:
+        VERSION: "0.10.3"
+  kwik-server-0.10.2:
+    image: rub-nds/quic/kwik-server:0.10.2
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: kwik-server
+      args:
+        VERSION: "0.10.2"
+  kwik-client-0.10.2:
+    image: rub-nds/quic/kwik-client:0.10.2
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: kwik-client
+      args:
+        VERSION: "0.10.2"
+  kwik-server-0.10.1:
+    image: rub-nds/quic/kwik-server:0.10.1
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: kwik-server
+      args:
+        VERSION: "0.10.1"
+  kwik-client-0.10.1:
+    image: rub-nds/quic/kwik-client:0.10.1
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: kwik-client
+      args:
+        VERSION: "0.10.1"
+  kwik-server-0.10:
+    image: rub-nds/quic/kwik-server:0.10
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: kwik-server
+      args:
+        VERSION: "0.10"
+  kwik-client-0.10:
+    image: rub-nds/quic/kwik-client:0.10
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: kwik-client
+      args:
+        VERSION: "0.10"
+  kwik-server-0.9.1:
+    image: rub-nds/quic/kwik-server:0.9.1
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: kwik-server
+      args:
+        VERSION: "0.9.1"
+  kwik-client-0.9.1:
+    image: rub-nds/quic/kwik-client:0.9.1
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: kwik-client
+      args:
+        VERSION: "0.9.1"
+  kwik-server-0.9:
+    image: rub-nds/quic/kwik-server:0.9
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: kwik-server
+      args:
+        VERSION: "0.9"
+  kwik-client-0.9:
+    image: rub-nds/quic/kwik-client:0.9
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: kwik-client
+      args:
+        VERSION: "0.9"
+  kwik-server-0.8.13:
+    image: rub-nds/quic/kwik-server:0.8.13
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: kwik-server
+      args:
+        VERSION: "0.8.13"
+  kwik-client-0.8.13:
+    image: rub-nds/quic/kwik-client:0.8.13
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: kwik-client
+      args:
+        VERSION: "0.8.13"
+  kwik-server-0.8.12:
+    image: rub-nds/quic/kwik-server:0.8.12
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: kwik-server
+      args:
+        VERSION: "0.8.12"
+  kwik-client-0.8.12:
+    image: rub-nds/quic/kwik-client:0.8.12
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: kwik-client
+      args:
+        VERSION: "0.8.12"
   kwik-server-0.8.11:
     image: rub-nds/quic/kwik-server:0.8.11
     build:

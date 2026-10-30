@@ -52,14 +52,14 @@ services:
       - ../certs:/certs
       - ../www:/www
     command: --port 4433 -c /certs/server.crt -k /certs/server.key
-  kwik-server-0.8.11:
-    image: rub-nds/quic/kwik-server:0.8.11
+  kwik-server-0.12.1:
+    image: rub-nds/quic/kwik-server:0.12.1
     build:
       context: ../images
       dockerfile: kwik/Dockerfile
       target: kwik-server
       args:
-        VERSION: "0.8.11"
+        VERSION: "0.12.1"
     ports:
       - "8001:4433/udp"
       - "9001:8090"

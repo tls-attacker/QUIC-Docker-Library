@@ -51,14 +51,14 @@ services:
     volumes:
       - ../certs:/certs
     command: https://localhost:4433 --insecure
-  kwik-client-0.8.11:
-    image: rub-nds/quic/kwik-client:0.8.11
+  kwik-client-0.12.1:
+    image: rub-nds/quic/kwik-client:0.12.1
     build:
       context: ../images
       dockerfile: kwik/Dockerfile
       target: kwik-client
       args:
-        VERSION: "0.8.11"
+        VERSION: "0.12.1"
     network_mode: host
     environment:
       CONTROL_PORT: "9101"
