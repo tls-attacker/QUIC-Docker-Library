@@ -15,6 +15,134 @@ services:
       target: openssl-client
       args:
         VERSION: "3.5.1"
+  openssl-server-3.5.2:
+    image: rub-nds/quic/openssl-server:3.5.2
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: openssl-server
+      args:
+        VERSION: "3.5.2"
+  openssl-client-3.5.2:
+    image: rub-nds/quic/openssl-client:3.5.2
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: openssl-client
+      args:
+        VERSION: "3.5.2"
+  openssl-server-3.5.3:
+    image: rub-nds/quic/openssl-server:3.5.3
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: openssl-server
+      args:
+        VERSION: "3.5.3"
+  openssl-client-3.5.3:
+    image: rub-nds/quic/openssl-client:3.5.3
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: openssl-client
+      args:
+        VERSION: "3.5.3"
+  openssl-server-3.5.4:
+    image: rub-nds/quic/openssl-server:3.5.4
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: openssl-server
+      args:
+        VERSION: "3.5.4"
+  openssl-client-3.5.4:
+    image: rub-nds/quic/openssl-client:3.5.4
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: openssl-client
+      args:
+        VERSION: "3.5.4"
+  openssl-server-3.5.5:
+    image: rub-nds/quic/openssl-server:3.5.5
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: openssl-server
+      args:
+        VERSION: "3.5.5"
+  openssl-client-3.5.5:
+    image: rub-nds/quic/openssl-client:3.5.5
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: openssl-client
+      args:
+        VERSION: "3.5.5"
+  openssl-server-3.5.6:
+    image: rub-nds/quic/openssl-server:3.5.6
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: openssl-server
+      args:
+        VERSION: "3.5.6"
+  openssl-client-3.5.6:
+    image: rub-nds/quic/openssl-client:3.5.6
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: openssl-client
+      args:
+        VERSION: "3.5.6"
+  openssl-server-3.5.7:
+    image: rub-nds/quic/openssl-server:3.5.7
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: openssl-server
+      args:
+        VERSION: "3.5.7"
+  openssl-client-3.5.7:
+    image: rub-nds/quic/openssl-client:3.5.7
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: openssl-client
+      args:
+        VERSION: "3.5.7"
+  openssl-server-3.5.8:
+    image: rub-nds/quic/openssl-server:3.5.8
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: openssl-server
+      args:
+        VERSION: "3.5.8"
+  openssl-client-3.5.8:
+    image: rub-nds/quic/openssl-client:3.5.8
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: openssl-client
+      args:
+        VERSION: "3.5.8"
+  openssl-server-3.5.9:
+    image: rub-nds/quic/openssl-server:3.5.9
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: openssl-server
+      args:
+        VERSION: "3.5.9"
+  openssl-client-3.5.9:
+    image: rub-nds/quic/openssl-client:3.5.9
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: openssl-client
+      args:
+        VERSION: "3.5.9"
   openssl-server-3.6.0:
     image: rub-nds/quic/openssl-server:3.6.0
     build:
@@ -31,3 +159,163 @@ services:
       target: openssl-client
       args:
         VERSION: "3.6.0"
+  openssl-server-3.6.1:
+    image: rub-nds/quic/openssl-server:3.6.1
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: openssl-server
+      args:
+        VERSION: "3.6.1"
+  openssl-client-3.6.1:
+    image: rub-nds/quic/openssl-client:3.6.1
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: openssl-client
+      args:
+        VERSION: "3.6.1"
+  openssl-server-3.6.2:
+    image: rub-nds/quic/openssl-server:3.6.2
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: openssl-server
+      args:
+        VERSION: "3.6.2"
+  openssl-client-3.6.2:
+    image: rub-nds/quic/openssl-client:3.6.2
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: openssl-client
+      args:
+        VERSION: "3.6.2"
+  openssl-server-3.6.3:
+    image: rub-nds/quic/openssl-server:3.6.3
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: openssl-server
+      args:
+        VERSION: "3.6.3"
+  openssl-client-3.6.3:
+    image: rub-nds/quic/openssl-client:3.6.3
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: openssl-client
+      args:
+        VERSION: "3.6.3"
+  openssl-server-3.6.4:
+    image: rub-nds/quic/openssl-server:3.6.4
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: openssl-server
+      args:
+        VERSION: "3.6.4"
+  openssl-client-3.6.4:
+    image: rub-nds/quic/openssl-client:3.6.4
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: openssl-client
+      args:
+        VERSION: "3.6.4"
+  openssl-server-3.6.5:
+    image: rub-nds/quic/openssl-server:3.6.5
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: openssl-server
+      args:
+        VERSION: "3.6.5"
+  openssl-client-3.6.5:
+    image: rub-nds/quic/openssl-client:3.6.5
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: openssl-client
+      args:
+        VERSION: "3.6.5"
+  openssl-server-4.0.0:
+    image: rub-nds/quic/openssl-server:4.0.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: openssl-server
+      args:
+        VERSION: "4.0.0"
+  openssl-client-4.0.0:
+    image: rub-nds/quic/openssl-client:4.0.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: openssl-client
+      args:
+        VERSION: "4.0.0"
+  openssl-server-4.0.1:
+    image: rub-nds/quic/openssl-server:4.0.1
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: openssl-server
+      args:
+        VERSION: "4.0.1"
+  openssl-client-4.0.1:
+    image: rub-nds/quic/openssl-client:4.0.1
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: openssl-client
+      args:
+        VERSION: "4.0.1"
+  openssl-server-4.0.2:
+    image: rub-nds/quic/openssl-server:4.0.2
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: openssl-server
+      args:
+        VERSION: "4.0.2"
+  openssl-client-4.0.2:
+    image: rub-nds/quic/openssl-client:4.0.2
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: openssl-client
+      args:
+        VERSION: "4.0.2"
+  openssl-server-4.0.3:
+    image: rub-nds/quic/openssl-server:4.0.3
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: openssl-server
+      args:
+        VERSION: "4.0.3"
+  openssl-client-4.0.3:
+    image: rub-nds/quic/openssl-client:4.0.3
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: openssl-client
+      args:
+        VERSION: "4.0.3"
+  openssl-server-4.1.0:
+    image: rub-nds/quic/openssl-server:4.1.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: openssl-server
+      args:
+        VERSION: "4.1.0"
+  openssl-client-4.1.0:
+    image: rub-nds/quic/openssl-client:4.1.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: openssl-client
+      args:
+        VERSION: "4.1.0"

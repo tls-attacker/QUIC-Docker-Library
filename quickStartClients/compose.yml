@@ -258,20 +258,20 @@ services:
     volumes:
       - ../certs:/certs
     command: -a localhost -p 4433 -U https://localhost.com/ -A h3
-  openssl-client-3.6.0:
-    image: rub-nds/quic/openssl-client:3.6.0
+  openssl-client-4.1.0:
+    image: rub-nds/quic/openssl-client:4.1.0
     build:
       context: ../images
       dockerfile: openssl/Dockerfile
       target: openssl-client
       args:
-        VERSION: "3.6.0"
+        VERSION: "4.1.0"
     network_mode: host
     environment:
       CONTROL_PORT: "9115"
     volumes:
       - ../certs:/certs
-    command: -quic -alpn h3 -connect localhost:4433 
+    command: -quic -alpn h3 -connect localhost:4433 -CAfile /certs/ca.crt -verify_return_error
     tty: true
   quiche-google-client-latest:
     image: rub-nds/quic/quiche-google-client:latest
