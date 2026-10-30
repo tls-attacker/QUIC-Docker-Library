@@ -1,24 +1,20 @@
-FROM rub-nds/quic/alpine-build:3.19 AS xquic-base
-
-ARG VERSION_XQUIC
+FROM rub-nds/quic/alpine-build:3.19 AS babassl
 ARG VERSION_BABASSL
 
-# Clone projects
-RUN git clone --depth=1 --branch=v${VERSION_XQUIC} https://github.com/alibaba/xquic
-RUN git clone --depth 1 --branch=${VERSION_BABASSL} https://github.com/Tongsuo-Project/Tongsuo.git xquic/third_party/babassl
-
-# Build babassl
-WORKDIR /xquic/third_party/babassl/
+# Build babassl first, so it can be reused for several xquic versions
+RUN git clone --depth=1 --branch=${VERSION_BABASSL} https://github.com/Tongsuo-Project/Tongsuo.git /babassl
+WORKDIR /babassl
 RUN ./config --prefix=/usr/local/babassl
-RUN make -j
+RUN make -j$(nproc) build_libs
 
-# Build xquic
-WORKDIR /xquic/
-RUN git submodule update --init --recursive
-RUN mkdir -p build
+FROM babassl AS xquic-base
+ARG VERSION_XQUIC
+
+# Build xquic (only the demo programs)
+RUN git clone --depth=1 --branch=v${VERSION_XQUIC} https://github.com/alibaba/xquic /xquic
 WORKDIR /xquic/build/
-RUN cmake -DGCOV=on -DCMAKE_BUILD_TYPE=Debug -DXQC_ENABLE_TESTING=1 -DXQC_SUPPORT_SENDMMSG_BUILD=1 -DXQC_ENABLE_EVENT_LOG=1 -DXQC_ENABLE_BBR2=1 -DXQC_ENABLE_RENO=1 -DSSL_TYPE=babassl -DSSL_PATH=/xquic/third_party/babassl/ ..
-RUN make -j
+RUN cmake -DCMAKE_BUILD_TYPE=Debug -DXQC_ENABLE_TESTING=1 -DXQC_SUPPORT_SENDMMSG_BUILD=1 -DXQC_ENABLE_EVENT_LOG=1 -DXQC_ENABLE_BBR2=1 -DXQC_ENABLE_RENO=1 -DSSL_TYPE=babassl -DSSL_PATH=/babassl ..
+RUN make -j$(nproc) demo_server demo_client
 
 # Add a self-signed certificate for the server
 WORKDIR /xquic/build/demo/
