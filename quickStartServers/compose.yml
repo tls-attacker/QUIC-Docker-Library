@@ -114,16 +114,14 @@ services:
       - ../certs:/certs
       - ../www:/www
     command: 0.0.0.0:4433
-  ngtcp2-server-1.12.0:
-    image: rub-nds/quic/ngtcp2-server:1.12.0
+  ngtcp2-server-1.25.0:
+    image: rub-nds/quic/ngtcp2-server:1.25.0
     build:
       context: ../images
       dockerfile: ngtcp2/Dockerfile
       target: ngtcp2-server
       args:
-        VERSION_NGTCP2: "1.12.0"
-        VERSION_NGHTTP3: "1.9.0"
-        VERSION_BORINGSSL: "0.20250415.0"
+        VERSION_NGTCP2: "1.25.0"
     ports:
       - "8005:4433/udp"
       - "9005:8090"
