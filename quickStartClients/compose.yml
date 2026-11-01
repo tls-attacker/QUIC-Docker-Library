@@ -139,14 +139,14 @@ services:
     volumes:
       - ../certs:/certs
     command: -t /certs/ca.crt localhost 4433
-  proxygen-mvfst-client-2025.02.10.00:
-    image: rub-nds/quic/proxygen-mvfst-client:2025.02.10.00
+  proxygen-mvfst-client-2026.10.19.00:
+    image: rub-nds/quic/proxygen-mvfst-client:2026.10.19.00
     build:
       context: ../images
       dockerfile: proxygen-mvfst/Dockerfile
       target: proxygen-mvfst-client
       args:
-        VERSION: "2025.02.10.00"
+        VERSION: "2026.10.19.00"
     network_mode: host
     environment:
       CONTROL_PORT: "9107"
