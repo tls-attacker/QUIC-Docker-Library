@@ -144,14 +144,14 @@ services:
       - ../certs:/certs
       - ../www:/www
     command: -p 4433 -k /certs/server.key -c /certs/server.crt
-  proxygen-mvfst-server-2025.02.10.00:
-    image: rub-nds/quic/proxygen-mvfst-server:2025.02.10.00
+  proxygen-mvfst-server-2026.10.19.00:
+    image: rub-nds/quic/proxygen-mvfst-server:2026.10.19.00
     build:
       context: ../images
       dockerfile: proxygen-mvfst/Dockerfile
       target: proxygen-mvfst-server
       args:
-        VERSION: "2025.02.10.00"
+        VERSION: "2026.10.19.00"
     ports:
       - "8007:4433/udp"
       - "9007:8090"
