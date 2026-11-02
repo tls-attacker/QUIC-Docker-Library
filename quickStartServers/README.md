@@ -36,8 +36,9 @@ The table below lists the QUIC server implementations that can be built and star
 | quiche-cloudflare                | 8009     |
 | quicly                           | 8010     |
 | quinn                            | 8011     |
-| s2n-quic                         | 8012     |
-| xquic (babassl)                  | 8013     |
-| xquic (boringssl)                | 8014     |
-| openssl                          | 8015     |
-| quiche-google                    | 8016     |
+| s2n-quic (s2n-tls)               | 8012     |
+| s2n-quic (rustls)                | 8013     |
+| xquic (babassl)                  | 8014     |
+| xquic (boringssl)                | 8015     |
+| openssl                          | 8016     |
+| quiche-google                    | 8017     |

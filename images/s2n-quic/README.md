@@ -19,3 +19,4 @@
 ## Note
 
 - The client verifies the server certificate; pass the CA certificate with `--ca [CA_CERTIFICATE]`.
+- The server and the client support `s2n-tls` and `rustls` as TLS stacks. Both are part of every image; the build argument `TLS_IMPLEMENTATION` (`s2n-tls` or `rustls`) selects the one that the container uses.

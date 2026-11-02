@@ -219,17 +219,34 @@ services:
       - ../certs:/certs
       - ../www:/www
     command: --listen 0.0.0.0:4433 -k /certs/server.key -c /certs/server.crt /www
-  s2n-quic-server-1.91.0:
-    image: rub-nds/quic/s2n-quic-server:1.91.0
+  s2n-quic-server-s2n-tls-1.91.0:
+    image: rub-nds/quic/s2n-quic-server-s2n-tls:1.91.0
     build:
       context: ../images
       dockerfile: s2n-quic/Dockerfile
       target: s2n-quic-server
       args:
         VERSION: "1.91.0"
+        TLS_IMPLEMENTATION: "s2n-tls"
     ports:
       - "8012:4433/udp"
       - "9012:8090"
+    volumes:
+      - ../certs:/certs
+      - ../www:/www
+    command: --port 4433 --certificate /certs/server.crt --private-key /certs/server.key --www-dir /www
+  s2n-quic-server-rustls-1.91.0:
+    image: rub-nds/quic/s2n-quic-server-rustls:1.91.0
+    build:
+      context: ../images
+      dockerfile: s2n-quic/Dockerfile
+      target: s2n-quic-server
+      args:
+        VERSION: "1.91.0"
+        TLS_IMPLEMENTATION: "rustls"
+    ports:
+      - "8013:4433/udp"
+      - "9013:8090"
     volumes:
       - ../certs:/certs
       - ../www:/www
@@ -244,8 +261,8 @@ services:
         VERSION_XQUIC: "1.9.8"
         VERSION_BABASSL: "8.3-stable"
     ports:
-      - "8013:4433/udp"
-      - "9013:8090"
+      - "8014:4433/udp"
+      - "9014:8090"
     volumes:
       - ../certs/server.crt:/xquic/build/demo/server.crt
       - ../certs/server.key:/xquic/build/demo/server.key
@@ -261,8 +278,8 @@ services:
         VERSION_XQUIC: "1.9.8"
         VERSION_BORINGSSL: "0.20250415.0"
     ports:
-      - "8014:4433/udp"
-      - "9014:8090"
+      - "8015:4433/udp"
+      - "9015:8090"
     volumes:
       - ../certs/server.crt:/xquic/build/demo/server.crt
       - ../certs/server.key:/xquic/build/demo/server.key
@@ -277,8 +294,8 @@ services:
       args:
         VERSION: "4.1.0"
     ports:
-      - "8015:4433/udp"
-      - "9015:8090"
+      - "8016:4433/udp"
+      - "9016:8090"
     volumes:
       - ../certs:/certs
       - ../www:/www
@@ -292,8 +309,8 @@ services:
       args:
         COMMIT: "cc6c73f82d1abb23d3564402a4cce60d090ec629"
     ports:
-      - "8016:4433/udp"
-      - "9016:8090"
+      - "8017:4433/udp"
+      - "9017:8090"
     volumes:
       - ../certs:/certs
       - ../www:/www

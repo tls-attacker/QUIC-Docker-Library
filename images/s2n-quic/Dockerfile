@@ -7,11 +7,13 @@ WORKDIR /s2n-quic
 RUN cargo build --bin s2n-quic-qns --locked || cargo build --bin s2n-quic-qns
 
 FROM s2n-quic-base AS s2n-quic-server
-ENV QUIC_CMD="cargo run --bin s2n-quic-qns -- interop server"
+ARG TLS_IMPLEMENTATION
+ENV QUIC_CMD="cargo run --bin s2n-quic-qns -- interop server --tls ${TLS_IMPLEMENTATION}"
 ENV CONTROL_MODE="server"
 ENTRYPOINT ["python3", "/control_server.py"]
 
 FROM s2n-quic-base AS s2n-quic-client
-ENV QUIC_CMD="cargo run --bin s2n-quic-qns -- interop client"
+ARG TLS_IMPLEMENTATION
+ENV QUIC_CMD="cargo run --bin s2n-quic-qns -- interop client --tls ${TLS_IMPLEMENTATION}"
 ENV CONTROL_MODE="client"
 ENTRYPOINT ["python3", "/control_server.py"]
