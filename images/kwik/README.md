@@ -18,4 +18,5 @@
 
 ## Note
 
-- The client always connects to `localhost` and does not verify the server certificate; it has no option to change either.
+- The client always connects to `localhost`.
+- The client does not verify the server certificate and has no option to enable verification.

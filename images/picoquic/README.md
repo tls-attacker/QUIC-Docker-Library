@@ -19,5 +19,4 @@
 ## Note
 
 - The signature and hash algorithms list should only contain TLS 1.3 allowed algorithms.
-- The client verifies the server certificate only with `-t [CA_CERTIFICATE]`; without it, certificate verification is
-  disabled.
+- The client verifies the server certificate; pass the CA certificate with `-t [CA_CERTIFICATE]`. Without it, certificate verification is disabled.

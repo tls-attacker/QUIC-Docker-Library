@@ -19,4 +19,4 @@
 ## Note
 
 - The server requires the SNI extension with the Common Name (CN) that is passed.
-- The client does not verify the server certificate. Its option `-C [DIRECTORY]` is accepted but has no effect.
+- The client does not verify the server certificate and has no option to enable verification. Its option `-C [DIRECTORY]` is accepted but has no effect.

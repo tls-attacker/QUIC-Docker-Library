@@ -18,4 +18,4 @@
 
 ## Note
 
-- The client verifies the server certificate against the system trust store unless `-insecure` is given; set `SSL_CERT_FILE` to the CA certificate.
+- The client verifies the server certificate against the system trust store; set `SSL_CERT_FILE` to the CA certificate. With `-insecure`, certificate verification is disabled.

@@ -19,5 +19,4 @@
 ## Note
 
 - The signature and hash algorithms list should only contain TLS 1.3 allowed algorithms.
-- The client verifies the server certificate only with `-V`; without it, certificate verification is disabled. `-V`
-  uses OpenSSL's default trust store, so set `SSL_CERT_FILE` to the CA certificate.
+- The client verifies the server certificate only with `-V`, against the default trust store of OpenSSL; set `SSL_CERT_FILE` to the CA certificate. Without `-V`, certificate verification is disabled.

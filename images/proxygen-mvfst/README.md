@@ -18,4 +18,4 @@
 
 ## Note
 
-- The client does not verify the server certificate by default. From 2025.07.28.00 on, `-verify_server_cert` enables the verification against the default CA store of OpenSSL, which can be set with the environment variable `SSL_CERT_FILE=[CA_CERTIFICATE]`.
+- The client verifies the server certificate only with `-verify_server_cert` (from 2025.07.28.00 on), against the default trust store of OpenSSL; set `SSL_CERT_FILE` to the CA certificate. Without `-verify_server_cert`, certificate verification is disabled.

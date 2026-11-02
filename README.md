@@ -4,7 +4,7 @@ This project provides Dockerfiles for various QUIC implementations, supporting b
 
 ## Generating Certificates and Keys
 
-To generate certificates and keys, use the [generateCerts.sh](certs/generateCerts.sh) script located in the [certs](certs) directory. This script uses [OpenSSL](https://github.com/openssl/openssl).
+To generate certificates and keys, use the [generateCerts.sh](certs/generateCerts.sh) script located in the [certs](certs) directory. This script uses [OpenSSL](https://github.com/openssl/openssl). It also creates an NSS database, which requires `certutil` and `pk12util`.
 
 ## Building QUIC Implementations
 

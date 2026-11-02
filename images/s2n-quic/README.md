@@ -15,3 +15,7 @@
 ```bash
 --ca [CA_CERTIFICATE] --ip [IP] --port [PORT] [URL]
 ```
+
+## Note
+
+- The client verifies the server certificate; pass the CA certificate with `--ca [CA_CERTIFICATE]`.
