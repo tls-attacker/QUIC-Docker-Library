@@ -129,17 +129,123 @@ services:
     volumes:
       - ../certs:/certs
     command: https://localhost:4433
-  ngtcp2-client-1.25.0:
-    image: rub-nds/quic/ngtcp2-client:1.25.0
+  ngtcp2-client-boringssl-1.25.0:
+    image: rub-nds/quic/ngtcp2-client-boringssl:1.25.0
     build:
       context: ../images
       dockerfile: ngtcp2/Dockerfile
       target: ngtcp2-client
       args:
         VERSION_NGTCP2: "1.25.0"
+        TLS_IMPLEMENTATION: "boringssl"
     network_mode: host
     environment:
       CONTROL_PORT: "9106"
+    volumes:
+      - ../certs:/certs
+    command: localhost 4433
+  ngtcp2-client-awslc-1.25.0:
+    image: rub-nds/quic/ngtcp2-client-awslc:1.25.0
+    build:
+      context: ../images
+      dockerfile: ngtcp2/Dockerfile
+      target: ngtcp2-client
+      args:
+        VERSION_NGTCP2: "1.25.0"
+        TLS_IMPLEMENTATION: "awslc"
+    network_mode: host
+    environment:
+      CONTROL_PORT: "9107"
+    volumes:
+      - ../certs:/certs
+    command: localhost 4433
+  ngtcp2-client-quictls-1.25.0:
+    image: rub-nds/quic/ngtcp2-client-quictls:1.25.0
+    build:
+      context: ../images
+      dockerfile: ngtcp2/Dockerfile
+      target: ngtcp2-client
+      args:
+        VERSION_NGTCP2: "1.25.0"
+        TLS_IMPLEMENTATION: "quictls"
+    network_mode: host
+    environment:
+      CONTROL_PORT: "9108"
+    volumes:
+      - ../certs:/certs
+    command: localhost 4433
+  ngtcp2-client-libressl-1.25.0:
+    image: rub-nds/quic/ngtcp2-client-libressl:1.25.0
+    build:
+      context: ../images
+      dockerfile: ngtcp2/Dockerfile
+      target: ngtcp2-client
+      args:
+        VERSION_NGTCP2: "1.25.0"
+        TLS_IMPLEMENTATION: "libressl"
+    network_mode: host
+    environment:
+      CONTROL_PORT: "9109"
+    volumes:
+      - ../certs:/certs
+    command: localhost 4433
+  ngtcp2-client-openssl-1.25.0:
+    image: rub-nds/quic/ngtcp2-client-openssl:1.25.0
+    build:
+      context: ../images
+      dockerfile: ngtcp2/Dockerfile
+      target: ngtcp2-client
+      args:
+        VERSION_NGTCP2: "1.25.0"
+        TLS_IMPLEMENTATION: "openssl"
+    network_mode: host
+    environment:
+      CONTROL_PORT: "9110"
+    volumes:
+      - ../certs:/certs
+    command: localhost 4433
+  ngtcp2-client-gnutls-1.25.0:
+    image: rub-nds/quic/ngtcp2-client-gnutls:1.25.0
+    build:
+      context: ../images
+      dockerfile: ngtcp2/Dockerfile
+      target: ngtcp2-client
+      args:
+        VERSION_NGTCP2: "1.25.0"
+        TLS_IMPLEMENTATION: "gnutls"
+    network_mode: host
+    environment:
+      CONTROL_PORT: "9111"
+    volumes:
+      - ../certs:/certs
+    command: localhost 4433
+  ngtcp2-client-wolfssl-1.25.0:
+    image: rub-nds/quic/ngtcp2-client-wolfssl:1.25.0
+    build:
+      context: ../images
+      dockerfile: ngtcp2/Dockerfile
+      target: ngtcp2-client
+      args:
+        VERSION_NGTCP2: "1.25.0"
+        TLS_IMPLEMENTATION: "wolfssl"
+    network_mode: host
+    environment:
+      CONTROL_PORT: "9112"
+    volumes:
+      - ../certs:/certs
+    command: localhost 4433
+  ngtcp2-client-picotls-1.25.0:
+    image: rub-nds/quic/ngtcp2-client-picotls:1.25.0
+    build:
+      context: ../images
+      dockerfile: ngtcp2/Dockerfile
+      target: ngtcp2-client
+      args:
+        VERSION_NGTCP2: "1.25.0"
+        TLS_IMPLEMENTATION: "picotls"
+    network_mode: host
+    environment:
+      CONTROL_PORT: "9113"
     volumes:
       - ../certs:/certs
     command: localhost 4433
@@ -153,7 +259,7 @@ services:
         COMMIT: "742488f5609ce285a6f9b8aa11b4ef7581036f8a"
     network_mode: host
     environment:
-      CONTROL_PORT: "9107"
+      CONTROL_PORT: "9114"
     volumes:
       - ../certs:/certs
     command: -t /certs/ca.crt localhost 4433
@@ -167,7 +273,7 @@ services:
         VERSION: "2026.10.19.00"
     network_mode: host
     environment:
-      CONTROL_PORT: "9108"
+      CONTROL_PORT: "9115"
       SSL_CERT_FILE: /certs/ca.crt
     volumes:
       - ../certs:/certs
@@ -182,7 +288,7 @@ services:
         VERSION: "0.64.1"
     network_mode: host
     environment:
-      CONTROL_PORT: "9109"
+      CONTROL_PORT: "9116"
       SSL_CERT_FILE: /certs/ca.crt
     volumes:
       - ../certs:/certs
@@ -197,7 +303,7 @@ services:
         VERSION: "0.30.0"
     network_mode: host
     environment:
-      CONTROL_PORT: "9110"
+      CONTROL_PORT: "9117"
       SSL_CERT_FILE: /certs/ca.crt
     volumes:
       - ../certs:/certs
@@ -212,7 +318,7 @@ services:
         COMMIT: "91b467f167cd9ef6f3e3d7f19bcec97d2c30912b"
     network_mode: host
     environment:
-      CONTROL_PORT: "9111"
+      CONTROL_PORT: "9118"
       SSL_CERT_FILE: /certs/ca.crt
     volumes:
       - ../certs:/certs
@@ -227,7 +333,7 @@ services:
         VERSION: "quinn-0.11.12"
     network_mode: host
     environment:
-      CONTROL_PORT: "9112"
+      CONTROL_PORT: "9119"
     volumes:
       - ../certs:/certs
     command: --ca /certs/ca.der https://localhost:4433
@@ -242,7 +348,7 @@ services:
         TLS_IMPLEMENTATION: "s2n-tls"
     network_mode: host
     environment:
-      CONTROL_PORT: "9113"
+      CONTROL_PORT: "9120"
     volumes:
       - ../certs:/certs
     command: --ca /certs/ca.crt --ip 127.0.0.1 --port 4433 https://localhost:4433/index.html
@@ -257,7 +363,7 @@ services:
         TLS_IMPLEMENTATION: "rustls"
     network_mode: host
     environment:
-      CONTROL_PORT: "9114"
+      CONTROL_PORT: "9121"
     volumes:
       - ../certs:/certs
     command: --ca /certs/ca.crt --ip 127.0.0.1 --port 4433 https://localhost:4433/index.html
@@ -272,7 +378,7 @@ services:
         VERSION_BABASSL: "8.3-stable"
     network_mode: host
     environment:
-      CONTROL_PORT: "9115"
+      CONTROL_PORT: "9122"
     volumes:
       - ../certs:/certs
     command: -a 127.0.0.1 -p 4433 -U https://localhost.com/ -A h3
@@ -287,7 +393,7 @@ services:
         VERSION_BORINGSSL: "0.20250415.0"
     network_mode: host
     environment:
-      CONTROL_PORT: "9116"
+      CONTROL_PORT: "9123"
     volumes:
       - ../certs:/certs
     command: -a 127.0.0.1 -p 4433 -U https://localhost.com/ -A h3
@@ -301,7 +407,7 @@ services:
         VERSION: "4.1.0"
     network_mode: host
     environment:
-      CONTROL_PORT: "9117"
+      CONTROL_PORT: "9124"
     volumes:
       - ../certs:/certs
     command: -quic -alpn h3 -connect localhost:4433 -CAfile /certs/ca.crt -verify_return_error
@@ -316,7 +422,7 @@ services:
         COMMIT: "cc6c73f82d1abb23d3564402a4cce60d090ec629"
     network_mode: host
     environment:
-      CONTROL_PORT: "9118"
+      CONTROL_PORT: "9125"
     volumes:
       - ../certs:/certs
     command: --disable_certificate_verification https://localhost:4433

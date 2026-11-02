@@ -30,16 +30,23 @@ The table below lists the QUIC server implementations that can be built and star
 | msquic (openssl)                 | 8003     |
 | msquic (quictls)                 | 8004     |
 | neqo                             | 8005     |
-| ngtcp2                           | 8006     |
-| picoquic                         | 8007     |
-| proxygen-mvfst                   | 8008     |
-| quic-go                          | 8009     |
-| quiche-cloudflare                | 8010     |
-| quicly                           | 8011     |
-| quinn                            | 8012     |
-| s2n-quic (s2n-tls)               | 8013     |
-| s2n-quic (rustls)                | 8014     |
-| xquic (babassl)                  | 8015     |
-| xquic (boringssl)                | 8016     |
-| openssl                          | 8017     |
-| quiche-google                    | 8018     |
+| ngtcp2 (boringssl)               | 8006     |
+| ngtcp2 (awslc)                   | 8007     |
+| ngtcp2 (quictls)                 | 8008     |
+| ngtcp2 (libressl)                | 8009     |
+| ngtcp2 (openssl)                 | 8010     |
+| ngtcp2 (gnutls)                  | 8011     |
+| ngtcp2 (wolfssl)                 | 8012     |
+| ngtcp2 (picotls)                 | 8013     |
+| picoquic                         | 8014     |
+| proxygen-mvfst                   | 8015     |
+| quic-go                          | 8016     |
+| quiche-cloudflare                | 8017     |
+| quicly                           | 8018     |
+| quinn                            | 8019     |
+| s2n-quic (s2n-tls)               | 8020     |
+| s2n-quic (rustls)                | 8021     |
+| xquic (babassl)                  | 8022     |
+| xquic (boringssl)                | 8023     |
+| openssl                          | 8024     |
+| quiche-google                    | 8025     |
