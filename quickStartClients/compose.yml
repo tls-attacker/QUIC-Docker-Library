@@ -213,17 +213,33 @@ services:
     volumes:
       - ../certs:/certs
     command: --ca /certs/ca.der https://localhost:4433
-  s2n-quic-client-1.91.0:
-    image: rub-nds/quic/s2n-quic-client:1.91.0
+  s2n-quic-client-s2n-tls-1.91.0:
+    image: rub-nds/quic/s2n-quic-client-s2n-tls:1.91.0
     build:
       context: ../images
       dockerfile: s2n-quic/Dockerfile
       target: s2n-quic-client
       args:
         VERSION: "1.91.0"
+        TLS_IMPLEMENTATION: "s2n-tls"
     network_mode: host
     environment:
       CONTROL_PORT: "9112"
+    volumes:
+      - ../certs:/certs
+    command: --ca /certs/ca.crt --ip 127.0.0.1 --port 4433 https://localhost:4433/index.html
+  s2n-quic-client-rustls-1.91.0:
+    image: rub-nds/quic/s2n-quic-client-rustls:1.91.0
+    build:
+      context: ../images
+      dockerfile: s2n-quic/Dockerfile
+      target: s2n-quic-client
+      args:
+        VERSION: "1.91.0"
+        TLS_IMPLEMENTATION: "rustls"
+    network_mode: host
+    environment:
+      CONTROL_PORT: "9113"
     volumes:
       - ../certs:/certs
     command: --ca /certs/ca.crt --ip 127.0.0.1 --port 4433 https://localhost:4433/index.html
@@ -238,7 +254,7 @@ services:
         VERSION_BABASSL: "8.3-stable"
     network_mode: host
     environment:
-      CONTROL_PORT: "9113"
+      CONTROL_PORT: "9114"
     volumes:
       - ../certs:/certs
     command: -a 127.0.0.1 -p 4433 -U https://localhost.com/ -A h3
@@ -253,7 +269,7 @@ services:
         VERSION_BORINGSSL: "0.20250415.0"
     network_mode: host
     environment:
-      CONTROL_PORT: "9114"
+      CONTROL_PORT: "9115"
     volumes:
       - ../certs:/certs
     command: -a 127.0.0.1 -p 4433 -U https://localhost.com/ -A h3
@@ -267,7 +283,7 @@ services:
         VERSION: "4.1.0"
     network_mode: host
     environment:
-      CONTROL_PORT: "9115"
+      CONTROL_PORT: "9116"
     volumes:
       - ../certs:/certs
     command: -quic -alpn h3 -connect localhost:4433 -CAfile /certs/ca.crt -verify_return_error
@@ -282,7 +298,7 @@ services:
         COMMIT: "cc6c73f82d1abb23d3564402a4cce60d090ec629"
     network_mode: host
     environment:
-      CONTROL_PORT: "9116"
+      CONTROL_PORT: "9117"
     volumes:
       - ../certs:/certs
     command: --disable_certificate_verification https://localhost:4433
