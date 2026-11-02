@@ -99,6 +99,23 @@ services:
       - ../www:/www
     command: -cert_file:/certs/server.crt -key_file:/certs/server.key
     tty: true
+  msquic-server-quictls-2.6.3:
+    image: rub-nds/quic/msquic-server-quictls:2.6.3
+    build:
+      context: ../images
+      dockerfile: msquic/Dockerfile
+      target: msquic-server
+      args:
+        VERSION: "2.6.3"
+        TLS_IMPLEMENTATION: "quictls"
+    ports:
+      - "8004:4567/udp"
+      - "9004:8090"
+    volumes:
+      - ../certs:/certs
+      - ../www:/www
+    command: -cert_file:/certs/server.crt -key_file:/certs/server.key
+    tty: true
   neqo-server-0.30.1:
     image: rub-nds/quic/neqo-server:0.30.1
     build:
@@ -108,8 +125,8 @@ services:
       args:
         VERSION: "0.30.1"
     ports:
-      - "8004:4433/udp"
-      - "9004:8090"
+      - "8005:4433/udp"
+      - "9005:8090"
     volumes:
       - ../certs:/certs
       - ../www:/www
@@ -123,8 +140,8 @@ services:
       args:
         VERSION_NGTCP2: "1.25.0"
     ports:
-      - "8005:4433/udp"
-      - "9005:8090"
+      - "8006:4433/udp"
+      - "9006:8090"
     volumes:
       - ../certs:/certs
       - ../www:/www
@@ -138,8 +155,8 @@ services:
       args:
         COMMIT: "742488f5609ce285a6f9b8aa11b4ef7581036f8a"
     ports:
-      - "8006:4433/udp"
-      - "9006:8090"
+      - "8007:4433/udp"
+      - "9007:8090"
     volumes:
       - ../certs:/certs
       - ../www:/www
@@ -153,8 +170,8 @@ services:
       args:
         VERSION: "2026.10.19.00"
     ports:
-      - "8007:4433/udp"
-      - "9007:8090"
+      - "8008:4433/udp"
+      - "9008:8090"
     volumes:
       - ../certs:/certs
       - ../www:/www
@@ -168,8 +185,8 @@ services:
       args:
         VERSION: "0.64.1"
     ports:
-      - "8008:4433/udp"
-      - "9008:8090"
+      - "8009:4433/udp"
+      - "9009:8090"
     volumes:
       - ../certs:/certs
       - ../www:/www
@@ -183,8 +200,8 @@ services:
       args:
         VERSION: "0.30.0"
     ports:
-      - "8009:4433/udp"
-      - "9009:8090"
+      - "8010:4433/udp"
+      - "9010:8090"
     volumes:
       - ../certs:/certs
       - ../www:/www
@@ -198,8 +215,8 @@ services:
       args:
         COMMIT: "91b467f167cd9ef6f3e3d7f19bcec97d2c30912b"
     ports:
-      - "8010:4433/udp"
-      - "9010:8090"
+      - "8011:4433/udp"
+      - "9011:8090"
     volumes:
       - ../certs:/certs
       - ../www:/www
@@ -213,8 +230,8 @@ services:
       args:
         VERSION: "quinn-0.11.12"
     ports:
-      - "8011:4433/udp"
-      - "9011:8090"
+      - "8012:4433/udp"
+      - "9012:8090"
     volumes:
       - ../certs:/certs
       - ../www:/www
@@ -229,8 +246,8 @@ services:
         VERSION: "1.91.0"
         TLS_IMPLEMENTATION: "s2n-tls"
     ports:
-      - "8012:4433/udp"
-      - "9012:8090"
+      - "8013:4433/udp"
+      - "9013:8090"
     volumes:
       - ../certs:/certs
       - ../www:/www
@@ -245,8 +262,8 @@ services:
         VERSION: "1.91.0"
         TLS_IMPLEMENTATION: "rustls"
     ports:
-      - "8013:4433/udp"
-      - "9013:8090"
+      - "8014:4433/udp"
+      - "9014:8090"
     volumes:
       - ../certs:/certs
       - ../www:/www
@@ -261,8 +278,8 @@ services:
         VERSION_XQUIC: "1.9.8"
         VERSION_BABASSL: "8.3-stable"
     ports:
-      - "8014:4433/udp"
-      - "9014:8090"
+      - "8015:4433/udp"
+      - "9015:8090"
     volumes:
       - ../certs/server.crt:/xquic/build/demo/server.crt
       - ../certs/server.key:/xquic/build/demo/server.key
@@ -278,8 +295,8 @@ services:
         VERSION_XQUIC: "1.9.8"
         VERSION_BORINGSSL: "0.20250415.0"
     ports:
-      - "8015:4433/udp"
-      - "9015:8090"
+      - "8016:4433/udp"
+      - "9016:8090"
     volumes:
       - ../certs/server.crt:/xquic/build/demo/server.crt
       - ../certs/server.key:/xquic/build/demo/server.key
@@ -294,8 +311,8 @@ services:
       args:
         VERSION: "4.1.0"
     ports:
-      - "8016:4433/udp"
-      - "9016:8090"
+      - "8017:4433/udp"
+      - "9017:8090"
     volumes:
       - ../certs:/certs
       - ../www:/www
@@ -309,8 +326,8 @@ services:
       args:
         COMMIT: "cc6c73f82d1abb23d3564402a4cce60d090ec629"
     ports:
-      - "8017:4433/udp"
-      - "9017:8090"
+      - "8018:4433/udp"
+      - "9018:8090"
     volumes:
       - ../certs:/certs
       - ../www:/www

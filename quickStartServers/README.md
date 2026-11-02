@@ -27,18 +27,19 @@ The table below lists the QUIC server implementations that can be built and star
 | aioquic                          | 8000     |
 | kwik                             | 8001     |
 | lsquic                           | 8002     |
-| msquic                           | 8003     |
-| neqo                             | 8004     |
-| ngtcp2                           | 8005     |
-| picoquic                         | 8006     |
-| proxygen-mvfst                   | 8007     |
-| quic-go                          | 8008     |
-| quiche-cloudflare                | 8009     |
-| quicly                           | 8010     |
-| quinn                            | 8011     |
-| s2n-quic (s2n-tls)               | 8012     |
-| s2n-quic (rustls)                | 8013     |
-| xquic (babassl)                  | 8014     |
-| xquic (boringssl)                | 8015     |
-| openssl                          | 8016     |
-| quiche-google                    | 8017     |
+| msquic (openssl)                 | 8003     |
+| msquic (quictls)                 | 8004     |
+| neqo                             | 8005     |
+| ngtcp2                           | 8006     |
+| picoquic                         | 8007     |
+| proxygen-mvfst                   | 8008     |
+| quic-go                          | 8009     |
+| quiche-cloudflare                | 8010     |
+| quicly                           | 8011     |
+| quinn                            | 8012     |
+| s2n-quic (s2n-tls)               | 8013     |
+| s2n-quic (rustls)                | 8014     |
+| xquic (babassl)                  | 8015     |
+| xquic (boringssl)                | 8016     |
+| openssl                          | 8017     |
+| quiche-google                    | 8018     |
