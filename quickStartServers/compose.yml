@@ -113,7 +113,7 @@ services:
     volumes:
       - ../certs:/certs
       - ../www:/www
-    command: 0.0.0.0:4433
+    command: --db /certs/nssdb --key server 0.0.0.0:4433
   ngtcp2-server-1.25.0:
     image: rub-nds/quic/ngtcp2-server:1.25.0
     build:

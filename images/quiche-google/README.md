@@ -19,4 +19,4 @@
 ## Note
 
 - The server expects a certificate chain and a PKCS#8 private key.
-- The client cannot verify the server certificate: the standalone build has no certificate verifier and the client has no option for a CA certificate. Start it with `--disable_certificate_verification`; without this option, it crashes.
+- The client does not verify the server certificate and has no option to enable verification: the standalone build has no certificate verifier. Start it with `--disable_certificate_verification`; without this option, it crashes.

@@ -5,3 +5,5 @@
 *.csr
 *.pem
 *.ext
+*.p12
+nssdb/

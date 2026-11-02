@@ -18,5 +18,5 @@
 
 ## Note
 
-- The implementation does not speak HTTP/3 but only a "sample" protocol. We replace the "sample" ALPN with h3.
-- The client verifies the server certificate against OpenSSL's default trust store, so set `SSL_CERT_FILE` to the CA certificate. With `-unsecure`, certificate verification is disabled.
+- The implementation does not speak HTTP/3 but only a "sample" protocol. We replace the "sample" ALPN with "h3".
+- The client verifies the server certificate against the default trust store of OpenSSL; set `SSL_CERT_FILE` to the CA certificate. With `-unsecure`, certificate verification is disabled.

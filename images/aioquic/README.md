@@ -15,3 +15,7 @@
 ```bash
 [URL] # e.g., https://localhost:4433
 ```
+
+## Note
+
+- The client verifies the server certificate; pass the CA certificate with `--ca-certs [CA_CERTIFICATE]`. With `--insecure`, certificate verification is disabled.

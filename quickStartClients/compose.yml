@@ -50,7 +50,7 @@ services:
       CONTROL_PORT: "9100"
     volumes:
       - ../certs:/certs
-    command: https://localhost:4433 --insecure
+    command: --ca-certs /certs/ca.crt https://localhost:4433
   kwik-client-0.12.1:
     image: rub-nds/quic/kwik-client:0.12.1
     build:
@@ -150,9 +150,10 @@ services:
     network_mode: host
     environment:
       CONTROL_PORT: "9107"
+      SSL_CERT_FILE: /certs/ca.crt
     volumes:
       - ../certs:/certs
-    command: -host localhost -port 4433 -quic_version 0x00000001
+    command: -host localhost -port 4433 -quic_version 0x00000001 -verify_server_cert
   quic-go-client-0.64.1:
     image: rub-nds/quic/quic-go-client:0.64.1
     build:
@@ -179,9 +180,10 @@ services:
     network_mode: host
     environment:
       CONTROL_PORT: "9109"
+      SSL_CERT_FILE: /certs/ca.crt
     volumes:
       - ../certs:/certs
-    command: --trust-origin-ca-pem /certs/ca.crt --wire-version 00000001 https://localhost:4433
+    command: --wire-version 00000001 https://localhost:4433
   quicly-client-91b467f:
     image: rub-nds/quic/quicly-client:91b467f
     build:
@@ -239,7 +241,7 @@ services:
       CONTROL_PORT: "9113"
     volumes:
       - ../certs:/certs
-    command: -a localhost -p 4433 -U https://localhost.com/ -A h3
+    command: -a 127.0.0.1 -p 4433 -U https://localhost.com/ -A h3
   xquic-client-boringssl-1.9.8:
     image: rub-nds/quic/xquic-client-boringssl:1.9.8
     build:
@@ -254,7 +256,7 @@ services:
       CONTROL_PORT: "9114"
     volumes:
       - ../certs:/certs
-    command: -a localhost -p 4433 -U https://localhost.com/ -A h3
+    command: -a 127.0.0.1 -p 4433 -U https://localhost.com/ -A h3
   openssl-client-4.1.0:
     image: rub-nds/quic/openssl-client:4.1.0
     build:

@@ -18,4 +18,4 @@
 
 ## Note
 
-- The client does not verify the server certificate and has no option to enable it.
+- The client does not verify the server certificate and has no option to enable verification.
