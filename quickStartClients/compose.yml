@@ -455,3 +455,17 @@ services:
     volumes:
       - ../certs:/certs
     command: --host 127.0.0.1 --port 4433 --ca /certs/ca.crt
+  go-x-net-client-0.62.0:
+    image: rub-nds/quic/go-x-net-client:0.62.0
+    build:
+      context: ../images
+      dockerfile: go-x-net/Dockerfile
+      target: go-x-net-client
+      args:
+        VERSION: "0.62.0"
+    network_mode: host
+    environment:
+      CONTROL_PORT: "9128"
+    volumes:
+      - ../certs:/certs
+    command: https://localhost:4433/index.html
