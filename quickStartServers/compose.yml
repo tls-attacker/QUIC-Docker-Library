@@ -505,3 +505,51 @@ services:
       - ../certs:/certs
       - ../www:/www
     command: -l 0.0.0.0:4433 -c /certs/server.rsa.crt -k /certs/server.rsa.key --root /www
+  rama-server-boringssl-339a0f8:
+    image: rub-nds/quic/rama-server-boringssl:339a0f8
+    build:
+      context: ../images
+      dockerfile: rama/Dockerfile
+      target: rama-server
+      args:
+        COMMIT: "339a0f8c21e43f88a149f83f27243349e76b0a5c"
+        TLS_IMPLEMENTATION: "boringssl"
+    ports:
+      - "8030:4433/udp"
+      - "9030:8090"
+    volumes:
+      - ../certs:/certs
+      - ../www:/www
+    command: --listen 0.0.0.0:4433 --cert /certs/server.rsa.crt --key /certs/server.rsa.key
+  rama-server-rustls-ring-339a0f8:
+    image: rub-nds/quic/rama-server-rustls-ring:339a0f8
+    build:
+      context: ../images
+      dockerfile: rama/Dockerfile
+      target: rama-server
+      args:
+        COMMIT: "339a0f8c21e43f88a149f83f27243349e76b0a5c"
+        TLS_IMPLEMENTATION: "rustls-ring"
+    ports:
+      - "8031:4433/udp"
+      - "9031:8090"
+    volumes:
+      - ../certs:/certs
+      - ../www:/www
+    command: --listen 0.0.0.0:4433 --cert /certs/server.rsa.crt --key /certs/server.rsa.key
+  rama-server-rustls-aws-lc-339a0f8:
+    image: rub-nds/quic/rama-server-rustls-aws-lc:339a0f8
+    build:
+      context: ../images
+      dockerfile: rama/Dockerfile
+      target: rama-server
+      args:
+        COMMIT: "339a0f8c21e43f88a149f83f27243349e76b0a5c"
+        TLS_IMPLEMENTATION: "rustls-aws-lc"
+    ports:
+      - "8032:4433/udp"
+      - "9032:8090"
+    volumes:
+      - ../certs:/certs
+      - ../www:/www
+    command: --listen 0.0.0.0:4433 --cert /certs/server.rsa.crt --key /certs/server.rsa.key

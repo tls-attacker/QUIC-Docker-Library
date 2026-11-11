@@ -483,3 +483,48 @@ services:
     volumes:
       - ../certs:/certs
     command: https://localhost:4433/index.html
+  rama-client-boringssl-339a0f8:
+    image: rub-nds/quic/rama-client-boringssl:339a0f8
+    build:
+      context: ../images
+      dockerfile: rama/Dockerfile
+      target: rama-client
+      args:
+        COMMIT: "339a0f8c21e43f88a149f83f27243349e76b0a5c"
+        TLS_IMPLEMENTATION: "boringssl"
+    network_mode: host
+    environment:
+      CONTROL_PORT: "9130"
+    volumes:
+      - ../certs:/certs
+    command: --ca /certs/ca.crt --url https://localhost:4433/
+  rama-client-rustls-ring-339a0f8:
+    image: rub-nds/quic/rama-client-rustls-ring:339a0f8
+    build:
+      context: ../images
+      dockerfile: rama/Dockerfile
+      target: rama-client
+      args:
+        COMMIT: "339a0f8c21e43f88a149f83f27243349e76b0a5c"
+        TLS_IMPLEMENTATION: "rustls-ring"
+    network_mode: host
+    environment:
+      CONTROL_PORT: "9131"
+    volumes:
+      - ../certs:/certs
+    command: --ca /certs/ca.crt --url https://localhost:4433/
+  rama-client-rustls-aws-lc-339a0f8:
+    image: rub-nds/quic/rama-client-rustls-aws-lc:339a0f8
+    build:
+      context: ../images
+      dockerfile: rama/Dockerfile
+      target: rama-client
+      args:
+        COMMIT: "339a0f8c21e43f88a149f83f27243349e76b0a5c"
+        TLS_IMPLEMENTATION: "rustls-aws-lc"
+    network_mode: host
+    environment:
+      CONTROL_PORT: "9132"
+    volumes:
+      - ../certs:/certs
+    command: --ca /certs/ca.crt --url https://localhost:4433/
