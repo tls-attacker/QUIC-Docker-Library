@@ -441,3 +441,17 @@ services:
     volumes:
       - ../certs:/certs
     command: -e localhost 4433
+  swift-nio-quic-client-0.7.0:
+    image: rub-nds/quic/swift-nio-quic-client:0.7.0
+    build:
+      context: ../images/swift-nio-quic
+      dockerfile: Dockerfile
+      target: swift-nio-quic-client
+      args:
+        VERSION: "0.7.0"
+    network_mode: host
+    environment:
+      CONTROL_PORT: "9127"
+    volumes:
+      - ../certs:/certs
+    command: --host 127.0.0.1 --port 4433 --ca /certs/ca.crt
