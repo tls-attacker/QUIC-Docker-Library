@@ -51,3 +51,4 @@ The table below lists the QUIC server implementations that can be built and star
 | openssl                          | 8024     |
 | quiche-google                    | 8025     |
 | haskell-quic                     | 8026     |
+| swift-nio-quic                   | 8027     |

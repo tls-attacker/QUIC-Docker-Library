@@ -1,0 +1,33 @@
+services:
+  swift-nio-quic-server-0.7.0:
+    image: rub-nds/quic/swift-nio-quic-server:0.7.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: swift-nio-quic-server
+      args:
+        VERSION: "0.7.0"
+  swift-nio-quic-client-0.7.0:
+    image: rub-nds/quic/swift-nio-quic-client:0.7.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: swift-nio-quic-client
+      args:
+        VERSION: "0.7.0"
+  swift-nio-quic-server-0.6.0:
+    image: rub-nds/quic/swift-nio-quic-server:0.6.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: swift-nio-quic-server
+      args:
+        VERSION: "0.6.0"
+  swift-nio-quic-client-0.6.0:
+    image: rub-nds/quic/swift-nio-quic-client:0.6.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: swift-nio-quic-client
+      args:
+        VERSION: "0.6.0"

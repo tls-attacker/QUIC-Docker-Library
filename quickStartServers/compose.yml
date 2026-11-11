@@ -460,3 +460,17 @@ services:
       - ../certs:/certs
       - ../www:/www
     command: -c /certs/server.crt -k /certs/server.key 0.0.0.0 4433
+  swift-nio-quic-server-0.7.0:
+    image: rub-nds/quic/swift-nio-quic-server:0.7.0
+    build:
+      context: ../images/swift-nio-quic
+      dockerfile: Dockerfile
+      target: swift-nio-quic-server
+      args:
+        VERSION: "0.7.0"
+    ports:
+      - "8027:4433/udp"
+      - "9027:8090"
+    volumes:
+      - ../certs:/certs
+    command: --cert /certs/server.ecdsa.crt --key /certs/server.ecdsa.key --port 4433
