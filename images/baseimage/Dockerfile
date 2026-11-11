@@ -51,6 +51,8 @@ RUN apk add \
     libev \
     libev-dev \
     shared-mime-info \
-    pcre-dev
+    pcre-dev \
+    ghc \
+    cabal
 
 COPY control_server.py /control_server.py

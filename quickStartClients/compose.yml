@@ -426,3 +426,18 @@ services:
     volumes:
       - ../certs:/certs
     command: --disable_certificate_verification https://localhost:4433
+  haskell-quic-client-0.3.22:
+    image: rub-nds/quic/haskell-quic-client:0.3.22
+    build:
+      context: ../images
+      dockerfile: haskell-quic/Dockerfile
+      target: haskell-quic-client
+      args:
+        VERSION: "0.3.22"
+    network_mode: host
+    environment:
+      CONTROL_PORT: "9126"
+      SSL_CERT_FILE: /certs/ca.crt
+    volumes:
+      - ../certs:/certs
+    command: -e localhost 4433

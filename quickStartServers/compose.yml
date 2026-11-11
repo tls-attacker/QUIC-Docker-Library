@@ -445,3 +445,18 @@ services:
       - ../certs:/certs
       - ../www:/www
     command: --port 4433 --certificate_file /certs/server.chain.crt --key_file /certs/server.pkcs8.key
+  haskell-quic-server-0.3.22:
+    image: rub-nds/quic/haskell-quic-server:0.3.22
+    build:
+      context: ../images
+      dockerfile: haskell-quic/Dockerfile
+      target: haskell-quic-server
+      args:
+        VERSION: "0.3.22"
+    ports:
+      - "8026:4433/udp"
+      - "9026:8090"
+    volumes:
+      - ../certs:/certs
+      - ../www:/www
+    command: -c /certs/server.crt -k /certs/server.key 0.0.0.0 4433
