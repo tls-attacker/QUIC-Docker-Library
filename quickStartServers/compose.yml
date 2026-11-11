@@ -490,3 +490,18 @@ services:
       - ../certs:/certs
       - ../www:/www
     command: -listen 0.0.0.0:4433 -cert /certs/server.rsa.crt -key /certs/server.rsa.key -root /www
+  tquic-server-1.6.0:
+    image: rub-nds/quic/tquic-server:1.6.0
+    build:
+      context: ../images
+      dockerfile: tquic/Dockerfile
+      target: tquic-server
+      args:
+        VERSION: "1.6.0"
+    ports:
+      - "8029:4433/udp"
+      - "9029:8090"
+    volumes:
+      - ../certs:/certs
+      - ../www:/www
+    command: -l 0.0.0.0:4433 -c /certs/server.rsa.crt -k /certs/server.rsa.key --root /www

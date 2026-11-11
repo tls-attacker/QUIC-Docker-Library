@@ -1,0 +1,17 @@
+services:
+  tquic-server-1.6.0:
+    image: rub-nds/quic/tquic-server:1.6.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: tquic-server
+      args:
+        VERSION: "1.6.0"
+  tquic-client-1.6.0:
+    image: rub-nds/quic/tquic-client:1.6.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: tquic-client
+      args:
+        VERSION: "1.6.0"
