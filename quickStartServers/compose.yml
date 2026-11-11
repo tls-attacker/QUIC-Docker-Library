@@ -51,7 +51,7 @@ services:
     volumes:
       - ../certs:/certs
       - ../www:/www
-    command: --port 4433 -c /certs/server.crt -k /certs/server.key
+    command: --port 4433 -c /certs/server.rsa.crt -k /certs/server.rsa.key
   kwik-server-0.12.1:
     image: rub-nds/quic/kwik-server:0.12.1
     build:
@@ -66,7 +66,7 @@ services:
     volumes:
       - ../certs:/certs
       - ../www:/www
-    command: /certs/server.crt /certs/server.key 4433
+    command: /certs/server.rsa.crt /certs/server.rsa.key 4433
   lsquic-server-4.11.1:
     image: rub-nds/quic/lsquic-server:4.11.1
     build:
@@ -81,7 +81,7 @@ services:
     volumes:
       - ../certs:/certs
       - ../www:/www
-    command: -s 0.0.0.0:4433 -c localhost,/certs/server.crt,/certs/server.key -r /www
+    command: -s 0.0.0.0:4433 -c localhost,/certs/server.rsa.crt,/certs/server.rsa.key -r /www
   msquic-server-openssl-2.6.3:
     image: rub-nds/quic/msquic-server-openssl:2.6.3
     build:
@@ -97,7 +97,7 @@ services:
     volumes:
       - ../certs:/certs
       - ../www:/www
-    command: -cert_file:/certs/server.crt -key_file:/certs/server.key
+    command: -cert_file:/certs/server.rsa.crt -key_file:/certs/server.rsa.key
     tty: true
   msquic-server-quictls-2.6.3:
     image: rub-nds/quic/msquic-server-quictls:2.6.3
@@ -114,7 +114,7 @@ services:
     volumes:
       - ../certs:/certs
       - ../www:/www
-    command: -cert_file:/certs/server.crt -key_file:/certs/server.key
+    command: -cert_file:/certs/server.rsa.crt -key_file:/certs/server.rsa.key
     tty: true
   neqo-server-0.30.1:
     image: rub-nds/quic/neqo-server:0.30.1
@@ -146,7 +146,7 @@ services:
     volumes:
       - ../certs:/certs
       - ../www:/www
-    command: 0.0.0.0 4433 /certs/server.key /certs/server.crt 
+    command: 0.0.0.0 4433 /certs/server.rsa.key /certs/server.rsa.crt 
   ngtcp2-server-awslc-1.25.0:
     image: rub-nds/quic/ngtcp2-server-awslc:1.25.0
     build:
@@ -162,7 +162,7 @@ services:
     volumes:
       - ../certs:/certs
       - ../www:/www
-    command: 0.0.0.0 4433 /certs/server.key /certs/server.crt 
+    command: 0.0.0.0 4433 /certs/server.rsa.key /certs/server.rsa.crt 
   ngtcp2-server-quictls-1.25.0:
     image: rub-nds/quic/ngtcp2-server-quictls:1.25.0
     build:
@@ -178,7 +178,7 @@ services:
     volumes:
       - ../certs:/certs
       - ../www:/www
-    command: 0.0.0.0 4433 /certs/server.key /certs/server.crt 
+    command: 0.0.0.0 4433 /certs/server.rsa.key /certs/server.rsa.crt 
   ngtcp2-server-libressl-1.25.0:
     image: rub-nds/quic/ngtcp2-server-libressl:1.25.0
     build:
@@ -194,7 +194,7 @@ services:
     volumes:
       - ../certs:/certs
       - ../www:/www
-    command: 0.0.0.0 4433 /certs/server.key /certs/server.crt 
+    command: 0.0.0.0 4433 /certs/server.rsa.key /certs/server.rsa.crt 
   ngtcp2-server-openssl-1.25.0:
     image: rub-nds/quic/ngtcp2-server-openssl:1.25.0
     build:
@@ -210,7 +210,7 @@ services:
     volumes:
       - ../certs:/certs
       - ../www:/www
-    command: 0.0.0.0 4433 /certs/server.key /certs/server.crt 
+    command: 0.0.0.0 4433 /certs/server.rsa.key /certs/server.rsa.crt 
   ngtcp2-server-gnutls-1.25.0:
     image: rub-nds/quic/ngtcp2-server-gnutls:1.25.0
     build:
@@ -226,7 +226,7 @@ services:
     volumes:
       - ../certs:/certs
       - ../www:/www
-    command: 0.0.0.0 4433 /certs/server.key /certs/server.crt 
+    command: 0.0.0.0 4433 /certs/server.rsa.key /certs/server.rsa.crt 
   ngtcp2-server-wolfssl-1.25.0:
     image: rub-nds/quic/ngtcp2-server-wolfssl:1.25.0
     build:
@@ -242,7 +242,7 @@ services:
     volumes:
       - ../certs:/certs
       - ../www:/www
-    command: 0.0.0.0 4433 /certs/server.key /certs/server.crt 
+    command: 0.0.0.0 4433 /certs/server.rsa.key /certs/server.rsa.crt 
   ngtcp2-server-picotls-1.25.0:
     image: rub-nds/quic/ngtcp2-server-picotls:1.25.0
     build:
@@ -258,7 +258,7 @@ services:
     volumes:
       - ../certs:/certs
       - ../www:/www
-    command: 0.0.0.0 4433 /certs/server.key /certs/server.crt 
+    command: 0.0.0.0 4433 /certs/server.rsa.key /certs/server.rsa.crt 
   picoquic-server-742488f:
     image: rub-nds/quic/picoquic-server:742488f
     build:
@@ -273,7 +273,7 @@ services:
     volumes:
       - ../certs:/certs
       - ../www:/www
-    command: -p 4433 -k /certs/server.key -c /certs/server.crt
+    command: -p 4433 -k /certs/server.rsa.key -c /certs/server.rsa.crt
   proxygen-mvfst-server-2026.10.19.00:
     image: rub-nds/quic/proxygen-mvfst-server:2026.10.19.00
     build:
@@ -288,7 +288,7 @@ services:
     volumes:
       - ../certs:/certs
       - ../www:/www
-    command: -host 0.0.0.0 -port 4433 -key /certs/server.key -cert /certs/server.crt -quic_version 0x00000001
+    command: -host 0.0.0.0 -port 4433 -key /certs/server.rsa.key -cert /certs/server.rsa.crt -quic_version 0x00000001
   quic-go-server-0.64.1:
     image: rub-nds/quic/quic-go-server:0.64.1
     build:
@@ -303,7 +303,7 @@ services:
     volumes:
       - ../certs:/certs
       - ../www:/www
-    command: -bind 0.0.0.0:4433 -key /certs/server.key -cert /certs/server.crt 
+    command: -bind 0.0.0.0:4433 -key /certs/server.rsa.key -cert /certs/server.rsa.crt 
   quiche-cloudflare-server-0.30.0:
     image: rub-nds/quic/quiche-cloudflare-server:0.30.0
     build:
@@ -318,7 +318,7 @@ services:
     volumes:
       - ../certs:/certs
       - ../www:/www
-    command: --listen  0.0.0.0:4433 --key /certs/server.key --cert /certs/server.crt --no-retry
+    command: --listen  0.0.0.0:4433 --key /certs/server.rsa.key --cert /certs/server.rsa.crt --no-retry
   quicly-server-91b467f:
     image: rub-nds/quic/quicly-server:91b467f
     build:
@@ -333,7 +333,7 @@ services:
     volumes:
       - ../certs:/certs
       - ../www:/www
-    command: -k /certs/server.key -c /certs/server.crt  0.0.0.0 4433
+    command: -k /certs/server.rsa.key -c /certs/server.rsa.crt  0.0.0.0 4433
   quinn-server-0.11.12:
     image: rub-nds/quic/quinn-server:0.11.12
     build:
@@ -348,7 +348,7 @@ services:
     volumes:
       - ../certs:/certs
       - ../www:/www
-    command: --listen 0.0.0.0:4433 -k /certs/server.key -c /certs/server.crt /www
+    command: --listen 0.0.0.0:4433 -k /certs/server.rsa.key -c /certs/server.rsa.crt /www
   s2n-quic-server-s2n-tls-1.91.0:
     image: rub-nds/quic/s2n-quic-server-s2n-tls:1.91.0
     build:
@@ -364,7 +364,7 @@ services:
     volumes:
       - ../certs:/certs
       - ../www:/www
-    command: --port 4433 --certificate /certs/server.crt --private-key /certs/server.key --www-dir /www
+    command: --port 4433 --certificate /certs/server.rsa.crt --private-key /certs/server.rsa.key --www-dir /www
   s2n-quic-server-rustls-1.91.0:
     image: rub-nds/quic/s2n-quic-server-rustls:1.91.0
     build:
@@ -380,7 +380,7 @@ services:
     volumes:
       - ../certs:/certs
       - ../www:/www
-    command: --port 4433 --certificate /certs/server.crt --private-key /certs/server.key --www-dir /www
+    command: --port 4433 --certificate /certs/server.rsa.crt --private-key /certs/server.rsa.key --www-dir /www
   xquic-server-babassl-1.9.8:
     image: rub-nds/quic/xquic-server-babassl:1.9.8
     build:
@@ -394,8 +394,8 @@ services:
       - "8022:4433/udp"
       - "9022:8090"
     volumes:
-      - ../certs/server.crt:/xquic/build/demo/server.crt
-      - ../certs/server.key:/xquic/build/demo/server.key
+      - ../certs/server.rsa.crt:/xquic/build/demo/server.crt
+      - ../certs/server.rsa.key:/xquic/build/demo/server.key
       - ../www:/www
     command: -p 4433
   xquic-server-boringssl-1.9.8:
@@ -411,8 +411,8 @@ services:
       - "8023:4433/udp"
       - "9023:8090"
     volumes:
-      - ../certs/server.crt:/xquic/build/demo/server.crt
-      - ../certs/server.key:/xquic/build/demo/server.key
+      - ../certs/server.rsa.crt:/xquic/build/demo/server.crt
+      - ../certs/server.rsa.key:/xquic/build/demo/server.key
       - ../www:/www
     command: -p 4433
   openssl-server-4.1.0:
@@ -429,7 +429,7 @@ services:
     volumes:
       - ../certs:/certs
       - ../www:/www
-    command: 4433 /certs/server.crt /certs/server.key
+    command: 4433 /certs/server.rsa.crt /certs/server.rsa.key
   quiche-google-server-cc6c73f:
     image: rub-nds/quic/quiche-google-server:cc6c73f
     build:
@@ -444,7 +444,7 @@ services:
     volumes:
       - ../certs:/certs
       - ../www:/www
-    command: --port 4433 --certificate_file /certs/server.chain.crt --key_file /certs/server.pkcs8.key
+    command: --port 4433 --certificate_file /certs/server.rsa.chain.crt --key_file /certs/server.rsa.key
   haskell-quic-server-0.3.22:
     image: rub-nds/quic/haskell-quic-server:0.3.22
     build:
@@ -459,7 +459,7 @@ services:
     volumes:
       - ../certs:/certs
       - ../www:/www
-    command: -c /certs/server.crt -k /certs/server.key 0.0.0.0 4433
+    command: -c /certs/server.rsa.crt -k /certs/server.rsa.key 0.0.0.0 4433
   swift-nio-quic-server-0.7.0:
     image: rub-nds/quic/swift-nio-quic-server:0.7.0
     build:
