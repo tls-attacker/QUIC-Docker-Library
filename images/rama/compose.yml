@@ -1,0 +1,55 @@
+services:
+  rama-server-boringssl-339a0f8:
+    image: rub-nds/quic/rama-server-boringssl:339a0f8
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: rama-server
+      args:
+        COMMIT: "339a0f8c21e43f88a149f83f27243349e76b0a5c"
+        TLS_IMPLEMENTATION: "boringssl"
+  rama-client-boringssl-339a0f8:
+    image: rub-nds/quic/rama-client-boringssl:339a0f8
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: rama-client
+      args:
+        COMMIT: "339a0f8c21e43f88a149f83f27243349e76b0a5c"
+        TLS_IMPLEMENTATION: "boringssl"
+  rama-server-rustls-ring-339a0f8:
+    image: rub-nds/quic/rama-server-rustls-ring:339a0f8
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: rama-server
+      args:
+        COMMIT: "339a0f8c21e43f88a149f83f27243349e76b0a5c"
+        TLS_IMPLEMENTATION: "rustls-ring"
+  rama-client-rustls-ring-339a0f8:
+    image: rub-nds/quic/rama-client-rustls-ring:339a0f8
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: rama-client
+      args:
+        COMMIT: "339a0f8c21e43f88a149f83f27243349e76b0a5c"
+        TLS_IMPLEMENTATION: "rustls-ring"
+  rama-server-rustls-aws-lc-339a0f8:
+    image: rub-nds/quic/rama-server-rustls-aws-lc:339a0f8
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: rama-server
+      args:
+        COMMIT: "339a0f8c21e43f88a149f83f27243349e76b0a5c"
+        TLS_IMPLEMENTATION: "rustls-aws-lc"
+  rama-client-rustls-aws-lc-339a0f8:
+    image: rub-nds/quic/rama-client-rustls-aws-lc:339a0f8
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: rama-client
+      args:
+        COMMIT: "339a0f8c21e43f88a149f83f27243349e76b0a5c"
+        TLS_IMPLEMENTATION: "rustls-aws-lc"

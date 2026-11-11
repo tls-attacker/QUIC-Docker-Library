@@ -54,3 +54,6 @@ The table below lists the QUIC server implementations that can be built and star
 | swift-nio-quic                   | 8027     |
 | go-x-net                         | 8028     |
 | tquic                            | 8029     |
+| rama (boringssl)                 | 8030     |
+| rama (rustls-ring)               | 8031     |
+| rama (rustls-aws-lc)             | 8032     |
