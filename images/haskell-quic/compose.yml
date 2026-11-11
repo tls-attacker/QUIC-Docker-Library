@@ -39,6 +39,7 @@ services:
       target: haskell-quic-server
       args:
         VERSION: "0.3.20"
+        VERSION_TLS: "2.4.6"
   haskell-quic-client-0.3.20:
     image: rub-nds/quic/haskell-quic-client:0.3.20
     build:
@@ -47,3 +48,4 @@ services:
       target: haskell-quic-client
       args:
         VERSION: "0.3.20"
+        VERSION_TLS: "2.4.6"
