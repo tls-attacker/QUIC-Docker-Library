@@ -53,3 +53,4 @@ The table below lists the QUIC server implementations that can be built and star
 | haskell-quic                     | 8026     |
 | swift-nio-quic                   | 8027     |
 | go-x-net                         | 8028     |
+| tquic                            | 8029     |

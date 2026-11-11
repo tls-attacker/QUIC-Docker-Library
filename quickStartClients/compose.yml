@@ -469,3 +469,17 @@ services:
     volumes:
       - ../certs:/certs
     command: https://localhost:4433/index.html
+  tquic-client-1.6.0:
+    image: rub-nds/quic/tquic-client:1.6.0
+    build:
+      context: ../images
+      dockerfile: tquic/Dockerfile
+      target: tquic-client
+      args:
+        VERSION: "1.6.0"
+    network_mode: host
+    environment:
+      CONTROL_PORT: "9129"
+    volumes:
+      - ../certs:/certs
+    command: https://localhost:4433/index.html
