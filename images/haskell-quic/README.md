@@ -4,13 +4,13 @@
 
 [https://github.com/kazu-yamamoto/quic](https://github.com/kazu-yamamoto/quic)
 
-## Requiered Server Parameters
+## Required Server Parameters
 
 ```bash
 -c [CERTIFICATE] -k [PRIVATE_KEY] [IP] [PORT]
 ```
 
-## Requiered Client Parameters
+## Required Client Parameters
 
 ```bash
 [IP] [PORT]

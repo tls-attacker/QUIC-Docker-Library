@@ -4,13 +4,13 @@
 
 [https://github.com/litespeedtech/lsquic](https://github.com/litespeedtech/lsquic)
 
-## Requiered Server Parameters
+## Required Server Parameters
 
 ```bash
 -s [IP]:[PORT] -c [DOMAIN_NAME],[CERTIFICATE],[PRIVATE_KEY] -r [WWW_DIRECTORY]
 ```
 
-## Requiered Client Parameters
+## Required Client Parameters
 
 ```bash
 -s [IP]:[PORT] -p [PATH]

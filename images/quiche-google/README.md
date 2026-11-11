@@ -4,13 +4,13 @@
 
 [https://github.com/google/quiche](https://github.com/google/quiche)
 
-## Requiered Server Parameters
+## Required Server Parameters
 
 ```bash
 --port [PORT] --certificate_file [CERTIFICATE] --key_file [PRIVATE_KEY]
 ```
 
-## Requiered Client Parameters
+## Required Client Parameters
 
 ```bash
 [URL] # e.g., https://localhost:4433

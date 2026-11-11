@@ -4,13 +4,13 @@
 
 [https://github.com/mozilla/neqo](https://github.com/mozilla/neqo)
 
-## Requiered Server Parameters
+## Required Server Parameters
 
 ```bash
 [IP]:[PORT]
 ```
 
-## Requiered Client Parameters
+## Required Client Parameters
 
 ```bash
 [URL] # e.g., https://localhost:4433

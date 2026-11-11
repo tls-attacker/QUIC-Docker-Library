@@ -4,13 +4,13 @@
 
 [https://github.com/microsoft/msquic](https://github.com/microsoft/msquic)
 
-## Requiered Server Parameters
+## Required Server Parameters
 
 ```bash
 -cert_file:[CERTIFICATE] -key_file:[PRIVATE_KEY] 
 ```
 
-## Requiered Client Parameters
+## Required Client Parameters
 
 ```bash
 -target:[IP]

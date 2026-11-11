@@ -4,13 +4,13 @@
 
 [https://github.com/ngtcp2/ngtcp2/](https://github.com/ngtcp2/ngtcp2/)
 
-## Requiered Server Parameters
+## Required Server Parameters
 
 ```bash
 [IP] [PORT] [PRIVATE_KEY] [CERTIFICATE] 
 ```
 
-## Requiered Client Parameters
+## Required Client Parameters
 
 ```bash
 [IP] [PORT]

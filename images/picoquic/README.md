@@ -4,13 +4,13 @@
 
 [https://github.com/private-octopus/picoquic](https://github.com/private-octopus/picoquic)
 
-## Requiered Server Parameters
+## Required Server Parameters
 
 ```bash
 -p [PORT] -c [CERTIFICATE] -k [PRIVATE_KEY]
 ```
 
-## Requiered Client Parameters
+## Required Client Parameters
 
 ```bash
 [IP] [PORT]

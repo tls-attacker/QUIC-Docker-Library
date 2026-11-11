@@ -4,13 +4,13 @@
 
 [https://github.com/alibaba/xquic](https://github.com/alibaba/xquic)
 
-## Requiered Server Parameters
+## Required Server Parameters
 
 ```bash
 -p [PORT]
 ```
 
-## Requiered Client Parameters
+## Required Client Parameters
 
 ```bash
 -a [IP] -p [PORT]

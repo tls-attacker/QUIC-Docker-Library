@@ -4,13 +4,13 @@
 
 [https://github.com/ptrd/kwik](https://github.com/ptrd/kwik)
 
-## Requiered Server Parameters
+## Required Server Parameters
 
 ```bash
 [CERTIFICATE] [PRIVATE_KEY] [PORT] 
 ```
 
-## Requiered Client Parameters
+## Required Client Parameters
 
 ```bash
 [PORT]
