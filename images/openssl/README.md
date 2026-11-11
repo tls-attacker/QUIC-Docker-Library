@@ -4,13 +4,13 @@
 
 [https://github.com/openssl/openssl](https://github.com/openssl/openssl)
 
-## Requiered Server Parameters
+## Required Server Parameters
 
 ```bash
 [PORT] [CERTIFICATE] [PRIVATE_KEY]
 ```
 
-## Requiered Client Parameters
+## Required Client Parameters
 
 ```bash
 -quic -alpn [ALPN] -connect [IP:PORT]

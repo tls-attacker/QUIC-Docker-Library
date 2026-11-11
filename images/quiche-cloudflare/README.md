@@ -4,13 +4,13 @@
 
 [https://github.com/cloudflare/quiche](https://github.com/cloudflare/quiche)
 
-## Requiered Server Parameters
+## Required Server Parameters
 
 ```bash
 --listen [IP:PORT] --cert [CERTIFICATE] --key [PRIVATE_KEY]
 ```
 
-## Requiered Client Parameters
+## Required Client Parameters
 
 ```bash
 [URL] # e.g., https://localhost:4433

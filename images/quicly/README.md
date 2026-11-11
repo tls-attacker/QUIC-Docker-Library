@@ -4,13 +4,13 @@
 
 [https://github.com/h2o/quicly](https://github.com/h2o/quicly.git)
 
-## Requiered Server Parameters
+## Required Server Parameters
 
 ```bash
 -k [PRIVATE_KEY] -c [CERTIFICATE] [IP] [PORT]
 ```
 
-## Requiered Client Parameters
+## Required Client Parameters
 
 ```bash
 [IP] [PORT]
