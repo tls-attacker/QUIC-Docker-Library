@@ -1,0 +1,49 @@
+services:
+  go-x-net-server-0.62.0:
+    image: rub-nds/quic/go-x-net-server:0.62.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: go-x-net-server
+      args:
+        VERSION: "0.62.0"
+  go-x-net-client-0.62.0:
+    image: rub-nds/quic/go-x-net-client:0.62.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: go-x-net-client
+      args:
+        VERSION: "0.62.0"
+  go-x-net-server-0.61.0:
+    image: rub-nds/quic/go-x-net-server:0.61.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: go-x-net-server
+      args:
+        VERSION: "0.61.0"
+  go-x-net-client-0.61.0:
+    image: rub-nds/quic/go-x-net-client:0.61.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: go-x-net-client
+      args:
+        VERSION: "0.61.0"
+  go-x-net-server-0.60.0:
+    image: rub-nds/quic/go-x-net-server:0.60.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: go-x-net-server
+      args:
+        VERSION: "0.60.0"
+  go-x-net-client-0.60.0:
+    image: rub-nds/quic/go-x-net-client:0.60.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: go-x-net-client
+      args:
+        VERSION: "0.60.0"

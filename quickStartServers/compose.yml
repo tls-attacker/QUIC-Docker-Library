@@ -473,4 +473,20 @@ services:
       - "9027:8090"
     volumes:
       - ../certs:/certs
+      - ../www:/www
     command: --cert /certs/server.ecdsa.crt --key /certs/server.ecdsa.key --port 4433
+  go-x-net-server-0.62.0:
+    image: rub-nds/quic/go-x-net-server:0.62.0
+    build:
+      context: ../images
+      dockerfile: go-x-net/Dockerfile
+      target: go-x-net-server
+      args:
+        VERSION: "0.62.0"
+    ports:
+      - "8028:4433/udp"
+      - "9028:8090"
+    volumes:
+      - ../certs:/certs
+      - ../www:/www
+    command: -listen 0.0.0.0:4433 -cert /certs/server.rsa.crt -key /certs/server.rsa.key -root /www
